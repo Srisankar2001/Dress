@@ -13,8 +13,12 @@ const orderRouter = require("./Router/orderRouter")
 const orderItemRouter = require("./Router/orderItemRouter")
 const paymentRouter = require("./Router/paymentRouter")
 
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}))
 app.use(express.json())
+app.use(express.static("upload"))
 app.use(cookieParser())
 
 app.use("/api/auth",authRouter)
