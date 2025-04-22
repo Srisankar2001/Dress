@@ -1,0 +1,79 @@
+.editCart {
+  padding: 2rem;
+  background-color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.editCart h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.editCart-input-div {
+  margin-bottom: 1.5rem;
+}
+
+.editCart-input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.editCart-input-grid div {
+  display: flex;
+  flex-direction: column;
+}
+
+.editCart-input-grid label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: #555;
+}
+
+.editCart-input-grid input[type="number"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.editCart-input-grid input[type="number"]:focus {
+  border-color: #333;
+}
+
+.editCart-button-div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.editCart-button-div input[type="submit"],
+.editCart-button-div input[type="reset"] {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #222;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editCart-button-div input[type="submit"]:hover,
+.editCart-button-div input[type="reset"]:hover {
+  background-color: #444;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  grid-column: span 2;
+}

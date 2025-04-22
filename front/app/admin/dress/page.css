@@ -1,0 +1,186 @@
+.dress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 30px;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8f8f8;
+}
+
+.dress-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dress-nav h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    flex: 1;
+}
+
+.dress-nav input[type="button"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.dress-nav input[type="button"]:hover {
+    background-color: #555;
+}
+
+.dress-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.dress-modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    min-width: 400px;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.dress-table-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dress-container table {
+    width: 90%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+thead {
+    background-color: #f0f0f0;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    font-weight: bold;
+}
+
+td {
+    font-size: 0.9rem;
+    border-bottom: none;
+}
+
+.image-col {
+    width: 15%;
+}
+
+.small-col {
+    width: 10%;
+}
+
+.description-col {
+    width: 35%;
+}
+
+.dress-action {
+    display: flex;
+}
+
+.dress-action input[type="button"] {
+    margin: 10px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: 1px solid #000;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dress-action input[type="button"]:first-child {
+    background-color: #000;
+    color: #fff;
+}
+
+.dress-action input[type="button"]:last-child {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.dress-action input[type="button"]:hover {
+    opacity: 0.85;
+}
+
+.dress-empty td {
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    color: #999;
+}
+
+.dress-image {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .dress-container table {
+        width: 100%;
+    }
+
+    .dress-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dress-nav h1 {
+        font-size: 1.25rem;
+        width: 100%;
+    }
+
+    .dress-nav input[type="button"] {
+        width: auto;
+        align-self: flex-end;
+    }
+
+    .dress-action {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .dress-nav h1 {
+        font-size: 1rem;
+    }
+}

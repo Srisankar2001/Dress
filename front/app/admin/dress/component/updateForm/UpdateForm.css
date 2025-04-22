@@ -1,0 +1,113 @@
+.dress-update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+    min-height: 100vh;
+}
+
+.dress-update form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.dress-update h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.dress-update-input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dress-update-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.dress-update-input label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.dress-update-input input,
+.dress-update-input select {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.dress-update-input p {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+.dress-preview-image {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.dress-update-button-div {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dress-update-button-div input[type="submit"],
+.dress-update-button-div input[type="reset"] {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 48%;
+}
+
+.dress-update-button-div input[type="submit"] {
+    background-color: #000;
+    color: #fff;
+}
+
+.dress-update-button-div input[type="submit"]:hover {
+    background-color: #333;
+}
+
+.dress-update-button-div input[type="reset"] {
+    background-color: #fff;
+    color: #000;
+}
+
+.dress-update-button-div input[type="reset"]:hover {
+    background-color: #f0f0f0;
+}
+
+@media (max-width: 480px) {
+    .dress-update form {
+        padding: 25px;
+    }
+
+    .dress-update-button-div {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dress-update-button-div input[type="submit"],
+    .dress-update-button-div input[type="reset"] {
+        width: 100%;
+    }
+}

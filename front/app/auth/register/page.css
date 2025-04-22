@@ -1,0 +1,141 @@
+.register {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 320px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.register-input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.register-input label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.register-input input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    transition: border-color 0.3s ease;
+}
+
+.register-input input:focus {
+    outline: none;
+    border-color: #555;
+}
+
+.register-button-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 4%;
+    margin-top: 20px;
+}
+
+.register-button-div input {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background-color: #000000;
+    color: #ffffff;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.register-button-div input[type="reset"] {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.register-button-div input:hover {
+    opacity: 0.85;
+}
+
+p {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.register-link {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.register-link a {
+    font-size: 0.95rem;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #555555;
+}
+
+@media (max-width: 768px) {
+    .register {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    .register-button-div {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .register-button-div input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .register {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .register-input input {
+        padding: 10px;
+    }
+
+    .register-button-div input {
+        width: 100%;
+    }
+
+    .register-link a {
+        font-size: 0.9rem;
+    }
+}

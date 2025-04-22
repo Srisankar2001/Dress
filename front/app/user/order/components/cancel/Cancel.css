@@ -1,0 +1,53 @@
+/* Cancel.css */
+.cancel {
+  background-color: #fff;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.cancel h1 {
+  font-size: 24px;
+  color: #b02a37;
+  margin-bottom: 1.5rem;
+}
+
+.cancel-text p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.cancel-button-div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cancel-button-div input[type="submit"],
+.cancel-button-div input[type="reset"] {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  color: #fff;
+}
+
+.cancel-button-div input[type="submit"] {
+  background-color: #b02a37; /* red tone */
+}
+
+.cancel-button-div input[type="reset"] {
+  background-color: #6c757d; /* gray tone */
+}
+
+.cancel-button-div input:hover {
+  opacity: 0.9;
+}

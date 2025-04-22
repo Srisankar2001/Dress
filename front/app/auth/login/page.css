@@ -1,0 +1,141 @@
+.login {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 320px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.login .login-input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login .login-input label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.login .login-input input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    transition: border-color 0.3s ease;
+}
+
+.login .login-input input:focus {
+    outline: none;
+    border-color: #555;
+}
+
+.login .login-button-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 4%;
+    margin-top: 20px;
+}
+
+.login .login-button-div input {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background-color: #000000;
+    color: #ffffff;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login .login-button-div input[type="reset"] {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.login .login-button-div input:hover {
+    opacity: 0.85;
+}
+
+.login p {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.login .login-link {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.login .login-link a {
+    font-size: 0.95rem;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login .login-link a:hover {
+    color: #555555;
+}
+
+@media (max-width: 768px) {
+    .login {
+        padding: 20px;
+        width: 90%;
+    }
+
+    .login h1 {
+        font-size: 1.25rem;
+    }
+
+    .login .login-button-div {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login .login-button-div input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login {
+        padding: 15px;
+    }
+
+    .login h1 {
+        font-size: 1.2rem;
+    }
+
+    .login .login-input input {
+        padding: 10px;
+    }
+
+    .login .login-button-div input {
+        width: 100%;
+    }
+
+    .login .login-link a {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,144 @@
+.size-container {
+    max-width: 95%;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #fdfdfd;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .size-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .size-nav h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .size-nav input[type="button"] {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .size-nav input[type="button"]:hover {
+    background-color: #388e3c;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+  
+  thead {
+    background-color: #1976d2;
+    color: white;
+  }
+  
+  thead th {
+    padding: 0.8rem;
+  }
+  
+  tbody td {
+    padding: 0.7rem;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+  }
+  
+  .size-empty td {
+    padding: 2rem;
+    font-weight: 500;
+    color: #888;
+    font-size: 1rem;
+  }
+  
+  .size-button-div {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .size-button-div input[type="button"] {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .size-button-div input[value="Update"] {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .size-button-div input[value="Update"]:hover {
+    background-color: #1565c0;
+  }
+  
+  .size-button-div input[value="Delete"] {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .size-button-div input[value="Delete"]:hover {
+    background-color: #c62828;
+  }
+  
+  /* Modal Styles */
+  .size-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .size-modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .size-nav {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  
+    table {
+      font-size: 0.85rem;
+      overflow-x: auto;
+    }
+  
+    .size-button-div {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+  }
+  

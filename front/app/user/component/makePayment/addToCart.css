@@ -1,0 +1,111 @@
+.addToCart {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .addToCart h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .addToCart p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #555;
+  }
+  
+  .addToCart-select-div {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 25px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  .addToCart-input-div {
+    margin-bottom: 25px;
+  }
+  
+  .addToCart-input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+  }
+  
+  .addToCart-input-grid div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .addToCart-input-grid label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .addToCart-input-grid input[type="number"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .addToCart-input-grid input[type="number"]:focus {
+    border-color: #007bff;
+  }
+  
+  .addToCart-button-div {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .addToCart-button-div input[type="submit"],
+  .addToCart-button-div input[type="reset"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .addToCart-button-div input[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .addToCart-button-div input[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
+  .addToCart-button-div input[type="reset"] {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .addToCart-button-div input[type="reset"]:hover {
+    background-color: #c82333;
+  }
+  
+  .addToCart p:last-child {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  

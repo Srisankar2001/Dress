@@ -1,0 +1,136 @@
+.orderItem-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 30px;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8f8f8;
+}
+
+.orderItem-table-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.orderItem-container table {
+    width: 90%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+thead {
+    background-color: #f0f0f0;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    font-weight: bold;
+    color: #111;
+}
+
+td {
+    font-size: 0.9rem;
+    border-bottom: none;
+}
+
+.image-col {
+    width: 15%;
+}
+
+.orderItem-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.assign-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 1px solid #000;
+    border-radius: 6px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.assign-btn:hover {
+    background-color: #333;
+}
+
+.dress-image {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+/* Modal styling (same as your shared modal) */
+.dress-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.dress-modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    min-width: 400px;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Empty row styling */
+.orderItem-empty td {
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    color: #999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .orderItem-container table {
+        width: 100%;
+    }
+
+    .orderItem-action {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    th, td {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+
+    .assign-btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .dress-image {
+        width: 90px;
+    }
+}

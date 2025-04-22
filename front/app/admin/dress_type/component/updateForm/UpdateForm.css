@@ -1,0 +1,138 @@
+.dresstype-update {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 320px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dresstype-update h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.dresstype-update .dresstype-update-input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dresstype-update .dresstype-update-input label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.dresstype-update .dresstype-update-input input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    transition: border-color 0.3s ease;
+}
+
+.dresstype-update .dresstype-update-input input:focus {
+    outline: none;
+    border-color: #555;
+}
+
+.dresstype-update .dresstype-update-checkbox-div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.dresstype-update .dresstype-update-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dresstype-update .dresstype-update-checkbox label {
+    font-size: 1rem;
+    color: #000000;
+}
+
+.dresstype-update .dresstype-update-button-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 4%;
+    margin-top: 20px;
+}
+
+.dresstype-update .dresstype-update-button-div input {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background-color: #000000;
+    color: #ffffff;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dresstype-update .dresstype-update-button-div input[type="reset"] {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.dresstype-update .dresstype-update-button-div input:hover {
+    opacity: 0.85;
+}
+
+.dresstype-update p {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .dresstype-update {
+        padding: 20px;
+        width: 90%;
+    }
+
+    .dresstype-update h1 {
+        font-size: 1.25rem;
+    }
+
+    .dresstype-update .dresstype-update-button-div {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dresstype-update .dresstype-update-button-div input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .dresstype-update {
+        padding: 15px;
+    }
+
+    .dresstype-update h1 {
+        font-size: 1.2rem;
+    }
+
+    .dresstype-update .dresstype-update-input input {
+        padding: 10px;
+    }
+
+    .dresstype-update .dresstype-update-button-div input {
+        width: 100%;
+    }
+}
