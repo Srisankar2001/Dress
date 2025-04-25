@@ -92,7 +92,6 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                 }
             } catch (err) {
                 alert(err.response?.data?.message || "Internal Server Error")
-                setUpdateForm(false)
             }
         }
     }

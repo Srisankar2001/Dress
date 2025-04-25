@@ -43,7 +43,7 @@ const page = () => {
         if (dresses.length === 0) {
             return (
                 <tr className="dress-empty">
-                    <td>No Dresses Available</td>
+                    <td colSpan="6">No Dresses Available</td>
                 </tr>
             )
         } else {
@@ -62,10 +62,10 @@ const page = () => {
                                     alt="Dress"
                                 />
                             </td>
-                            <th className="small-col">{item.name}</th>
-                            <th className="small-col">{item.type_name}</th>
-                            <th className="description-col">{item.description}</th>
-                            <th className="small-col">{item.price} LKR</th>
+                            <td className="small-col">{item.name}</td>
+                            <td className="small-col">{item.type_name}</td>
+                            <td className="description-col">{item.description}</td>
+                            <td className="small-col">{item.price} LKR</td>
                             <td className="dress-action">
                                 <input type="button" value="Update" onClick={() => handleUpdateForm(item.id)} />
                                 <input type="button" value="Delete" onClick={() => handleDeleteForm(item.id)} />

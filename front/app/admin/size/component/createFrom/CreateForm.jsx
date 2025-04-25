@@ -4,7 +4,7 @@ import "./CreateForm.css"
 import validate from '../../validation'
 import axiosInstance from '@/config/axiosConfig'
 
-export const CreateForm = ({setCreateForm}) => {
+export const CreateForm = ({ setCreateForm }) => {
     const [input, setInput] = useState({
         name: "",
         shoulder: "",
@@ -62,7 +62,7 @@ export const CreateForm = ({setCreateForm}) => {
                     outseam: input.outseam,
                     height: input.height
                 }
-                
+
                 const response = await axiosInstance.post("/size/create", data)
                 if (response.data.status) {
                     alert(response.data.message)
@@ -75,8 +75,8 @@ export const CreateForm = ({setCreateForm}) => {
     }
     return (
         <div className="size-create">
-            <h1>Size Create Page</h1>
             <form onSubmit={handleSubmit} onReset={handleReset}>
+                <h1>Size Create Page</h1>
                 <div className="size-create-input-div">
                     <div className="size-create-input">
                         <label htmlFor="name">Size Name</label>

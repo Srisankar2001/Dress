@@ -41,8 +41,8 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
     }
     return (
         <div className="dress-delete">
-            <h1>Dress Delete Page</h1>
             <form onSubmit={handleSubmit} onReset={handleReset}>
+                <h1>Dress Delete Page</h1>
                 <div className="dress-delete-text">
                     <p>Do You Want To Delete " {name} "</p>
                 </div>

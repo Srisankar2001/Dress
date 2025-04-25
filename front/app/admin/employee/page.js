@@ -51,11 +51,11 @@ const page = () => {
                 <>
                     {employees.map((item, index) => (
                         <tr key={index}>
-                            <th>{item.firstname}</th>
-                            <th>{item.lastname}</th>
-                            <th>{item.email}</th>
-                            <th>{item.address}</th>
-                            <th>{item.phone}</th>
+                            <td>{item.firstname}</td>
+                            <td>{item.lastname}</td>
+                            <td>{item.email}</td>
+                            <td>{item.address}</td>
+                            <td>{item.phone}</td>
                             <td className="employee-action">
                                 <input type="button" value="Update" onClick={() => handleUpdateForm(item.id)} />
                                 <input type="button" value="Delete" onClick={() => handleDeleteForm(item.id)} />

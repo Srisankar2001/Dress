@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState, useRef } from 'react'
 import "./UpdateForm.css"
-import validate from '../../validation'
+import validate from './validation'
 import axiosInstance from '@/config/axiosConfig'
 
 export const UpdateForm = ({ id, setUpdateForm }) => {

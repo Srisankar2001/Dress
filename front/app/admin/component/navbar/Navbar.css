@@ -5,8 +5,8 @@ nav {
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
 }
 
 nav ul {
@@ -17,9 +17,15 @@ nav ul {
     flex-direction: column;
     gap: 24px;
     width: 100%;
+    align-items: center;
 }
 
+
 nav ul li {
+    width: 100%;
+}
+
+.nav-item {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -28,20 +34,22 @@ nav ul li {
     transition: background-color 0.3s ease, transform 0.2s ease;
     padding: 10px 12px;
     border-radius: 8px;
+    text-decoration: none;
+    width: 100%;
 }
 
-nav ul li:hover {
+.nav-item:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: scale(1.02);
 }
 
-nav ul li p {
+.nav-item p {
     margin: 0;
     font-size: 1rem;
     color: #ffffff;
 }
 
-nav ul li img {
+.nav-item img {
     width: 24px;
     height: 24px;
     object-fit: contain;

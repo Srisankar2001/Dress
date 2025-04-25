@@ -4,14 +4,17 @@ import "./DeleteForm.css"
 import axiosInstance from '@/config/axiosConfig'
 
 export const DeleteForm = ({ id, setDeleteForm }) => {
-    const [name, setName] = useState("")
+    const [name, setName] = useState({ firstname: "", lastname: "" })
 
     useEffect(() => {
         const fetchEmployee = async () => {
             try {
                 const response = await axiosInstance.get(`/admin/employee/${id}`)
                 if (response.data.status) {
-                    setName(response.data.data.name)
+                    setName({
+                        firstname: response.data.data.firstname,
+                        lastname: response.data.data.lastname
+                    })
                 }
             } catch (err) {
                 alert(err.response?.data?.message || "Internal Server Error")
@@ -41,10 +44,10 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
     }
     return (
         <div className="employee-delete">
-            <h1>Employee Delete Page</h1>
             <form onSubmit={handleSubmit} onReset={handleReset}>
+                <h1>Employee Delete Page</h1>
                 <div className="employee-delete-text">
-                    <p>Do You Want To Delete " {name} "</p>
+                    <p>Do You Want To Delete " {name.firstname} {name.lastname} "</p>
                 </div>
                 <div className="employee-delete-button-div">
                     <input type="submit" value="Delete" />

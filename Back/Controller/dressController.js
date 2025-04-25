@@ -135,6 +135,11 @@ const deleteDress = async (req, res) => {
             return res.status(400).json({ status: false, message: "ID not found" })
         }
 
+        const [rowIsDressExistInOrdeItem] = await db.promise().execute("SELECT * FROM order_item WHERE dress_id =?", [id])
+        if (rowIsDressExistInOrdeItem.length !== 0) {
+            return res.status(400).json({ status: false, message: "Dress is Ordered By User" })
+        }
+
         const [rowDelete] = await db.promise().execute("DELETE FROM dress WHERE id = ?", [id])
         if (rowDelete.affectedRows === 0) {
             return res.status(400).json({ status: false, message: "Dress Delete Failed" })

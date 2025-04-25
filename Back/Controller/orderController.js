@@ -34,7 +34,7 @@ const createOrder = async (req, res) => {
         }
 
         const [rowInsertedOrder] = await db.promise().execute("INSERT INTO `order`(user_id, address) VALUES(?,?)", [user_id, address])
-        if(rowInsertedOrder.affectedRows === 0){
+        if (rowInsertedOrder.affectedRows === 0) {
             await db.promise().rollback()
             return res.status(400).json({ status: false, message: "Order Placement Failed" })
         }
@@ -72,7 +72,7 @@ const createOrder = async (req, res) => {
     }
 }
 
-const cancelOrder = async(req,res) => {
+const cancelOrder = async (req, res) => {
     const { id } = req.params
     const user_id = req.user_id
 
@@ -86,21 +86,21 @@ const cancelOrder = async(req,res) => {
         const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
-        } 
+        }
 
-        const [rowOrder] = await db.promise().execute("SELECT * FROM `order` WHERE id =? AND user_id = ?", [id,user_id])
+        const [rowOrder] = await db.promise().execute("SELECT * FROM `order` WHERE id =? AND user_id = ?", [id, user_id])
         if (rowOrder.length === 0) {
             return res.status(400).json({ status: false, message: "Order not found" })
         }
 
-        if(rowOrder[0].status === OrderStatus.NOT_PAID){
-            await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?",[OrderStatus.CANCELLED,id])
-            await db.promise().execute("UPDATE order_item SET status = ? WHERE order_id = ?",[OrderItemStatus.CANCELLED,id])
-        }else if(rowOrder[0].status === OrderStatus.PENDING){
-            await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?",[OrderStatus.CANCELLED,id])
-            await db.promise().execute("UPDATE order_item SET status = ? WHERE order_id = ?",[OrderItemStatus.CANCELLED,id])
-            await db.promise().execute("UPDATE payment SET refund = 1 WHERE order_id = ?",[id])
-        }else{
+        if (rowOrder[0].status === OrderStatus.NOT_PAID) {
+            await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?", [OrderStatus.CANCELLED, id])
+            await db.promise().execute("UPDATE order_item SET status = ? WHERE order_id = ?", [OrderItemStatus.CANCELLED, id])
+        } else if (rowOrder[0].status === OrderStatus.PENDING) {
+            await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?", [OrderStatus.CANCELLED, id])
+            await db.promise().execute("UPDATE order_item SET status = ? WHERE order_id = ?", [OrderItemStatus.CANCELLED, id])
+            await db.promise().execute("UPDATE payment SET refund = 1 WHERE order_id = ?", [id])
+        } else {
             return res.status(400).json({ status: false, message: "You can't cancelled the order now" })
         }
 
@@ -113,41 +113,41 @@ const cancelOrder = async(req,res) => {
     }
 }
 
-const completeOrder = async(req,res) => {
+const completeOrder = async (req, res) => {
     const { id } = req.params
     const user_id = req.user_id
-    
+
     if (!id || !user_id) {
         return res.status(400).json({ status: false, message: "ID is required" })
     }
 
-   
+
     try {
         const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
-        const [rowOrder] = await db.promise().execute("SELECT * FROM `order` WHERE id =? AND user_id = ?", [id,user_id])
+        const [rowOrder] = await db.promise().execute("SELECT * FROM `order` WHERE id =? AND user_id = ?", [id, user_id])
         if (rowOrder.length === 0) {
             return res.status(400).json({ status: false, message: "Order not found" })
         }
 
-        if(rowOrder[0].status === OrderStatus.SHIPPED){
-            const [rowCompleteOrder] = await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?",[OrderStatus.COMPLETED,id])
+        if (rowOrder[0].status === OrderStatus.SHIPPED) {
+            const [rowCompleteOrder] = await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?", [OrderStatus.COMPLETED, id])
             if (rowCompleteOrder.affectedRows === 0) {
                 return res.status(400).json({ status: false, message: "Order Status Update Fail" })
             }
 
             return res.status(200).json({ status: true, message: "Order Completed Successfully" })
-        }else{
+        } else {
             return res.status(400).json({ status: false, message: "Invalid Request" })
         }
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })
-    } 
+    }
 }
 
-const getOrderUser = async(req,res) => {
+const getOrderUser = async (req, res) => {
     const user_id = req.user_id
 
     if (!user_id) {
@@ -159,15 +159,15 @@ const getOrderUser = async(req,res) => {
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
-        const [rowOrder] = await db.promise().execute("SELECT * FROM `order` WHERE user_id =?", [user_id])
+        const [rowOrder] = await db.promise().execute("SELECT o.id AS order_id, o.total, o.address, o.status, o.created_at, COUNT(oi.id) AS item_count FROM `order` o JOIN order_item oi ON o.id = oi.order_id WHERE user_id = ? GROUP BY o.id, o.total, o.address, o.status, o.created_at", [user_id])
         return res.status(200).json({ status: true, message: "All Orders Fetched Successfully", data: rowOrder })
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })
-    } 
+    }
 }
 
-const getOrderAdmin = async(req,res) => {
-    const user_id  = req.user_id
+const getOrderAdmin = async (req, res) => {
+    const user_id = req.user_id
 
     if (!user_id) {
         return res.status(400).json({ status: false, message: "ID is required" })
@@ -178,11 +178,11 @@ const getOrderAdmin = async(req,res) => {
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "Admin Not Found" })
         }
-        const [rowOrder] = await db.promise().execute("SELECT * FROM `order`", [user_id])
+        const [rowOrder] = await db.promise().execute("SELECT o.id AS order_id, o.user_id, o.total, o.address, o.status, o.created_at, COUNT(oi.id) AS item_count FROM `order` o JOIN order_item oi ON o.id = oi.order_id GROUP BY o.id, o.user_id, o.total, o.address, o.status, o.created_at")
         return res.status(200).json({ status: true, message: "All Orders Fetched Successfully", data: rowOrder })
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })
-    } 
+    }
 }
 
 const orderController = {

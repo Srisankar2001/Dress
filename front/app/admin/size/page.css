@@ -1,144 +1,190 @@
 .size-container {
-    max-width: 95%;
-    margin: 3rem auto;
-    padding: 2rem;
-    background-color: #fdfdfd;
-    border-radius: 16px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 30px;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8f8f8;
+}
+
+.size-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.size-nav h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  flex: 1;
+  color: #000;
+}
+
+.size-nav input[type="button"] {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.size-nav input[type="button"]:hover {
+  background-color: #555;
+}
+
+.size-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.size-modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  min-width: 400px;
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.size-container table {
+  width: 90%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.size-container thead {
+  background-color: #000;
+  color: #fff;
+}
+
+.size-container th {
+  padding: 15px;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.size-container td {
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  text-align: center;
+  color: #333;
+}
+
+.size-empty td {
+  text-align: center;
+  padding: 30px;
+  font-size: 1.1rem;
+  color: #999;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.size-button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.size-button-div input[type="button"] {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border: 1px solid #000;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.size-button-div input[type="button"]:first-child {
+  background-color: #000;
+  color: #fff;
+}
+
+.size-button-div input[type="button"]:last-child {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.size-button-div input[type="button"]:hover {
+  opacity: 0.85;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .size-container table {
+      width: 100%;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
   }
-  
+
   .size-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  
-  .size-nav h1 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .size-nav input[type="button"] {
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 10px;
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .size-nav input[type="button"]:hover {
-    background-color: #388e3c;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    font-size: 0.95rem;
-  }
-  
-  thead {
-    background-color: #1976d2;
-    color: white;
-  }
-  
-  thead th {
-    padding: 0.8rem;
-  }
-  
-  tbody td {
-    padding: 0.7rem;
-    border-bottom: 1px solid #ddd;
-    color: #333;
-  }
-  
-  .size-empty td {
-    padding: 2rem;
-    font-weight: 500;
-    color: #888;
-    font-size: 1rem;
-  }
-  
-  .size-button-div {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-  }
-  
-  .size-button-div input[type="button"] {
-    padding: 0.4rem 1rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .size-button-div input[value="Update"] {
-    background-color: #2196f3;
-    color: white;
-  }
-  
-  .size-button-div input[value="Update"]:hover {
-    background-color: #1565c0;
-  }
-  
-  .size-button-div input[value="Delete"] {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  .size-button-div input[value="Delete"]:hover {
-    background-color: #c62828;
-  }
-  
-  /* Modal Styles */
-  .size-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
-  
-  .size-modal-content {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    width: 100%;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .size-nav {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1rem;
-    }
-  
-    table {
-      font-size: 0.85rem;
-      overflow-x: auto;
-    }
-  
-    .size-button-div {
-      flex-direction: column;
-      gap: 0.3rem;
-    }
   }
-  
+
+  .size-nav h1 {
+      font-size: 1.25rem;
+      width: 100%;
+  }
+
+  .size-nav input[type="button"] {
+      width: auto;
+      align-self: flex-end;
+  }
+
+  .size-modal-content {
+      min-width: 300px;
+      padding: 20px;
+  }
+
+  .size-button-div {
+      flex-direction: column;
+      gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .size-nav h1 {
+      font-size: 1rem;
+  }
+
+  .size-container th,
+  .size-container td {
+      font-size: 0.8rem;
+      padding: 8px;
+  }
+
+  .size-button-div input[type="button"] {
+      padding: 10px 20px;
+      font-size: 1rem;
+  }
+}

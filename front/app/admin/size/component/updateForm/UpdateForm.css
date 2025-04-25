@@ -18,11 +18,10 @@
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    z-index: 1000;
 }
 
 .size-update h1 {
@@ -55,6 +54,11 @@
     border-radius: 6px;
     background-color: #ffffff;
     color: #000000;
+}
+
+.size-update-input input::placeholder {
+    color: #999;
+    opacity: 1;
 }
 
 .size-update-input p {
@@ -98,7 +102,6 @@
 
 .full-width {
     grid-column: 1 / -1;
-    width: 100%;
 }
 
 .size-update-button-div {
@@ -131,6 +134,7 @@
 @media (max-width: 768px) {
     .size-update form {
         padding: 20px;
+        max-width: 500px;
     }
 
     .size-update h1 {
@@ -141,11 +145,13 @@
         gap: 15px;
     }
 
-    .size-update-input label {
+    .size-update-input label,
+    .size-update-input-grid label {
         font-size: 0.9rem;
     }
 
-    .size-update-input input {
+    .size-update-input input,
+    .size-update-input-grid input {
         font-size: 0.9rem;
         padding: 8px;
     }
@@ -159,29 +165,25 @@
         padding: 10px 20px;
         font-size: 0.9rem;
     }
-
-    .size-update-button-div input[type="reset"] {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-
 }
 
 @media (max-width: 480px) {
     .size-update form {
-        width: 100%;
         padding: 15px;
+        max-width: 100%;
     }
 
     .size-update h1 {
         font-size: 1.25rem;
     }
 
-    .size-update-input label {
+    .size-update-input label,
+    .size-update-input-grid label {
         font-size: 0.85rem;
     }
 
-    .size-update-input input {
+    .size-update-input input,
+    .size-update-input-grid input {
         font-size: 0.85rem;
         padding: 6px;
     }
@@ -192,11 +194,6 @@
     }
 
     .size-update-button-div input {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-    }
-
-    .size-update-button-div input[type="reset"] {
         padding: 8px 16px;
         font-size: 0.85rem;
     }

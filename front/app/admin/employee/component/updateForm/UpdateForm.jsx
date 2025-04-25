@@ -87,34 +87,34 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
         <div className="employee-update">
             <form onSubmit={handleSubmit} onReset={handleReset}>
                 <h1>Employee Update From</h1>
-                <div className="employee-input-div">
-                    <div className="employee-input">
+                <div className="employee-update-input-div">
+                    <div className="employee-update-input">
                         <label htmlFor="firstname">First Name</label>
                         <input type="text" name="firstname" value={input.firstname} placeholder="Enter Your Firstname" onChange={handleChange} />
                         {error.firstname && <p>{error.firstname}</p>}
                     </div>
-                    <div className="employee-input">
+                    <div className="employee-update-input">
                         <label htmlFor="lastname">Last Name</label>
                         <input type="text" name="lastname" value={input.lastname} placeholder="Enter Your Lastname" onChange={handleChange} />
                         {error.lastname && <p>{error.lastname}</p>}
                     </div>
-                    <div className="employee-input">
+                    <div className="employee-update-input">
                         <label htmlFor="email">Email</label>
                         <input type="text" name="email" value={input.email} placeholder="Enter Your Email" onChange={handleChange} />
                         {error.email && <p>{error.email}</p>}
                     </div>
-                    <div className="employee-input">
+                    <div className="employee-update-input">
                         <label htmlFor="phone">Phone Number</label>
                         <input type="number" name="phone" value={input.phone} placeholder="Enter Your Phone Number" onChange={handleChange} />
                         {error.phone && <p>{error.phone}</p>}
                     </div>
-                    <div className="employee-input">
+                    <div className="employee-update-input">
                         <label htmlFor="address">Address</label>
                         <input type="text" name="address" value={input.address} placeholder="Enter Your Address" onChange={handleChange} />
                         {error.address && <p>{error.address}</p>}
                     </div>
                 </div>
-                <div className="employee-button-div">
+                <div className="employee-update-button-div">
                     <input type="submit" value="Update" />
                     <input type="reset" value="Cancel" />
                 </div>

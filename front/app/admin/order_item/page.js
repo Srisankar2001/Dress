@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import "./page.css"
 import axiosInstance from "@/config/axiosConfig"
 import { AssignForm } from "./component/assignForm/AssignForm"
+import OrderItemStatus from "@/enums/OrderItemStatus"
 
 const page = () => {
     const [assignForm, setAssignForm] = useState(false)
@@ -14,6 +15,7 @@ const page = () => {
             try {
                 const response = await axiosInstance.get('/order_item/admin')
                 if (response.data.status) {
+                    console.log(response.data.data)
                     setOrderItems(response.data.data)
                 }
             } catch (err) {
@@ -21,7 +23,7 @@ const page = () => {
             }
         }
         fetchOrderItems()
-    }, [])
+    }, [assignForm])
 
 
     const handleAssign = (id) => {
@@ -32,7 +34,7 @@ const page = () => {
         if (orderItems.length === 0) {
             return (
                 <tr className="orderItem-empty">
-                    <td>No Items Available</td>
+                    <td colSpan="5">No Items Available</td>
                 </tr>
             )
         } else {
@@ -51,9 +53,13 @@ const page = () => {
                                     alt="Dress"
                                 />
                             </td>
-                            <th>{item.date.split("T")[0]}</th>
-                            <th>{item.dress_name}</th>
-                            <th>{item.status}</th>
+                            <td>{item.date.split("T")[0]}</td>
+                            <td>{item.dress_name}</td>
+                            {item.status === OrderItemStatus.NOT_PAID && <td className="orderItem-notPaid">{item.status}</td>}
+                            {item.status === OrderItemStatus.NOT_ACCEPTED && <td className="orderItem-notAccepted">{item.status}</td>}
+                            {item.status === OrderItemStatus.ACCEPTED && <td className="orderItem-accepted">{item.status}</td>}
+                            {item.status === OrderItemStatus.COMPLETED && <td className="orderItem-completed">{item.status}</td>}
+                            {item.status === OrderItemStatus.CANCELLED && <td className="orderItem-cancelled">{item.status}</td>}
                             <td className="orderItem-action">
                                 {item.status === "NOT ACCEPTED" && <input type="button" value="Assign" className="assign-btn" onClick={() => handleAssign(item.order_item_id)} />}
                             </td>

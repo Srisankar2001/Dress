@@ -43,7 +43,7 @@ const page = () => {
         if (sizes.length === 0) {
             return (
                 <tr className="size-empty">
-                    <td>No Sizes Avalible</td>
+                    <td colSpan="15">No Sizes Avalible</td>
                 </tr>
             )
         } else {

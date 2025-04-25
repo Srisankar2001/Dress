@@ -43,7 +43,7 @@ const page = () => {
         if (dressTypes.length === 0) {
             return (
                 <tr className="dresstype-empty">
-                    <td>No Dress Types Avalible</td>
+                    <td colSpan="14">No Dress Types Avalible</td>
                 </tr>
             )
         } else {

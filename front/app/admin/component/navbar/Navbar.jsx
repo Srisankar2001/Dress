@@ -17,43 +17,43 @@ export const Navbar = () => {
         <nav>
             <ul>
                 <li>
-                    <Link href="/admin/dashboard">
+                    <Link href="/admin/dashboard" className='nav-item'>
                         <Image src={dashboard} alt='Dashboard' />
                         <p>Dashboard</p>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/dress_type">
+                    <Link href="/admin/dress_type" className='nav-item'>
                         <Image src={dress_type} alt='Dress Type' />
                         <p>Dress Type</p>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/size">
+                    <Link href="/admin/size" className='nav-item'>
                         <Image src={size} alt='Size' />
                         <p>Size</p>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/dress">
+                    <Link href="/admin/dress" className='nav-item'>
                         <Image src={dress} alt='Dress' />
                         <p>Dress</p>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/employee">
+                    <Link href="/admin/employee" className='nav-item'>
                         <Image src={employee} alt='Employee' />
                         <p>Employee</p>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/order">
+                    <Link href="/admin/order" className='nav-item'>
                         <Image src={order} alt='Order' />
                         <p>Orders</p>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/order_item">
+                    <Link href="/admin/order_item" className='nav-item'>
                         <Image src={order_item} alt='Order Item' />
                         <p>Order Items</p>
                     </Link>

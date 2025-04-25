@@ -1,59 +1,109 @@
 .size-delete {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.size-delete form {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 500px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .size-delete h1 {
-    font-size: 24px;
-    font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: 1.75rem;
+    color: #000000;
 }
 
 .size-delete-text {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000000;
     text-align: center;
 }
 
 .size-delete-button-div {
     display: flex;
-    justify-content: space-around;
-    gap: 10px;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
 }
 
 .size-delete-button-div input {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    width: 45%;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .size-delete-button-div input[type="submit"] {
-    background-color: #f44336;
-    color: white;
+    border: 1px solid #000000;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .size-delete-button-div input[type="reset"] {
-    background-color: #9e9e9e;
-    color: white;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
 }
 
 .size-delete-button-div input:hover {
-    transform: scale(1.05);
+    opacity: 0.85;
 }
 
-.size-delete-button-div input:focus {
-    outline: none;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+@media (max-width: 768px) {
+    .size-delete form {
+        padding: 20px;
+        max-width: 400px;
+    }
+
+    .size-delete h1 {
+        font-size: 1.5rem;
+    }
+
+    .size-delete-text {
+        font-size: 1rem;
+    }
+
+    .size-delete-button-div input {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .size-delete form {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .size-delete h1 {
+        font-size: 1.25rem;
+    }
+
+    .size-delete-text {
+        font-size: 0.9rem;
+    }
+
+    .size-delete-button-div input {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
 }

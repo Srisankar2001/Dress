@@ -41,8 +41,8 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
     }
     return (
         <div className="size-delete">
-            <h1>Size Delete Page</h1>
             <form onSubmit={handleSubmit} onReset={handleReset}>
+                <h1>Size Delete Page</h1>
                 <div className="size-delete-text">
                     <p>Do You Want To Delete " {name} "</p>
                 </div>

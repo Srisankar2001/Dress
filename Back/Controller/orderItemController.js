@@ -16,7 +16,7 @@ const getOrderItemUser = async (req, res) => {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
 
-        const [row] = await db.promise().execute("SELECT * FROM order_item WHERE id = ? AND user_id = ? ", [id, user_id])
+        const [row] = await db.promise().execute("SELECT * FROM order_item WHERE id = ?", [id])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "Item not found" })
         }
@@ -42,6 +42,36 @@ const getAllOrderItemsUser = async (req, res) => {
         const [row] = await db.promise().execute("SELECT * FROM order_item WHERE user_id = ? ", [user_id])
 
         return res.status(200).json({ status: true, message: "All Items Fetched Successfully", data: row })
+    } catch (error) {
+        return res.status(500).json({ status: false, message: "Internal Server Error" })
+    }
+}
+
+const getOrderItemUserForOrderId = async (req, res) => {
+    const { id } = req.params
+    const user_id = req.user_id
+
+    if (!id || !user_id) {
+        return res.status(400).json({ status: false, message: "ID is required" })
+    }
+
+    try {
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        if (rowIsUserExist.length === 0) {
+            return res.status(400).json({ status: false, message: "User Not Found" })
+        }
+
+        const [rowIsOrderExist] = await db.promise().execute("SELECT * FROM order WHERE id = ? AND user_id = ? ", [id, user_id])
+        if (rowIsOrderExist.length === 0) {
+            return res.status(400).json({ status: false, message: "Order not found" })
+        }
+
+        const [row] = await db.promise().execute("SELECT * FROM order_item WHERE order_id = ? AND user_id = ? ", [id, user_id])
+        if (row.length === 0) {
+            return res.status(400).json({ status: false, message: "Order items not found" })
+        }
+
+        return res.status(200).json({ status: true, message: "Items  Fetched Successfully", data: row })
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })
     }
@@ -110,6 +140,36 @@ const getOrderItemAdmin = async (req, res) => {
         const [row] = await db.promise().execute("SELECT * FROM order_item WHERE id = ?", [id])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "Item not found" })
+        }
+
+        return res.status(200).json({ status: true, message: "Item  Fetched Successfully", data: row[0] })
+    } catch (error) {
+        return res.status(500).json({ status: false, message: "Internal Server Error" })
+    }
+}
+
+const getOrderItemAdminForOrderId = async (req, res) => {
+    const { id } = req.params
+    const user_id = req.user_id
+
+    if (!id || !user_id) {
+        return res.status(400).json({ status: false, message: "ID is required" })
+    }
+
+    try {
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN'", [user_id])
+        if (rowIsUserExist.length === 0) {
+            return res.status(400).json({ status: false, message: "ADMIN Not Found" })
+        }
+
+        const [rowIsOrderExist] = await db.promise().execute("SELECT * FROM order WHERE id = ?", [id])
+        if (rowIsOrderExist.length === 0) {
+            return res.status(400).json({ status: false, message: "Order not found" })
+        }
+
+        const [row] = await db.promise().execute("SELECT * FROM order_item WHERE order_id = ?", [id, user_id])
+        if (row.length === 0) {
+            return res.status(400).json({ status: false, message: "Order items not found" })
         }
 
         return res.status(200).json({ status: true, message: "Item  Fetched Successfully", data: row[0] })

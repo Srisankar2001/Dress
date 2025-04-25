@@ -26,7 +26,7 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
         measure: null
     })
 
-    useEffect (() => {
+    useEffect(() => {
         const fetchSize = async () => {
             try {
                 const response = await axiosInstance.get(`/size/get/${id}`)
@@ -48,7 +48,7 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                         height: response.data.data.height
                     })
                 }
-            }catch(err){
+            } catch (err) {
                 alert(err.response?.data?.message || "Internal Server Error")
                 setUpdateForm(false)
             }
@@ -103,75 +103,75 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
     }
     return (
         <div className="size-update">
-        <h1>Size Update Page</h1>
-        <form onSubmit={handleSubmit} onReset={handleReset}>
-            <div className="size-update-input-div">
-                <div className="size-update-input">
-                    <label htmlFor="name">Size Name</label>
-                    <input type="text" name="name" value={input.name} placeholder="Enter The Dress Type Name" onChange={handleChange} />
-                    {error.name && <p>{error.name}</p>}
+            <form onSubmit={handleSubmit} onReset={handleReset}>
+                <h1>Size Update Page</h1>
+                <div className="size-update-input-div">
+                    <div className="size-update-input">
+                        <label htmlFor="name">Size Name</label>
+                        <input type="text" name="name" value={input.name} placeholder="Enter The Dress Type Name" onChange={handleChange} />
+                        {error.name && <p>{error.name}</p>}
+                    </div>
+                    <div className="size-update-input-grid">
+                        <div>
+                            <label htmlFor="shoulder">Shoulder</label>
+                            <input type="number" name="shoulder" value={input.shoulder} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="chest">Chest</label>
+                            <input type="number" name="chest" value={input.chest} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="bust">Bust</label>
+                            <input type="number" name="bust" value={input.bust} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="under_bust">Under Bust</label>
+                            <input type="number" name="under_bust" value={input.under_bust} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="waist">Waist</label>
+                            <input type="number" name="waist" value={input.waist} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="hip">Hip</label>
+                            <input type="number" name="hip" value={input.hip} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="thigh">Thigh</label>
+                            <input type="number" name="thigh" value={input.thigh} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="total_rise">Total Rise</label>
+                            <input type="number" name="total_rise" value={input.total_rise} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="calf">Calf</label>
+                            <input type="number" name="calf" value={input.calf} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="upper_arm">Upper Arm</label>
+                            <input type="number" name="upper_arm" value={input.upper_arm} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="inseam">Inseam</label>
+                            <input type="number" name="inseam" value={input.inseam} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="outseam">Outseam</label>
+                            <input type="number" name="outseam" value={input.outseam} onChange={handleChange} />
+                        </div>
+                        <div className="full-width">
+                            <label htmlFor="height">Height</label>
+                            <input type="number" name="height" value={input.height} onChange={handleChange} />
+                        </div>
+                        {error.measure && <p>{error.measure}</p>}
+                    </div>
                 </div>
-                <div className="size-update-input-grid">
-                    <div>
-                        <label htmlFor="shoulder">Shoulder</label>
-                        <input type="number" name="shoulder" value={input.shoulder} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="chest">Chest</label>
-                        <input type="number" name="chest" value={input.chest} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="bust">Bust</label>
-                        <input type="number" name="bust" value={input.bust} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="under_bust">Under Bust</label>
-                        <input type="number" name="under_bust" value={input.under_bust} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="waist">Waist</label>
-                        <input type="number" name="waist" value={input.waist} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="hip">Hip</label>
-                        <input type="number" name="hip" value={input.hip} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="thigh">Thigh</label>
-                        <input type="number" name="thigh" value={input.thigh} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="total_rise">Total Rise</label>
-                        <input type="number" name="total_rise" value={input.total_rise} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="calf">Calf</label>
-                        <input type="number" name="calf" value={input.calf} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="upper_arm">Upper Arm</label>
-                        <input type="number" name="upper_arm" value={input.upper_arm} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="inseam">Inseam</label>
-                        <input type="number" name="inseam" value={input.inseam} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="outseam">Outseam</label>
-                        <input type="number" name="outseam" value={input.outseam} onChange={handleChange} />
-                    </div>
-                    <div className="full-width">
-                        <label htmlFor="height">Height</label>
-                        <input type="number" name="height" value={input.height} onChange={handleChange} />
-                    </div>
-                    {error.measure && <p>{error.measure}</p>}
+                <div className="size-update-button-div">
+                    <input type="submit" value="Update" />
+                    <input type="reset" value="Cancel" />
                 </div>
-            </div>
-            <div className="size-update-button-div">
-                <input type="submit" value="Update" />
-                <input type="reset" value="Cancel" />
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
     )
 }
