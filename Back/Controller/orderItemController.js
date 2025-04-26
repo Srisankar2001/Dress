@@ -148,7 +148,7 @@ const getOrderItemAdmin = async (req, res) => {
     }
 }
 
-const getOrderItemAdminForOrderId = async (req, res) => {
+const getAllOrderItemsAdminForOrderId = async (req, res) => {
     const { id } = req.params
     const user_id = req.user_id
 
@@ -162,17 +162,17 @@ const getOrderItemAdminForOrderId = async (req, res) => {
             return res.status(400).json({ status: false, message: "ADMIN Not Found" })
         }
 
-        const [rowIsOrderExist] = await db.promise().execute("SELECT * FROM order WHERE id = ?", [id])
+        const [rowIsOrderExist] = await db.promise().execute("SELECT * FROM `order` WHERE id = ?", [id])
         if (rowIsOrderExist.length === 0) {
             return res.status(400).json({ status: false, message: "Order not found" })
         }
 
-        const [row] = await db.promise().execute("SELECT * FROM order_item WHERE order_id = ?", [id, user_id])
+        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.price AS price, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.order_id = ?",[id])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "Order items not found" })
         }
 
-        return res.status(200).json({ status: true, message: "Item  Fetched Successfully", data: row[0] })
+        return res.status(200).json({ status: true, message: "Item  Fetched Successfully", data: row })
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })
     }
@@ -400,7 +400,7 @@ const updateOrderItemEmployeeAccept = async (req, res) => {
                 await db.promise().rollback()
                 return res.status(400).json({ status: false, message: "You can't accept the order" })
             }
-            const [rowOrderUpdate] = await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?",[OrderStatus.PROCESSING,row[0].order_id])
+            const [rowOrderUpdate] = await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?", [OrderStatus.PROCESSING, row[0].order_id])
             if (rowOrderUpdate.affectedRows === 0) {
                 await db.promise().rollback()
                 return res.status(400).json({ status: false, message: "You can't accept the order" })
@@ -447,18 +447,18 @@ const updateOrderItemEmployeeNotAccept = async (req, res) => {
             if (rowOrder.length === 0) {
                 await db.promise().rollback()
                 return res.status(400).json({ status: false, message: "Server Error" })
-            } 
+            }
 
             const allCompleted = rowOrder.every(item => item.status === OrderItemStatus.NOT_ACCEPTED);
             if (allCompleted) {
                 const [rowUpdateOrder] = await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?", [OrderStatus.PENDING, row[0].order_id])
-    
+
                 if (rowUpdateOrder.affectedRows === 0) {
                     await db.promise().rollback()
                     return res.status(400).json({ status: false, message: "Server Error" });
                 }
             }
-    
+
             await db.promise().commit()
             return res.status(200).json({ status: true, message: "You cancelled the order" })
         } else {
@@ -502,18 +502,18 @@ const updateOrderItemEmployeeComplete = async (req, res) => {
             if (rowOrder.length === 0) {
                 await db.promise().rollback()
                 return res.status(400).json({ status: false, message: "Server Error" })
-            } 
+            }
 
             const allCompleted = rowOrder.every(item => item.status === OrderItemStatus.COMPLETED);
             if (allCompleted) {
                 const [rowUpdateOrder] = await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?", [OrderStatus.SHIPPED, row[0].order_id])
-    
+
                 if (rowUpdateOrder.affectedRows === 0) {
                     await db.promise().rollback()
                     return res.status(400).json({ status: false, message: "Server Error" });
                 }
             }
-    
+
             await db.promise().commit()
             return res.status(200).json({ status: true, message: "You completed the order" })
         } else {
@@ -531,6 +531,7 @@ const orderItemController = {
     getOrderItemEmployee,
     getAllOrderItemsUser,
     getAllOrderItemsAdmin,
+    getAllOrderItemsAdminForOrderId,
     getAllOrderItemsEmployee,
     updateOrderItemUser,
     updateOrderItemAdmin,

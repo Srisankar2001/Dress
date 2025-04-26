@@ -4,8 +4,10 @@ import { useEffect, useState } from "react"
 import "./page.css"
 import axiosInstance from "@/config/axiosConfig"
 import OrderStatus from "@/enums/OrderStatus"
+import { OrderForm } from "./component/orderForm/OrderForm"
 
 const page = () => {
+    const [orderForm,setOrderForm] = useState(false)
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
@@ -16,34 +18,40 @@ const page = () => {
                     setOrders(response.data.data)
                 }
             } catch (err) {
+                console.log(err)
                 alert(err.response?.data?.message || "Internal Server Error")
             }
         }
         fetchOrders()
-    }, [])
+    }, [orderForm])
 
+    const handleOrderForm = (id) => {
+        setOrderForm(id)
+    }
     const renderOrders = () => {
         if (orders.length === 0) {
             return (
                 <tr className="order-empty">
-                    <td colSpan="5">No Items Available</td>
+                    <td colSpan="6">No Items Available</td>
                 </tr>
             )
         } else {
             return (
                 <>
                     {orders.map((item, index) => (
-                        <tr key={index}>
-                           <td>{item.id}</td>
+                        <tr key={index} onClick={()=>handleOrderForm(item.order_id)}>
+                            <td>{item.order_id}</td>
                             <td>{item.date.split("T")[0]}</td>
+                            <td>{item.address}</td>
+                            <td>{item.count}</td>
+                            <td>{item.total} LKR</td>
                             {item.status === OrderStatus.NOT_COMPLETED && <td className="order-notCompleted">{item.status}</td>}
                             {item.status === OrderStatus.NOT_PAID && <td className="order-notPaid">{item.status}</td>}
                             {item.status === OrderStatus.PENDING && <td className="order-pending">{item.status}</td>}
                             {item.status === OrderStatus.PROCESSING && <td className="order-processing">{item.status}</td>}
-                            {item.status === OrderStatus.SHIPPED && <td className="order-cancelled">{item.status}</td>}
-                            <td className="order-action">
-                                {item.status === "NOT ACCEPTED" && <input type="button" value="Assign" className="assign-btn" onClick={() => handleAssign(item.order_item_id)} />}
-                            </td>
+                            {item.status === OrderStatus.SHIPPED && <td className="order-shipped">{item.status}</td>}
+                            {item.status === OrderStatus.COMPLETED && <td className="order-completed">{item.status}</td>}
+                            {item.status === OrderStatus.CANCELLED && <td className="order-cancelled">{item.status}</td>}
                         </tr>
                     ))}
                 </>
@@ -53,11 +61,11 @@ const page = () => {
 
     return (
         <div className="order-container">
-            <h1>Order Item Page</h1>
-            {assignForm && (
+            <h1>Order Page</h1>
+            {orderForm && (
                 <div className="dress-modal-overlay">
                     <div className="dress-modal-content">
-                        <AssignForm id={assignForm} setAssignForm={setAssignForm} />
+                        <OrderForm id={orderForm} setOrderForm={setOrderForm} />
                     </div>
                 </div>
             )}
@@ -65,15 +73,16 @@ const page = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>Image</th>
+                            <th>ID</th>
                             <th>Date</th>
-                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Items</th>
+                            <th>Total</th>
                             <th>Status</th>
-                            <th className="order-action">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {renderOrderItems()}
+                        {renderOrders()}
                     </tbody>
                 </table>
             </div>

@@ -3,7 +3,7 @@ import React from 'react'
 import "./CompleteForm.css"
 import axiosInstance from '@/config/axiosConfig'
 
-export const CompleteForm = ({ id, setCompleteForm }) => {
+export const CompleteForm = ({ id, setCompleteForm, fetchOrderItems }) => {
 
     const handleReset = () => {
         setCompleteForm(false)
@@ -15,6 +15,7 @@ export const CompleteForm = ({ id, setCompleteForm }) => {
             const response = await axiosInstance.put(`/order_item/employee/complete/${id}`)
             if (response.data.status) {
                 alert(response.data.message)
+                await fetchOrderItems()
                 setCompleteForm(false)
             }
         } catch (err) {

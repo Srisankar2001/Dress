@@ -3,7 +3,7 @@ import React from 'react'
 import "./AcceptForm.css"
 import axiosInstance from '@/config/axiosConfig'
 
-export const AcceptForm = ({ id, setAcceptForm }) => {
+export const AcceptForm = ({ id, setAcceptForm, fetchOrderItems }) => {
 
     const handleReset = () => {
         setAcceptForm(false)
@@ -15,6 +15,7 @@ export const AcceptForm = ({ id, setAcceptForm }) => {
             const response = await axiosInstance.put(`/order_item/employee/accept/${id}`)
             if (response.data.status) {
                 alert(response.data.message)
+                await fetchOrderItems()
                 setAcceptForm(false)
             }
         } catch (err) {

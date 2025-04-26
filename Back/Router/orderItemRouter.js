@@ -8,6 +8,7 @@ router.get("/admin/:id", verifyAdmin, orderItemController.getOrderItemAdmin)
 router.get("/employee/:id", verifyEmployee, orderItemController.getOrderItemEmployee)
 router.get("/user", verifyUser, orderItemController.getAllOrderItemsUser)
 router.get("/admin", verifyAdmin, orderItemController.getAllOrderItemsAdmin)
+router.get("/admin/order/:id", verifyAdmin, orderItemController.getAllOrderItemsAdminForOrderId)
 router.get("/employee", verifyEmployee, orderItemController.getAllOrderItemsEmployee)
 
 router.put("/user/:id", verifyUser, orderItemController.updateOrderItemUser)

@@ -15,7 +15,6 @@ const page = () => {
             try {
                 const response = await axiosInstance.get('/order_item/admin')
                 if (response.data.status) {
-                    console.log(response.data.data)
                     setOrderItems(response.data.data)
                 }
             } catch (err) {

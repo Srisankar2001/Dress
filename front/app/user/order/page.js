@@ -6,6 +6,7 @@ import axiosInstance from "@/config/axiosConfig"
 import { Payment } from "./components/payment/Payment"
 import { Confirm } from "./components/confirm/Confirm"
 import { Cancel } from "./components/cancel/Cancel"
+import OrderStatus from "@/enums/OrderStatus"
 
 const page = () => {
     const [payment, setPayment] = useState(false)
@@ -18,6 +19,7 @@ const page = () => {
             try {
                 const response = await axiosInstance.get('/order/user')
                 if (response.data.status) {
+                    console.log(response.data.data)
                     setOrders(response.data.data)
                 }
             } catch (err) {
@@ -51,14 +53,14 @@ const page = () => {
                 <>
                     {orders.map((item, index) => (
                         <tr key={index}>
-                            <th>{item.created_at.split("T")[0]}</th>
+                            <th>{item.date.split("T")[0]}</th>
                             <th>{item.status}</th>
                             <th className="col-address">{item.address}</th>
                             <th>{item.total} LKR</th>
                             <td className="order-action">
-                                {item.status === "NOT PAID" && <input type="button" value="Pay" className="Payment-btn" onClick={() => handlePayment(item.id, item.total)} />}
-                                {item.status === "SHIPPED" && <input type="button" value="Confirm" className="Confirm-btn" onClick={() => handleConfirm(item.id)} />}
-                                {(item.status === "NOT PAID" || item.status === "PENDING") && <input type="button" value="Cancel" className="Cancel-btn" onClick={() => handleCancel(item.id)} />}
+                                {item.status === OrderStatus.NOT_PAID && <input type="button" value="Pay" className="Payment-btn" onClick={() => handlePayment(item.order_id, item.total)} />}
+                                {item.status === OrderStatus.SHIPPED && <input type="button" value="Confirm" className="Confirm-btn" onClick={() => handleConfirm(item.order_id)} />}
+                                {(item.status === OrderStatus.NOT_PAID || item.status === OrderStatus.PENDING) && <input type="button" value="Cancel" className="Cancel-btn" onClick={() => handleCancel(item.order_id)} />}
                             </td>
                         </tr>
                     ))}

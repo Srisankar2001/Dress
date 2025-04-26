@@ -3,7 +3,7 @@ import React from 'react'
 import "./DeclineForm.css"
 import axiosInstance from '@/config/axiosConfig'
 
-export const DeclineForm = ({ id, setDeclineForm }) => {
+export const DeclineForm = ({ id, setDeclineForm, fetchOrderItems }) => {
 
     const handleReset = () => {
         setDeclineForm(false)
@@ -15,6 +15,7 @@ export const DeclineForm = ({ id, setDeclineForm }) => {
             const response = await axiosInstance.put(`/order_item/employee/not_accept/${id}`)
             if (response.data.status) {
                 alert(response.data.message)
+                await fetchOrderItems()
                 setDeclineForm(false)
             }
         } catch (err) {

@@ -57,7 +57,7 @@ const createOrder = async (req, res) => {
             await db.promise().execute("DELETE FROM cart WHERE id = ?", [cart[i]])
         }
 
-        const [rowCompleteOrder] = await db.promise().execute("UPDATE `order` SET total = ?, status = ?", [total, OrderStatus.NOT_PAID])
+        const [rowCompleteOrder] = await db.promise().execute("UPDATE `order` SET total = ?, status = ? WHERE id = ?", [total, OrderStatus.NOT_PAID, orderId])
         if (rowCompleteOrder.affectedRows === 0) {
             await db.promise().rollback()
             return res.status(400).json({ status: false, message: "Order Placement Failed" })
@@ -159,7 +159,7 @@ const getOrderUser = async (req, res) => {
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
-        const [rowOrder] = await db.promise().execute("SELECT o.id AS order_id, o.total, o.address, o.status, o.created_at, COUNT(oi.id) AS item_count FROM `order` o JOIN order_item oi ON o.id = oi.order_id WHERE user_id = ? GROUP BY o.id, o.total, o.address, o.status, o.created_at", [user_id])
+        const [rowOrder] = await db.promise().execute("SELECT o.id AS order_id, o.total, o.address, o.status, o.created_at as date, COUNT(oi.id) AS count FROM `order` o JOIN order_item oi ON o.id = oi.order_id WHERE o.user_id = ? GROUP BY o.id, o.total, o.address, o.status, o.created_at", [user_id])
         return res.status(200).json({ status: true, message: "All Orders Fetched Successfully", data: rowOrder })
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })
@@ -178,9 +178,10 @@ const getOrderAdmin = async (req, res) => {
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "Admin Not Found" })
         }
-        const [rowOrder] = await db.promise().execute("SELECT o.id AS order_id, o.user_id, o.total, o.address, o.status, o.created_at, COUNT(oi.id) AS item_count FROM `order` o JOIN order_item oi ON o.id = oi.order_id GROUP BY o.id, o.user_id, o.total, o.address, o.status, o.created_at")
+        const [rowOrder] = await db.promise().execute("SELECT o.id AS order_id, o.user_id, o.total, o.address, o.status, o.created_at AS date, COUNT(oi.id) AS count FROM `order` o JOIN order_item oi ON o.id = oi.order_id GROUP BY o.id, o.user_id, o.total, o.address, o.status, o.created_at")
         return res.status(200).json({ status: true, message: "All Orders Fetched Successfully", data: rowOrder })
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ status: false, message: "Internal Server Error" })
     }
 }

@@ -8,23 +8,25 @@ import { DeclineForm } from "./component/DeclineForm/DeclineForm"
 import { CompleteForm } from "./component/CompleteForm/CompleteForm"
 
 const page = () => {
-    const [acceptForm,setAcceptForm] = useState(false)
-    const [completeForm,setCompeleteForm] = useState(false)
-    const [declineForm,setDeclineForm] = useState(false)
+    const [acceptForm, setAcceptForm] = useState(false)
+    const [completeForm, setCompeleteForm] = useState(false)
+    const [declineForm, setDeclineForm] = useState(false)
     const [orderItems, setOrderItems] = useState([])
 
-    useEffect(() => {
-        const fetchOrderItems = async () => {
-            try {
-                const response = await axiosInstance.get('/order_item/employee')
-                if (response.data.status) {
-                    setOrderItems(response.data.data)
-                }
-            } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+    const fetchOrderItems = async () => {
+        try {
+            const response = await axiosInstance.get('/order_item/employee')
+            if (response.data.status) {
+                console.log(response.data.data)
+                setOrderItems(response.data.data)
             }
+        } catch (err) {
+            alert(err.response?.data?.message || "Internal Server Error")
         }
-        fetchOrderItems()
+    }
+
+    useEffect(() => {
+        // fetchOrderItems()
     }, [])
 
 
@@ -44,7 +46,7 @@ const page = () => {
         if (orderItems.length === 0) {
             return (
                 <tr className="orderItem-empty">
-                    <td>No Items Available</td>
+                    <td colSpan="5">No Items Available</td>
                 </tr>
             )
         } else {
@@ -84,21 +86,21 @@ const page = () => {
             {acceptForm && (
                 <div className="dress-modal-overlay">
                     <div className="dress-modal-content">
-                        <AcceptForm id={acceptForm} setAcceptForm={setAcceptForm} />
+                        <AcceptForm id={acceptForm} setAcceptForm={setAcceptForm} fetchOrderItems={fetchOrderItems}/>
                     </div>
                 </div>
             )}
             {declineForm && (
                 <div className="dress-modal-overlay">
                     <div className="dress-modal-content">
-                        <DeclineForm id={declineForm} setDeclineForm={setDeclineForm} />
+                        <DeclineForm id={declineForm} setDeclineForm={setDeclineForm} fetchOrderItems={fetchOrderItems}/>
                     </div>
                 </div>
             )}
             {completeForm && (
                 <div className="dress-modal-overlay">
                     <div className="dress-modal-content">
-                        <CompleteForm id={completeForm} setCompleteForm={setCompeleteForm} />
+                        <CompleteForm id={completeForm} setCompleteForm={setCompeleteForm} fetchOrderItems={fetchOrderItems}/>
                     </div>
                 </div>
             )}
@@ -114,7 +116,7 @@ const page = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {renderOrderItems()}
+                        {/* {renderOrderItems()} */}
                     </tbody>
                 </table>
             </div>
