@@ -1,0 +1,228 @@
+.orderItem-details-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.orderItem-details-content {
+    background-color: #ffffff !important; /* Ensure white background */
+    color: #000000;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid #000000; /* Match CreateForm borders */
+    width: 100%;
+    max-width: 800px; /* Consistent with OrderForm/AcceptForm */
+    min-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.orderItem-details-container h1 {
+    text-align: center;
+    font-size: 1.75rem;
+    color: #000000;
+    margin: 0 0 20px 0; /* Consistent spacing */
+    font-weight: 600; /* Match CreateForm heading weight */
+}
+
+.orderItem-details-align {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.orderItem-details-left,
+.orderItem-details-right {
+    flex: 1;
+    min-width: 0; /* Prevent overflow */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.orderItem-details-left {
+    text-align: center;
+    align-items: flex-start; /* Align image and content to left */
+}
+
+.orderItem-details-right {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Cart-page-like grid */
+    gap: 15px;
+}
+
+.image-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.dress-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.dress-content {
+    width: 100%;
+}
+
+.dress-content h2 {
+    font-size: 1.25rem;
+    color: #000000;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.dress-content p {
+    font-size: 1rem;
+    color: #000000;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.orderItem-details-right div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.orderItem-details-right label {
+    font-size: 1rem;
+    color: #000000;
+    font-weight: 500;
+}
+
+.orderItem-details-right input {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background-color: #f5f5f5; /* Gray for readOnly */
+    color: #000000;
+    cursor: not-allowed;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.orderItem-details-button-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.orderItem-details-button-div button[type="reset"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #000000;
+    background-color: #000; /* black */
+    color: #fff; /* white text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.orderItem-details-button-div button[type="reset"]:hover {
+    background-color: #333333; /* lighter black */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .orderItem-details-content {
+        padding: 15px 20px;
+        max-width: 600px;
+        min-width: 350px;
+        max-height: 85vh;
+    }
+
+    .orderItem-details-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .orderItem-details-align {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .orderItem-details-left,
+    .orderItem-details-right {
+        min-width: 100%;
+    }
+
+    .orderItem-details-right {
+        grid-template-columns: 1fr; /* Single column for mobile */
+    }
+
+    .dress-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .dress-content h2 {
+        font-size: 1.1rem;
+    }
+
+    .dress-content p {
+        font-size: 0.9rem;
+    }
+
+    .orderItem-details-right label,
+    .orderItem-details-right input {
+        font-size: 0.9rem;
+    }
+
+    .orderItem-details-button-div button[type="reset"] {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .orderItem-details-content {
+        padding: 10px 15px;
+        max-width: 100%;
+        min-width: 300px;
+        max-height: 80vh;
+    }
+
+    .orderItem-details-container h1 {
+        font-size: 1.25rem;
+    }
+
+    .dress-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .dress-content h2 {
+        font-size: 1rem;
+    }
+
+    .dress-content p {
+        font-size: 0.85rem;
+    }
+
+    .orderItem-details-right label,
+    .orderItem-details-right input {
+        font-size: 0.85rem;
+    }
+
+    .orderItem-details-button-div button[type="reset"] {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}

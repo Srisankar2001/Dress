@@ -91,7 +91,7 @@ const getOrderItemEmployee = async (req, res) => {
             return res.status(400).json({ status: false, message: "Employee Not Found" })
         }
 
-        const [row] = await db.promise().execute("SELECT * FROM order_item WHERE id = ? AND employee_id = ? ", [id, user_id])
+        const [row] = await db.promise().execute("SELECT ot.shoulder, ot.chest, ot.bust, ot.under_bust, ot.waist, ot.hip, ot.thigh, ot.total_rise, ot.calf, ot.upper_arm, ot.inseam, ot.outseam, ot.height, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image, d.price AS dress_price, d.description AS dress_description FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.id = ? AND ot.employee_id = ?", [id,user_id])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "Item not found" })
         }
@@ -115,7 +115,7 @@ const getAllOrderItemsEmployee = async (req, res) => {
             return res.status(400).json({ status: false, message: "Employee Not Found" })
         }
 
-        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE employee_id = ? ", [user_id])
+        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.employee_id = ? ", [user_id])
 
         return res.status(200).json({ status: true, message: "All Items Fetched Successfully", data: row })
     } catch (error) {

@@ -24,16 +24,18 @@ export const AcceptForm = ({ id, setAcceptForm }) => {
     }
     return (
         <div className="orderItem-accept-container">
-            <h1>Dress Accept Page</h1>
-            <form onSubmit={handleSubmit} onReset={handleReset}>
-                <div className="orderItem-accept-text">
-                    <p>Do You Want To Accept The Order?</p>
-                </div>
-                <div className="orderItem-accept-button-div">
-                    <input type="submit" value="Confirm" />
-                    <input type="reset" value="Cancel" />
-                </div>
-            </form>
+            <div className="orderItem-accept-content">
+                <h1>Accept Order</h1>
+                <form onSubmit={handleSubmit} onReset={handleReset}>
+                    <div className="orderItem-accept-text">
+                        <p>Do you want to accept the order?</p>
+                    </div>
+                    <div className="orderItem-accept-button-div">
+                        <button type="submit">Confirm</button>
+                        <button type="reset">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

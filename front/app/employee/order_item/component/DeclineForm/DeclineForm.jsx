@@ -24,16 +24,18 @@ export const DeclineForm = ({ id, setDeclineForm }) => {
     }
     return (
         <div className="orderItem-decline-container">
-            <h1>Dress Decline Page</h1>
-            <form onSubmit={handleSubmit} onReset={handleReset}>
-                <div className="orderItem-decline-text">
-                    <p>Do You Want To Decline This Order?</p>
-                </div>
-                <div className="orderItem-decline-button-div">
-                    <input type="submit" value="Confirm" />
-                    <input type="reset" value="Cancel" />
-                </div>
-            </form>
-        </div>
+      <div className="orderItem-decline-content">
+        <h1>Decline Order</h1>
+        <form onSubmit={handleSubmit} onReset={handleReset}>
+          <div className="orderItem-decline-text">
+            <p>Do you want to decline this order?</p>
+          </div>
+          <div className="orderItem-decline-button-div">
+            <button type="submit">Confirm</button>
+            <button type="reset">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
     )
 }

@@ -24,16 +24,18 @@ export const CompleteForm = ({ id, setCompleteForm }) => {
     }
     return (
         <div className="orderItem-complete-container">
-            <h1>Dress Complete Page</h1>
-            <form onSubmit={handleSubmit} onReset={handleReset}>
-                <div className="orderItem-complete-text">
-                    <p>Did You Completed The Order?</p>
-                </div>
-                <div className="orderItem-complete-button-div">
-                    <input type="submit" value="Confirm" />
-                    <input type="reset" value="Cancel" />
-                </div>
-            </form>
-        </div>
+      <div className="orderItem-complete-content">
+        <h1>Complete Order</h1>
+        <form onSubmit={handleSubmit} onReset={handleReset}>
+          <div className="orderItem-complete-text">
+            <p>Have you completed the order?</p>
+          </div>
+          <div className="orderItem-complete-button-div">
+            <button type="submit">Confirm</button>
+            <button type="reset">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
     )
 }

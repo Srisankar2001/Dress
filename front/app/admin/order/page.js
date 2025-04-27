@@ -18,7 +18,6 @@ const page = () => {
                     setOrders(response.data.data)
                 }
             } catch (err) {
-                console.log(err)
                 alert(err.response?.data?.message || "Internal Server Error")
             }
         }

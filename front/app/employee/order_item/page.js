@@ -6,11 +6,13 @@ import axiosInstance from "@/config/axiosConfig"
 import { AcceptForm } from "./component/AcceptForm/AcceptForm"
 import { DeclineForm } from "./component/DeclineForm/DeclineForm"
 import { CompleteForm } from "./component/CompleteForm/CompleteForm"
+import { OrderDetailsForm } from "./component/OrderDetailsForm/OrderDetailsForm"
 
 const page = () => {
-    const [acceptForm,setAcceptForm] = useState(false)
-    const [completeForm,setCompeleteForm] = useState(false)
-    const [declineForm,setDeclineForm] = useState(false)
+    const [acceptForm, setAcceptForm] = useState(false)
+    const [completeForm, setCompeleteForm] = useState(false)
+    const [declineForm, setDeclineForm] = useState(false)
+    const [orderDetailsForm, setOrderDetailsForm] = useState(false)
     const [orderItems, setOrderItems] = useState([])
 
     useEffect(() => {
@@ -25,7 +27,7 @@ const page = () => {
             }
         }
         fetchOrderItems()
-    }, [])
+    }, [acceptForm, completeForm, declineForm])
 
 
     const handleAccept = (id) => {
@@ -40,18 +42,23 @@ const page = () => {
         setCompeleteForm(id)
     }
 
+    const handleDetails = (id) => {
+        setOrderDetailsForm(id)
+    }
+
     const renderOrderItems = () => {
         if (orderItems.length === 0) {
             return (
                 <tr className="orderItem-empty">
-                    <td>No Items Available</td>
+                    <td colSpan="5">No Items Available</td>
                 </tr>
             )
         } else {
             return (
                 <>
                     {orderItems.map((item, index) => (
-                        <tr key={index}>
+                        <tr key={index} onClick={() => handleDetails(item.order_item_id)}>
+                            <td>{item.order_item_id}</td>
                             <td className="image-col">
                                 <img
                                     src={`http://localhost:3001/${item.dress_image}`}
@@ -63,13 +70,12 @@ const page = () => {
                                     alt="Dress"
                                 />
                             </td>
-                            <th>{item.date.split("T")[0]}</th>
-                            <th>{item.dress_name}</th>
-                            <th>{item.status}</th>
+                            <td>{item.date.split("T")[0]}</td>
+                            <td>{item.dress_name}</td>
                             <td className="orderItem-action">
                                 {item.status === "NOT ACCEPTED" && <input type="button" value="Accept" className="assign-btn" onClick={() => handleAccept(item.order_item_id)} />}
-                                {item.status === "ACCEPTED" && <input type="button" value="Decline" className="decline-btn" onClick={() => handleDecline(item.order_item_id)} />}
                                 {item.status === "ACCEPTED" && <input type="button" value="Complete" className="complete-btn" onClick={() => handleComplete(item.order_item_id)} />}
+                                {item.status === "ACCEPTED" && <input type="button" value="Decline" className="decline-btn" onClick={() => handleDecline(item.order_item_id)} />}
                             </td>
                         </tr>
                     ))}
@@ -81,6 +87,13 @@ const page = () => {
     return (
         <div className="orderItem-container">
             <h1>Order Item Page</h1>
+            {orderDetailsForm && (
+                <div className="dress-modal-overlay">
+                    <div className="dress-modal-content">
+                        <OrderDetailsForm id={orderDetailsForm} setOrderDetailsForm={setOrderDetailsForm} />
+                    </div>
+                </div>
+            )}
             {acceptForm && (
                 <div className="dress-modal-overlay">
                     <div className="dress-modal-content">
@@ -106,10 +119,10 @@ const page = () => {
                 <table>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Image</th>
                             <th>Date</th>
                             <th>Name</th>
-                            <th>Status</th>
                             <th className="orderItem-action">Action</th>
                         </tr>
                     </thead>
