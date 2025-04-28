@@ -82,97 +82,99 @@ export const EditCart = ({ id, dress_id, setEditCart }) => {
     }
 
     return (
-        <div className="editCart">
-            <form onSubmit={handleSubmit} onReset={handleReset}>
-                <h1>Edit Cart Page</h1>
-                <div className="editCart-input-div">
-                    <div className="editCart-input-grid">
-                        {input.shoulder !== undefined &&
-                            <div>
-                                <label htmlFor="shoulder">Shoulder</label>
-                                <input type="number" name="shoulder" value={input.shoulder || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.chest !== undefined &&
-                            <div>
-                                <label htmlFor="chest">Chest</label>
-                                <input type="number" name="chest" value={input.chest || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.bust !== undefined &&
-                            <div>
-                                <label htmlFor="bust">Bust</label>
-                                <input type="number" name="bust" value={input.bust || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.under_bust !== undefined &&
-                            <div>
-                                <label htmlFor="under_bust">Under Bust</label>
-                                <input type="number" name="under_bust" value={input.under_bust || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.waist !== undefined &&
-                            <div>
-                                <label htmlFor="waist">Waist</label>
-                                <input type="number" name="waist" value={input.waist || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.hip !== undefined &&
-                            <div>
-                                <label htmlFor="hip">Hip</label>
-                                <input type="number" name="hip" value={input.hip || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.thigh !== undefined &&
-                            <div>
-                                <label htmlFor="thigh">Thigh</label>
-                                <input type="number" name="thigh" value={input.thigh || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.total_rise !== undefined &&
-                            <div>
-                                <label htmlFor="total_rise">Total Rise</label>
-                                <input type="number" name="total_rise" value={input.total_rise || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.calf !== undefined &&
-                            <div>
-                                <label htmlFor="calf">Calf</label>
-                                <input type="number" name="calf" value={input.calf || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.upper_arm !== undefined &&
-                            <div>
-                                <label htmlFor="upper_arm">Upper Arm</label>
-                                <input type="number" name="upper_arm" value={input.upper_arm || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.inseam !== undefined &&
-                            <div>
-                                <label htmlFor="inseam">Inseam</label>
-                                <input type="number" name="inseam" value={input.inseam || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.outseam !== undefined &&
-                            <div>
-                                <label htmlFor="outseam">Outseam</label>
-                                <input type="number" name="outseam" value={input.outseam || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {input.height !== undefined &&
-                            <div>
-                                <label htmlFor="height">Height</label>
-                                <input type="number" name="height" value={input.height || ""} onChange={handleChange} />
-                            </div>
-                        }
-                        {error && <p>{error}</p>}
+        <div className="editCart-container">
+            <div className='editCart-content'>
+                <form onSubmit={handleSubmit} onReset={handleReset}>
+                    <h1>Edit Cart Page</h1>
+                    <div className="editCart-input-div">
+                        <div className="editCart-input-grid">
+                            {input.shoulder !== undefined &&
+                                <div>
+                                    <label htmlFor="shoulder">Shoulder</label>
+                                    <input type="number" name="shoulder" value={input.shoulder || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.chest !== undefined &&
+                                <div>
+                                    <label htmlFor="chest">Chest</label>
+                                    <input type="number" name="chest" value={input.chest || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.bust !== undefined &&
+                                <div>
+                                    <label htmlFor="bust">Bust</label>
+                                    <input type="number" name="bust" value={input.bust || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.under_bust !== undefined &&
+                                <div>
+                                    <label htmlFor="under_bust">Under Bust</label>
+                                    <input type="number" name="under_bust" value={input.under_bust || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.waist !== undefined &&
+                                <div>
+                                    <label htmlFor="waist">Waist</label>
+                                    <input type="number" name="waist" value={input.waist || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.hip !== undefined &&
+                                <div>
+                                    <label htmlFor="hip">Hip</label>
+                                    <input type="number" name="hip" value={input.hip || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.thigh !== undefined &&
+                                <div>
+                                    <label htmlFor="thigh">Thigh</label>
+                                    <input type="number" name="thigh" value={input.thigh || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.total_rise !== undefined &&
+                                <div>
+                                    <label htmlFor="total_rise">Total Rise</label>
+                                    <input type="number" name="total_rise" value={input.total_rise || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.calf !== undefined &&
+                                <div>
+                                    <label htmlFor="calf">Calf</label>
+                                    <input type="number" name="calf" value={input.calf || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.upper_arm !== undefined &&
+                                <div>
+                                    <label htmlFor="upper_arm">Upper Arm</label>
+                                    <input type="number" name="upper_arm" value={input.upper_arm || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.inseam !== undefined &&
+                                <div>
+                                    <label htmlFor="inseam">Inseam</label>
+                                    <input type="number" name="inseam" value={input.inseam || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.outseam !== undefined &&
+                                <div>
+                                    <label htmlFor="outseam">Outseam</label>
+                                    <input type="number" name="outseam" value={input.outseam || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {input.height !== undefined &&
+                                <div>
+                                    <label htmlFor="height">Height</label>
+                                    <input type="number" name="height" value={input.height || ""} onChange={handleChange} />
+                                </div>
+                            }
+                            {error && <p>{error}</p>}
+                        </div>
                     </div>
-                </div>
-                <div className="editCart-button-div">
-                    <input type="submit" value="Update" />
-                    <input type="reset" value="Cancel" />
-                </div>
-            </form>
+                    <div className="editCart-button-div">
+                        <input type="submit" value="Update" />
+                        <input type="reset" value="Cancel" />
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

@@ -1,13 +1,26 @@
-.layout-container{
+.layout-container {
     display: flex;
     flex-direction: column;
     width: 100vw;
-}
-main {
+    height: 100vh; /* full height of screen */
+    overflow: hidden; /* prevent double scroll */
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px; /* or whatever your navbar height is */
+    background-color: white; /* or your navbar background */
+    z-index: 1000; /* to keep it on top */
+  }
+  
+  main {
+    /* margin-top: 70px;  */
     flex: 1;
     width: 100%;
-}
-main {
-    flex: 1;
     padding: 2rem;
-}
+    overflow-y: auto; /* scrollable */
+  }
+  

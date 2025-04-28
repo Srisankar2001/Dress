@@ -41,17 +41,19 @@ export const RemoveCart = ({ id, dress_id, setRemoveCart }) => {
     }
 
     return (
-        <div className="removeCart">
-            <form onSubmit={handleSubmit} onReset={handleReset}>
-                <h1>Delete Cart Page</h1>
-                <div className="removeCart-text">
-                    <p>Do You Want To Delete " {name} "</p>
-                </div>
-                <div className="removeCart-button-div">
-                    <input type="submit" value="Delete" />
-                    <input type="reset" value="Cancel" />
-                </div>
-            </form>
+        <div className="removeCart-container">
+            <div className='removeCart-content'>
+                <form onSubmit={handleSubmit} onReset={handleReset}>
+                    <h1>Delete Cart Page</h1>
+                    <div className="removeCart-text">
+                        <p>Do You Want To Delete " {name} "</p>
+                    </div>
+                    <div className="removeCart-button-div">
+                        <input type="submit" value="Delete" />
+                        <input type="reset" value="Cancel" />
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

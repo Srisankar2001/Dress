@@ -7,11 +7,13 @@ import { Payment } from "./components/payment/Payment"
 import { Confirm } from "./components/confirm/Confirm"
 import { Cancel } from "./components/cancel/Cancel"
 import OrderStatus from "@/enums/OrderStatus"
+import { OrderForm } from "./components/orderForm/OrderForm"
 
 const page = () => {
     const [payment, setPayment] = useState(false)
     const [confirm, setConfirm] = useState(false)
     const [cancel, setCancel] = useState(false)
+    const [orderForm, setOrderForm] = useState(false)
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
@@ -19,7 +21,6 @@ const page = () => {
             try {
                 const response = await axiosInstance.get('/order/user')
                 if (response.data.status) {
-                    console.log(response.data.data)
                     setOrders(response.data.data)
                 }
             } catch (err) {
@@ -41,6 +42,10 @@ const page = () => {
         setCancel(id)
     }
 
+    const handleOrderForm = (id) => {
+        setOrderForm(id)
+    }
+
     const renderOrders = () => {
         if (orders.length === 0) {
             return (
@@ -52,15 +57,22 @@ const page = () => {
             return (
                 <>
                     {orders.map((item, index) => (
-                        <tr key={index}>
-                            <th>{item.date.split("T")[0]}</th>
-                            <th>{item.status}</th>
-                            <th className="col-address">{item.address}</th>
-                            <th>{item.total} LKR</th>
+                        <tr key={index} onClick={(e) => handleOrderForm(item.order_id)}>
+                            <td>{item.order_id}</td>
+                            <td>{item.date.split("T")[0]}</td>
+                            {item.status === OrderStatus.NOT_COMPLETED && <td className="order-notCompleted">{item.status}</td>}
+                            {item.status === OrderStatus.NOT_PAID && <td className="order-notPaid">{item.status}</td>}
+                            {item.status === OrderStatus.PENDING && <td className="order-pending">{item.status}</td>}
+                            {item.status === OrderStatus.PROCESSING && <td className="order-processing">{item.status}</td>}
+                            {item.status === OrderStatus.SHIPPED && <td className="order-shipped">{item.status}</td>}
+                            {item.status === OrderStatus.COMPLETED && <td className="order-completed">{item.status}</td>}
+                            {item.status === OrderStatus.CANCELLED && <td className="order-cancelled">{item.status}</td>}
+                            <td className="col-address">{item.address}</td>
+                            <td>{item.total} LKR</td>
                             <td className="order-action">
-                                {item.status === OrderStatus.NOT_PAID && <input type="button" value="Pay" className="Payment-btn" onClick={() => handlePayment(item.order_id, item.total)} />}
-                                {item.status === OrderStatus.SHIPPED && <input type="button" value="Confirm" className="Confirm-btn" onClick={() => handleConfirm(item.order_id)} />}
-                                {(item.status === OrderStatus.NOT_PAID || item.status === OrderStatus.PENDING) && <input type="button" value="Cancel" className="Cancel-btn" onClick={() => handleCancel(item.order_id)} />}
+                                {item.status === OrderStatus.NOT_PAID && <input type="button" value="Pay" className="Payment-btn" onClick={() => {e.stopPropagation(); handlePayment(item.order_id, item.total)}} />}
+                                {item.status === OrderStatus.SHIPPED && <input type="button" value="Confirm" className="Confirm-btn" onClick={() => {e.stopPropagation(); handleConfirm(item.order_id)}} />}
+                                {(item.status === OrderStatus.NOT_PAID || item.status === OrderStatus.PENDING) && <input type="button" value="Cancel" className="Cancel-btn" onClick={() => {e.stopPropagation(); handleCancel(item.order_id)}} />}
                             </td>
                         </tr>
                     ))}
@@ -72,6 +84,13 @@ const page = () => {
     return (
         <div className="order-container">
             <h1>Order Page</h1>
+            {orderForm && (
+                <div className="size-modal-overlay">
+                    <div className="size-modal-content">
+                        <OrderForm id={orderForm} setOrderForm={setOrderForm} />
+                    </div>
+                </div>
+            )}
             {payment && (
                 <div className="size-modal-overlay">
                     <div className="size-modal-content">
@@ -97,6 +116,7 @@ const page = () => {
                 <table>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Date</th>
                             <th>Status</th>
                             <th className="col-address">Address</th>

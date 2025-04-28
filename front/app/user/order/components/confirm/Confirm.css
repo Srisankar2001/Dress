@@ -1,50 +1,59 @@
-/* Confirm.css */
 .confirm {
   background-color: #ffffff;
   max-width: 400px;
-  margin: 50px auto;
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
 .confirm h1 {
   font-size: 24px;
-  color: #222;
+  color: #000000;
   margin-bottom: 1.5rem;
 }
 
 .confirm-text p {
   font-size: 18px;
   margin: 1rem 0 2rem;
-  color: #444;
+  color: #000000;
 }
 
 .confirm-button-div {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1rem;
 }
 
-.confirm-button-div input[type="submit"],
+.confirm-button-div input[type="submit"] {
+  flex: 1;
+  padding: 10px 0;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
 .confirm-button-div input[type="reset"] {
   flex: 1;
   padding: 10px 0;
-  border: none;
-  border-radius: 8px;
-  background-color: #28a745;
-  color: #fff;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #000000;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.confirm-button-div input[type="reset"] {
-  background-color: #dc3545;
+  transition: opacity 0.3s ease;
 }
 
 .confirm-button-div input:hover {
-  opacity: 0.9;
+  opacity: 0.85;
+}
+
+.confirm-button-div input:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
 }

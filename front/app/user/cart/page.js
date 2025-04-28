@@ -89,8 +89,8 @@ const page = () => {
                                 <h2>{item.name}</h2>
                                 <h1>{item.price} LKR</h1>
                                 <div className="btn-div">
-                                    <input type="button" value="Edit" onClick={() => handleEdit(item.cart_id,item.id)}/>
-                                    <input type="button" value="Remove" onClick={() => handleRemove(item.cart_id,item.id)}/>
+                                    <input  type="button" value="Edit" onClick={() => handleEdit(item.cart_id,item.id)}/>
+                                    <input  type="button" value="Remove" onClick={() => handleRemove(item.cart_id,item.id)}/>
                                 </div>
                             </div>
                         </div>

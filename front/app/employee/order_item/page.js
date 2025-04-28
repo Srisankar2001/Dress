@@ -73,9 +73,9 @@ const page = () => {
                             <td>{item.date.split("T")[0]}</td>
                             <td>{item.dress_name}</td>
                             <td className="orderItem-action">
-                                {item.status === "NOT ACCEPTED" && <input type="button" value="Accept" className="assign-btn" onClick={() => handleAccept(item.order_item_id)} />}
-                                {item.status === "ACCEPTED" && <input type="button" value="Complete" className="complete-btn" onClick={() => handleComplete(item.order_item_id)} />}
-                                {item.status === "ACCEPTED" && <input type="button" value="Decline" className="decline-btn" onClick={() => handleDecline(item.order_item_id)} />}
+                                {item.status === "NOT ACCEPTED" && <input type="button" value="Accept" className="assign-btn" onClick={(e) => {e.stopPropagation(); handleAccept(item.order_item_id)}} />}
+                                {item.status === "ACCEPTED" && <input type="button" value="Complete" className="complete-btn" onClick={(e) => {e.stopPropagation(); handleComplete(item.order_item_id)}} />}
+                                {item.status === "ACCEPTED" && <input type="button" value="Decline" className="decline-btn" onClick={(e) => {e.stopPropagation(); handleDecline(item.order_item_id)}} />}
                             </td>
                         </tr>
                     ))}

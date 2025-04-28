@@ -47,7 +47,7 @@ const getAllOrderItemsUser = async (req, res) => {
     }
 }
 
-const getOrderItemUserForOrderId = async (req, res) => {
+const getAllOrderItemsUserForOrderId = async (req, res) => {
     const { id } = req.params
     const user_id = req.user_id
 
@@ -58,20 +58,20 @@ const getOrderItemUserForOrderId = async (req, res) => {
     try {
         const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
         if (rowIsUserExist.length === 0) {
-            return res.status(400).json({ status: false, message: "User Not Found" })
+            return res.status(400).json({ status: false, message: "USER Not Found" })
         }
 
-        const [rowIsOrderExist] = await db.promise().execute("SELECT * FROM order WHERE id = ? AND user_id = ? ", [id, user_id])
+        const [rowIsOrderExist] = await db.promise().execute("SELECT * FROM `order` WHERE id = ?", [id])
         if (rowIsOrderExist.length === 0) {
             return res.status(400).json({ status: false, message: "Order not found" })
         }
 
-        const [row] = await db.promise().execute("SELECT * FROM order_item WHERE order_id = ? AND user_id = ? ", [id, user_id])
+        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.price AS price, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.order_id = ?",[id])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "Order items not found" })
         }
 
-        return res.status(200).json({ status: true, message: "Items  Fetched Successfully", data: row })
+        return res.status(200).json({ status: true, message: "Item  Fetched Successfully", data: row })
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })
     }
@@ -532,6 +532,7 @@ const orderItemController = {
     getAllOrderItemsUser,
     getAllOrderItemsAdmin,
     getAllOrderItemsAdminForOrderId,
+    getAllOrderItemsUserForOrderId,
     getAllOrderItemsEmployee,
     updateOrderItemUser,
     updateOrderItemAdmin,

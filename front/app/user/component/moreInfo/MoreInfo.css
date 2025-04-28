@@ -1,0 +1,302 @@
+.moreInfo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Match OrderDetailsForm overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.moreInfo-content {
+    background-color: #ffffff !important; /* Ensure white background */
+    color: #000000;
+    padding: 20px 30px;
+    border-radius: 12px; /* Match OrderDetailsForm modal */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid #000000;
+    width: 100%;
+    max-width: 800px; /* Match OrderDetailsForm */
+    min-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.moreInfo-container h1 {
+    text-align: center;
+    font-size: 1.75rem;
+    color: #000000;
+    margin: 0 0 20px 0;
+    font-weight: 600; /* Match OrderDetailsForm heading */
+}
+
+.moreInfo-align {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.moreInfo-left,
+.moreInfo-right {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.moreInfo-left {
+    align-items: flex-start;
+    text-align: center;
+}
+
+.image-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.dress-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px; /* Match OrderDetailsForm image */
+}
+
+.dress-content {
+    width: 100%;
+}
+
+.dress-content h2 {
+    font-size: 1.25rem;
+    color: #000000;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.dress-content p {
+    font-size: 1rem;
+    color: #000000;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.dress-content h3 {
+    font-size: 1.5rem;
+    color: #000000;
+    margin: 10px 0 0 0;
+    font-weight: 600;
+}
+
+.moreInfo-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.moreInfo-select-div {
+    width: 100%;
+}
+
+.moreInfo-select-div{
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #000000;
+    border-radius: 6px; /* Match OrderDetailsForm inputs */
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+}
+
+.moreInfo-select-div:focus {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+}
+
+.moreInfo-input-div {
+    width: 100%;
+}
+
+.moreInfo-input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Match OrderDetailsForm grid */
+    gap: 15px;
+}
+
+.moreInfo-input-grid div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.moreInfo-input-grid label {
+    font-size: 1rem;
+    color: #000000;
+    font-weight: 500;
+}
+
+.moreInfo-input-grid input {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background-color: #ffffff; /* Editable, unlike OrderDetailsForm's readOnly */
+    color: #000000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.moreInfo-input-grid input:focus {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+}
+
+.moreInfo-input-grid p {
+    font-size: 0.9rem;
+    color: #ff0000; /* Red for errors */
+    margin: 5px 0 0 0;
+    text-align: center;
+}
+
+.moreInfo-button-div {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.moreInfo-button-div input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.moreInfo-button-div input[type="reset"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.moreInfo-button-div input[type="submit"]:hover{
+    background-color: #333;
+}
+
+.moreInfo-button-div input[type="reset"]:focus {
+    background-color: #f5f5f5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .moreInfo-content {
+        padding: 15px 20px;
+        max-width: 600px;
+        min-width: 350px;
+        max-height: 85vh;
+    }
+
+    .moreInfo-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .moreInfo-align {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .moreInfo-left,
+    .moreInfo-right {
+        min-width: 100%;
+    }
+
+    .moreInfo-input-grid {
+        grid-template-columns: 1fr; /* Single column for mobile */
+    }
+
+    .dress-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .dress-content h2 {
+        font-size: 1.1rem;
+    }
+
+    .dress-content p {
+        font-size: 0.9rem;
+    }
+
+    .dress-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .moreInfo-select-div select,
+    .moreInfo-input-grid label,
+    .moreInfo-input-grid input {
+        font-size: 0.9rem;
+    }
+
+    .moreInfo-button-div input[type="submit"],
+    .moreInfo-button-div input[type="reset"] {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .moreInfo-content {
+        padding: 10px 15px;
+        max-width: 100%;
+        min-width: 300px;
+        max-height: 80vh;
+    }
+
+    .moreInfo-container h1 {
+        font-size: 1.25rem;
+    }
+
+    .dress-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .dress-content h2 {
+        font-size: 1rem;
+    }
+
+    .dress-content p {
+        font-size: 0.85rem;
+    }
+
+    .dress-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .moreInfo-select-div select,
+    .moreInfo-input-grid label,
+    .moreInfo-input-grid input {
+        font-size: 0.85rem;
+    }
+
+    .moreInfo-button-div input[type="submit"],
+    .moreInfo-button-div input[type="reset"] {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}

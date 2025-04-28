@@ -5,7 +5,7 @@
     justify-content: flex-start;
     padding-top: 30px;
     min-height: 100vh;
-    width: 100%;
+    width: 1200px;
     background-color: #f8f8f8;
 }
 
@@ -160,6 +160,9 @@ td .dress-action {
 }
 
 @media (max-width: 768px) {
+    .dress-container {
+        width: 768px;
+    }
     .dress-container table {
         width: 100%;
     }
@@ -185,6 +188,9 @@ td .dress-action {
 }
 
 @media (max-width: 480px) {
+    .dress-container {
+        width: 480px;
+    }
     .dress-nav h1 {
         font-size: 1rem;
     }

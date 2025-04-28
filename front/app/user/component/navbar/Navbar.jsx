@@ -22,33 +22,37 @@ export const Navbar = () => {
                     </Link>
                 </li>
                 {isUser &&
-                    <Link href="/user/order">
-                        <li>
+                    <li>
+                        <Link href="/user/order">
                             <Image src={order} alt="Order" />
                             <p>Orders</p>
-                        </li>
-                    </Link>
+                        </Link>
+                    </li>
                 }
                 {isUser &&
-                    <Link href="/user/cart">
-                        <li>
+                    <li>
+                        <Link href="/user/cart">
                             <Image src={cart} alt="Cart" />
                             <p>Cart</p>
-                        </li>
-                    </Link>
+                        </Link>
+                    </li>
                 }
             </ul>
             <div className='nav-right'>
                 {isUser &&
                     <li>
-                        <Image src={logout} alt="Logout" />
-                        <p>Logout</p>
+                        <Link href="#">
+                            <Image src={logout} alt="Logout" />
+                            <p>Logout</p>
+                        </Link>
                     </li>
                 }
                 {!isUser &&
                     <li>
-                        <Image src={login} alt="Login" />
-                        <p>Login</p>
+                        <Link href="#">
+                            <Image src={login} alt="Login" />
+                            <p>Login</p>
+                        </Link>
                     </li>
                 }
             </div>

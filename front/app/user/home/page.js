@@ -4,11 +4,14 @@ import { useAuth } from '@/context/authContext'
 import React, { useEffect, useState } from 'react'
 import "./page.css"
 import { AddToCart } from '../component/addTocart/addToCart'
+import { MoreInfo } from '../component/moreInfo/MoreInfo'
 
 const page = () => {
     const { isUser } = useAuth()
     const [addToCart, setAddToCart] = useState(null)
+    const [moreInfo, setMoreInfo] = useState(null)
     const [dresses, setDresses] = useState([])
+
     useEffect(() => {
         const fetchDresses = async () => {
             try {
@@ -23,8 +26,12 @@ const page = () => {
         fetchDresses()
     }, [])
 
-    const HandleAddToCart = (id, type_id) => {
+    const handleAddToCart = (id, type_id) => {
         setAddToCart({ id, type_id })
+    }
+
+    const handleMoreInfo = (id, type_id) => {
+        setMoreInfo({ id, type_id })
     }
 
     const renderDresses = () => {
@@ -54,9 +61,8 @@ const page = () => {
                                 <h2>{item.name}</h2>
                                 <h1>{item.price} LKR</h1>
                                 <div className="btn-div">
-                                    <input type="button" value="Add To Cart" onClick={() => HandleAddToCart(item.id, item.type_id)} />
-                                    <input type="button" value="More Info" />
-                                    {/* onClick={() => moreInfo(item.id)} */}
+                                    <input className='btn-addToCart' type="button" value="Add To Cart" onClick={() => handleAddToCart(item.id, item.type_id)} />
+                                    <input className='btn-moreInfo' type="button" value="More Info" onClick={() => handleMoreInfo(item.id, item.type_id)} />
                                 </div>
                             </div>
                         </div>
@@ -71,6 +77,13 @@ const page = () => {
                 <div className="size-modal-overlay">
                     <div className="size-modal-content">
                         <AddToCart id={addToCart.id} type_id={addToCart.type_id} setAddToCart={setAddToCart} />
+                    </div>
+                </div>
+            )}
+            {moreInfo && (
+                <div className="size-modal-overlay">
+                    <div className="size-modal-content">
+                        <MoreInfo id={moreInfo.id} type_id={moreInfo.type_id} setMoreInfo={setMoreInfo} />
                     </div>
                 </div>
             )}

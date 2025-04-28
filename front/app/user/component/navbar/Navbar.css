@@ -1,82 +1,141 @@
 /* General navbar styling */
 nav {
-    width: 100%;
-    background-color: #000;
-    color: #fff;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  
-  /* Flex container styles */
-  .nav-left,
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Individual nav items */
-  .nav-left li,
-  .nav-right li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s ease, filter 0.2s ease;
-    position: relative;
-  }
-  
-  .nav-left li:hover,
-  .nav-right li:hover {
-    transform: scale(1.1);
-    filter: brightness(1.4);
-  }
-  
-  .nav-left li p,
-  .nav-right li p {
-    margin-top: 0.4rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #fff;
-    text-align: center;
-  }
-  
-  /* Icon size */
-  .nav-left li img,
-  .nav-right li img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    nav {
+  width: 100%;
+  background-color: #000000; /* Black background */
+  color: #ffffff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05); /* Subtle shadow */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Flex container styles */
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual nav items */
+.nav-left li,
+.nav-right li {
+  display: flex;
+}
+
+/* Anchor link styling */
+.nav-left li a,
+.nav-right li a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 6px; 
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effects */
+.nav-left li a:hover,
+.nav-right li a:hover {
+  background-color: #333333; /* Dark gray on hover */
+  transform: translateY(-1px);
+}
+
+/* Focus state for accessibility */
+.nav-left li a:focus,
+.nav-right li a:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+/* Text styling within links */
+.nav-left li a p,
+.nav-right li a p {
+  padding-left: 5px;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500; /* Match OrderDetailsForm */
+  color: #ffffff; /* White text to match icons */
+  text-align: center;
+}
+
+/* Icon size */
+.nav-left li a img,
+.nav-right li a img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  nav {
       flex-direction: column;
       align-items: flex-start;
       padding: 1rem;
-    }
-  
-    .nav-left,
-    .nav-right {
+  }
+
+  .nav-left,
+  .nav-right {
       flex-wrap: wrap;
       gap: 1rem 1.5rem;
       justify-content: flex-start;
       width: 100%;
       margin-top: 0.5rem;
-    }
-  
-    .nav-right {
-      justify-content: flex-end;
-    }
   }
-  
+
+  .nav-right {
+      justify-content: flex-end;
+  }
+
+  .nav-left li a,
+  .nav-right li a {
+      padding: 0.4rem 0.8rem;
+  }
+
+  .nav-left li a p,
+  .nav-right li a p {
+      font-size: 0.8rem;
+  }
+
+  .nav-left li a img,
+  .nav-right li a img {
+      width: 24px;
+      height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+      padding: 0.8rem;
+  }
+
+  .nav-left,
+  .nav-right {
+      gap: 0.8rem 1rem;
+  }
+
+  .nav-left li a,
+  .nav-right li a {
+      padding: 0.3rem 0.6rem;
+  }
+
+  .nav-left li a p,
+  .nav-right li a p {
+      font-size: 0.75rem;
+  }
+
+  .nav-left li a img,
+  .nav-right li a img {
+      width: 20px;
+      height: 20px;
+  }
+}
