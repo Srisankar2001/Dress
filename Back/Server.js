@@ -14,6 +14,7 @@ const orderRouter = require("./Router/orderRouter")
 const orderItemRouter = require("./Router/orderItemRouter")
 const paymentRouter = require("./Router/paymentRouter")
 const sizeRouter = require("./Router/sizeRouter")
+const dashboardRouter = require("./Router/dashboardRouter")
 
 app.use(cors({
     origin: "http://localhost:3000",
@@ -23,20 +24,21 @@ app.use(express.json())
 app.use(express.static("upload"))
 app.use(cookieParser())
 
-app.use("/api/auth",authRouter)
-app.use("/api/admin",adminRouter)
-app.use("/api/dress_type",dressTypeRouter)
-app.use("/api/dress",dressRouter)
-app.use("/api/cart",cartRouter)
-app.use("/api/order",orderRouter)
-app.use("/api/order_item",orderItemRouter)
-app.use("/api/payment",paymentRouter)
-app.use("/api/size",sizeRouter)
+app.use("/api/auth", authRouter)
+app.use("/api/admin", adminRouter)
+app.use("/api/dress_type", dressTypeRouter)
+app.use("/api/dress", dressRouter)
+app.use("/api/cart", cartRouter)
+app.use("/api/order", orderRouter)
+app.use("/api/order_item", orderItemRouter)
+app.use("/api/payment", paymentRouter)
+app.use("/api/size", sizeRouter)
+app.use("/api/dashboard", dashboardRouter)
 
-db.connect((err)=>{
-    if(err){
+db.connect((err) => {
+    if (err) {
         console.log("DB Connection : Failed", err.message)
-    }else{
+    } else {
         console.log("DB Connection : Success")
         app.listen(3001, (err) => {
             if (err) {

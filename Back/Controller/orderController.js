@@ -17,7 +17,7 @@ const createOrder = async (req, res) => {
     await db.promise().beginTransaction()
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -58,6 +58,19 @@ const createOrder = async (req, res) => {
         }
 
         const [rowCompleteOrder] = await db.promise().execute("UPDATE `order` SET total = ?, status = ? WHERE id = ?", [total, OrderStatus.NOT_PAID, orderId])
+
+        const date = new Date().toISOString().split('T')[0]
+        const [rowIsDateExist] = await db.promise().execute("SELECT * FROM `order_stats` WHERE date = ?",[date])
+        if(rowIsDateExist.length === 0){
+            await db.promise().execute("INSERT INTO `order_stats`(date,total_orders,total_price,total_dresses) VALUES(?,?,?,?)",[date,1,total,cart.length])
+        }else{
+            const order_stats_id = rowIsDateExist[0].id
+            const total_orders = Number(rowIsDateExist[0].total_orders) + 1
+            const total_price = Number(rowIsDateExist[0].total_price) + Number(total)
+            const total_dresses = Number(rowIsDateExist[0].total_dresses) + cart.length
+            await db.promise().execute("UPDATE `order_stats` SET total_orders = ?, total_price = ?, total_dresses = ? WHERE id = ?",[total_orders,total_price,total_dresses,order_stats_id])
+        }
+
         if (rowCompleteOrder.affectedRows === 0) {
             await db.promise().rollback()
             return res.status(400).json({ status: false, message: "Order Placement Failed" })
@@ -83,7 +96,7 @@ const cancelOrder = async (req, res) => {
     await db.promise().beginTransaction()
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -92,7 +105,10 @@ const cancelOrder = async (req, res) => {
         if (rowOrder.length === 0) {
             return res.status(400).json({ status: false, message: "Order not found" })
         }
-
+        const [rowOrderItem] = await db.promise().execute("SELECT COUNT(*) AS count FROM `order_item` WHERE order_id = ?",[id])
+        const count = rowOrderItem[0].count
+        const total = rowOrder[0].total
+        
         if (rowOrder[0].status === OrderStatus.NOT_PAID) {
             await db.promise().execute("UPDATE `order` SET status = ? WHERE id = ?", [OrderStatus.CANCELLED, id])
             await db.promise().execute("UPDATE order_item SET status = ? WHERE order_id = ?", [OrderItemStatus.CANCELLED, id])
@@ -105,9 +121,21 @@ const cancelOrder = async (req, res) => {
         }
 
         await db.promise().commit()
+
+        const date = new Date().toISOString().split('T')[0]
+        const [rowIsDateExist] = await db.promise().execute("SELECT * FROM `order_stats` WHERE date = ?",[date])
+        if(rowIsDateExist.length === 0){
+            await db.promise().execute("INSERT INTO `order_stats`(date,cancelled_orders,cancelled_price,cancelled_dresses) VALUES(?,?,?,?)",[date,1,total,count])
+        }else{
+            const order_stats_id = rowIsDateExist[0].id
+            const cancelled_orders = Number(rowIsDateExist[0].cancelled_orders) + 1
+            const cancelled_price = Number(rowIsDateExist[0].cancelled_price) + Number(total)
+            const cancelled_dresses = Number(rowIsDateExist[0].cancelled_dresses) + Number(count)
+            await db.promise().execute("UPDATE `order_stats` SET cancelled_orders = ?, cancelled_price = ?, cancelled_dresses = ? WHERE id = ?",[cancelled_orders,cancelled_price,cancelled_dresses,order_stats_id])
+        }
+
         return res.status(200).json({ status: true, message: "Order Cancelled Successfully" })
     } catch (error) {
-        console.log(error)
         await db.promise().rollback()
         return res.status(500).json({ status: false, message: "Internal Server Error" })
     }
@@ -123,7 +151,7 @@ const completeOrder = async (req, res) => {
 
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -155,7 +183,7 @@ const getOrderUser = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -174,7 +202,7 @@ const getOrderAdmin = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "Admin Not Found" })
         }

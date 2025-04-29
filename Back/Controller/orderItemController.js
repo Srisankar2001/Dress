@@ -11,7 +11,7 @@ const getOrderItemUser = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -35,7 +35,7 @@ const getAllOrderItemsUser = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -56,7 +56,7 @@ const getAllOrderItemsUserForOrderId = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "USER Not Found" })
         }
@@ -66,7 +66,7 @@ const getAllOrderItemsUserForOrderId = async (req, res) => {
             return res.status(400).json({ status: false, message: "Order not found" })
         }
 
-        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.price AS price, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.order_id = ?",[id])
+        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.price AS price, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.order_id = ?", [id])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "Order items not found" })
         }
@@ -86,12 +86,12 @@ const getOrderItemEmployee = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "Employee Not Found" })
         }
 
-        const [row] = await db.promise().execute("SELECT ot.shoulder, ot.chest, ot.bust, ot.under_bust, ot.waist, ot.hip, ot.thigh, ot.total_rise, ot.calf, ot.upper_arm, ot.inseam, ot.outseam, ot.height, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image, d.price AS dress_price, d.description AS dress_description FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.id = ? AND ot.employee_id = ?", [id,user_id])
+        const [row] = await db.promise().execute("SELECT ot.shoulder, ot.chest, ot.bust, ot.under_bust, ot.waist, ot.hip, ot.thigh, ot.total_rise, ot.calf, ot.upper_arm, ot.inseam, ot.outseam, ot.height, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image, d.price AS dress_price, d.description AS dress_description FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.id = ? AND ot.employee_id = ?", [id, user_id])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "Item not found" })
         }
@@ -110,7 +110,7 @@ const getAllOrderItemsEmployee = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "Employee Not Found" })
         }
@@ -132,7 +132,7 @@ const getOrderItemAdmin = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "ADMIN Not Found" })
         }
@@ -157,7 +157,7 @@ const getAllOrderItemsAdminForOrderId = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "ADMIN Not Found" })
         }
@@ -167,7 +167,7 @@ const getAllOrderItemsAdminForOrderId = async (req, res) => {
             return res.status(400).json({ status: false, message: "Order not found" })
         }
 
-        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.price AS price, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.order_id = ?",[id])
+        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.price AS price, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id WHERE ot.order_id = ?", [id])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "Order items not found" })
         }
@@ -186,7 +186,7 @@ const getAllOrderItemsAdmin = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "ADMIN Not Found" })
         }
@@ -209,7 +209,7 @@ const updateOrderItemUser = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -343,12 +343,12 @@ const updateOrderItemAdmin = async (req, res) => {
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
 
-        const [rowIsEmployeeExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE'", [employee_id])
+        const [rowIsEmployeeExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE' AND is_deleted = 0", [employee_id])
         if (rowIsEmployeeExist.length === 0) {
             return res.status(400).json({ status: false, message: "Employee Not Found" })
         }
@@ -384,7 +384,7 @@ const updateOrderItemEmployeeAccept = async (req, res) => {
     await db.promise().beginTransaction()
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -427,7 +427,7 @@ const updateOrderItemEmployeeNotAccept = async (req, res) => {
     db.promise().beginTransaction()
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -459,6 +459,16 @@ const updateOrderItemEmployeeNotAccept = async (req, res) => {
                 }
             }
 
+            const date = new Date().toISOString().split('T')[0]
+            const [rowIsDateExist] = await db.promise().execute("SELECT * FROM `employee_stats` WHERE employee_id = ? AND date = ?", [user_id,date])
+            if (rowIsDateExist.length === 0) {
+                await db.promise().execute("INSERT INTO `employee_stats`(employee_id,date,cancel) VALUES(?,?,?)", [user_id, date, 1])
+            } else {
+                const employee_stats_id = rowIsDateExist[0].id
+                const cancel = Number(rowIsDateExist[0].cancel) + 1
+                await db.promise().execute("UPDATE `employee_stats` SET cancel = ? WHERE id = ?", [cancel, employee_stats_id])
+            }
+
             await db.promise().commit()
             return res.status(200).json({ status: true, message: "You cancelled the order" })
         } else {
@@ -482,7 +492,7 @@ const updateOrderItemEmployeeComplete = async (req, res) => {
     await db.promise().beginTransaction()
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'EMPLOYEE' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -512,6 +522,16 @@ const updateOrderItemEmployeeComplete = async (req, res) => {
                     await db.promise().rollback()
                     return res.status(400).json({ status: false, message: "Server Error" });
                 }
+            }
+
+            const date = new Date().toISOString().split('T')[0]
+            const [rowIsDateExist] = await db.promise().execute("SELECT * FROM `employee_stats` WHERE employee_id = ? AND date = ?", [user_id,date])
+            if (rowIsDateExist.length === 0) {
+                await db.promise().execute("INSERT INTO `employee_stats`(employee_id,date,complete) VALUES(?,?,?)", [user_id, date, 1])
+            } else {
+                const employee_stats_id = rowIsDateExist[0].id
+                const complete = Number(rowIsDateExist[0].complete) + 1
+                await db.promise().execute("UPDATE `employee_stats` SET complete = ? WHERE id = ?", [complete, employee_stats_id])
             }
 
             await db.promise().commit()

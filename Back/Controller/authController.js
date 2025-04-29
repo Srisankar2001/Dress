@@ -13,7 +13,7 @@ const register = async (req, res) => {
     }
 
     try {
-        const [rowEmail] = await db.promise().execute("SELECT * FROM user WHERE email = ?", [email])
+        const [rowEmail] = await db.promise().execute("SELECT * FROM user WHERE email = ? AND is_deleted = 0", [email])
         if (rowEmail.length > 0) {
             return res.status(400).json({ status: false, message: "Email Already Exist" })
         }
@@ -38,7 +38,7 @@ const login = async (req, res) => {
     }
 
     try {
-        const [rowLogin] = await db.promise().execute("SELECT * FROM user WHERE email = ?", [email])
+        const [rowLogin] = await db.promise().execute("SELECT * FROM user WHERE email = ? AND is_deleted = 0", [email])
         if (rowLogin.length === 0) {
             return res.status(400).json({ status: false, message: "Email not registered" })
         }
@@ -68,7 +68,7 @@ const getData = async (req, res) => {
     try {
         const decode = jwt.verify(token, SECRET_KEY)
         const id = decode.id
-        const [rowDecode] = await db.promise().execute("SELECT id,firstname,lastname,email,role,phone,address FROM user WHERE id = ?", [id])
+        const [rowDecode] = await db.promise().execute("SELECT id,firstname,lastname,email,role,phone,address FROM user WHERE id = ? AND is_deleted = 0", [id])
         if (rowDecode.length === 0) {
             return res.status(400).json({ status: false, message: "User not found" })
         }

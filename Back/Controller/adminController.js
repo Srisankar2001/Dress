@@ -10,7 +10,7 @@ const registerAdmin = async (req, res) => {
     }
 
     try {
-        const [rowEmail] = await db.promise().execute("SELECT * FROM user WHERE email = ?", [email])
+        const [rowEmail] = await db.promise().execute("SELECT * FROM user WHERE email = ? AND is_deleted = 0", [email])
         if (rowEmail.length > 0) {
             return res.status(400).json({ status: false, message: "Email Already Exist" })
         }
@@ -35,7 +35,7 @@ const registerEmployee = async (req, res) => {
     }
 
     try {
-        const [rowEmail] = await db.promise().execute("SELECT * FROM user WHERE email = ?", [email])
+        const [rowEmail] = await db.promise().execute("SELECT * FROM user WHERE email = ? AND is_deleted = 0", [email])
         if (rowEmail.length > 0) {
             return res.status(400).json({ status: false, message: "Email Already Exist" })
         }
@@ -71,7 +71,7 @@ const updateEmployee = async (req, res) => {
         }
 
         if (row[0].email !== email) {
-            const [rowEmail] = await db.promise().execute("SELECT * FROM user WHERE email = ?", [email])
+            const [rowEmail] = await db.promise().execute("SELECT * FROM user WHERE email = ? AND is_deleted = 0", [email])
             if (rowEmail.length > 0) {
                 return res.status(400).json({ status: false, message: "Email Already Exist" })
             }
@@ -96,7 +96,7 @@ const getEmployee = async (req, res) => {
     }
 
     try {
-        const [row] = await db.promise().execute("SELECT * FROM user WHERE id =? AND role=?", [id, UserRoles.EMPLOYEE])
+        const [row] = await db.promise().execute("SELECT * FROM user WHERE id =? AND role=? AND is_deleted = 0", [id, UserRoles.EMPLOYEE])
         if (row.length === 0) {
             return res.status(400).json({ status: false, message: "ID not found" })
         }
@@ -109,7 +109,7 @@ const getEmployee = async (req, res) => {
 
 const getAllEmployee = async (req, res) => {
     try {
-        const [row] = await db.promise().execute("SELECT * FROM user WHERE role = ?", [UserRoles.EMPLOYEE])
+        const [row] = await db.promise().execute("SELECT * FROM user WHERE role = ? AND is_deleted = 0", [UserRoles.EMPLOYEE])
         return res.status(200).json({ status: true, message: "All Employees Fetched Successfully", data: row })
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })

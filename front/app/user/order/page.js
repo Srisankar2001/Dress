@@ -28,7 +28,7 @@ const page = () => {
             }
         }
         fetchOrders()
-    }, [payment, confirm, cancel])
+    }, [payment, confirm, cancel, orderForm])
 
     const handlePayment = (id, total) => {
         setPayment({ id, total })
@@ -57,7 +57,7 @@ const page = () => {
             return (
                 <>
                     {orders.map((item, index) => (
-                        <tr key={index} onClick={(e) => handleOrderForm(item.order_id)}>
+                        <tr key={index} onClick={() => handleOrderForm(item.order_id)}>
                             <td>{item.order_id}</td>
                             <td>{item.date.split("T")[0]}</td>
                             {item.status === OrderStatus.NOT_COMPLETED && <td className="order-notCompleted">{item.status}</td>}
@@ -70,9 +70,9 @@ const page = () => {
                             <td className="col-address">{item.address}</td>
                             <td>{item.total} LKR</td>
                             <td className="order-action">
-                                {item.status === OrderStatus.NOT_PAID && <input type="button" value="Pay" className="Payment-btn" onClick={() => {e.stopPropagation(); handlePayment(item.order_id, item.total)}} />}
-                                {item.status === OrderStatus.SHIPPED && <input type="button" value="Confirm" className="Confirm-btn" onClick={() => {e.stopPropagation(); handleConfirm(item.order_id)}} />}
-                                {(item.status === OrderStatus.NOT_PAID || item.status === OrderStatus.PENDING) && <input type="button" value="Cancel" className="Cancel-btn" onClick={() => {e.stopPropagation(); handleCancel(item.order_id)}} />}
+                                {item.status === OrderStatus.NOT_PAID && <input type="button" value="Pay" className="Payment-btn" onClick={(e) => {e.stopPropagation(); handlePayment(item.order_id, item.total)}} />}
+                                {item.status === OrderStatus.SHIPPED && <input type="button" value="Confirm" className="Confirm-btn" onClick={(e) => {e.stopPropagation(); handleConfirm(item.order_id)}} />}
+                                {(item.status === OrderStatus.NOT_PAID || item.status === OrderStatus.PENDING) && <input type="button" value="Cancel" className="Cancel-btn" onClick={(e) => {e.stopPropagation(); handleCancel(item.order_id)}} />}
                             </td>
                         </tr>
                     ))}

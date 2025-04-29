@@ -1,0 +1,198 @@
+.admin-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 30px;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.admin-dashboard-title h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.admin-dashboard-total {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.admin-dashboard-total div {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.admin-dashboard-total h2 {
+    font-size: 1.25rem;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.admin-dashboard-total h1 {
+    font-size: 1.5rem;
+    color: #000000;
+    font-weight: bold;
+}
+
+.admin-dashboard-role {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.admin-dashboard-role div {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.admin-dashboard-role h2 {
+    font-size: 1.25rem;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.admin-dashboard-role h1 {
+    font-size: 1.5rem;
+    color: #000000;
+    font-weight: bold;
+}
+
+.admin-dashboard-graphAndEmployee {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 20px;
+    margin: 20px auto;
+}
+
+.admin-dashboard-graph {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.admin-dashboard-employee {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.admin-dashboard-employee table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-dashboard-employee thead {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.admin-dashboard-employee thead tr th {
+    padding: 15px;
+    font-weight: bold;
+    border: 1px solid #000000;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.admin-dashboard-employee tbody tr td {
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #000000;
+    text-align: center;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.admin-dashboard-employee tbody tr.admin-dashboard-employee-empty td {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.1rem;
+    color: #999;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard-total {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .admin-dashboard-role {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .admin-dashboard-title h1 {
+        font-size: 1.25rem;
+    }
+
+    .admin-dashboard-total h2,
+    .admin-dashboard-role h2 {
+        font-size: 1.1rem;
+    }
+
+    .admin-dashboard-total h1,
+    .admin-dashboard-role h1 {
+        font-size: 1.25rem;
+    }
+
+    .admin-dashboard-employee thead tr th,
+    .admin-dashboard-employee tbody tr td {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .admin-dashboard-employee tbody tr.admin-dashboard-employee-empty td {
+        padding: 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-dashboard-title h1 {
+        font-size: 1rem;
+    }
+
+    .admin-dashboard-total h2,
+    .admin-dashboard-role h2 {
+        font-size: 1rem;
+    }
+
+    .admin-dashboard-total h1,
+    .admin-dashboard-role h1 {
+        font-size: 1.1rem;
+    }
+
+    .admin-dashboard-employee thead tr th,
+    .admin-dashboard-employee tbody tr td {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .admin-dashboard-employee tbody tr.admin-dashboard-employee-empty td {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+}

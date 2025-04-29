@@ -10,7 +10,7 @@ const createCartItem = async(req,res)=>{
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -153,7 +153,7 @@ const updateCartItem = async(req,res)=>{
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -295,7 +295,7 @@ const deleteCartItem = async(req,res)=>{
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -325,7 +325,7 @@ const getCartItem = async(req,res)=>{
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
@@ -349,7 +349,7 @@ const getAllCartItems = async(req,res)=>{
     }
 
     try {
-        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER'", [user_id])
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'USER' AND is_deleted = 0", [user_id])
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "User Not Found" })
         }
