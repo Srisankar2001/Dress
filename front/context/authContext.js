@@ -36,8 +36,7 @@ export const AuthProvider = ({ children }) => {
     fetchContext()
   }, [])
   
-
-
+  // Context
   return (
     <AuthContext.Provider value={{ details, isUser, isAdmin, isEmployee, loading }}>
       {!loading && children}
