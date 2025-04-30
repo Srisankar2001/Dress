@@ -1,0 +1,129 @@
+.admin-delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Enable scrolling within modal */
+.admin-delete form {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px; /* Smaller than CreateForm/UpdateForm due to minimal content */
+  max-height: 90vh; /* Constrain height to viewport */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.admin-delete h1 {
+  text-align: center;
+  font-size: 1.75rem;
+  color: #000000;
+  margin: 0;
+}
+
+.admin-delete-text {
+  text-align: center;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.admin-delete-text p {
+  margin: 0;
+}
+
+.admin-delete-button-div {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.admin-delete-button-div input {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #000000;
+  background-color: #000000;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-delete-button-div input[type="reset"] {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.admin-delete-button-div input:hover {
+  opacity: 0.85;
+}
+
+/* Focus styles for accessibility */
+.admin-delete-button-div input:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-delete form {
+      padding: 15px 20px;
+      max-width: 350px;
+      max-height: 85vh; /* Slightly smaller for medium screens */
+  }
+
+  .admin-delete h1 {
+      font-size: 1.5rem;
+  }
+
+  .admin-delete-text {
+      font-size: 0.9rem;
+  }
+
+  .admin-delete-button-div {
+      gap: 10px;
+  }
+
+  .admin-delete-button-div input {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-delete form {
+      padding: 10px 15px;
+      max-width: 100%;
+      max-height: 80vh; /* Further reduced for small screens */
+  }
+
+  .admin-delete h1 {
+      font-size: 1.25rem;
+  }
+
+  .admin-delete-text {
+      font-size: 0.85rem;
+  }
+
+  .admin-delete-button-div {
+      gap: 8px;
+  }
+
+  .admin-delete-button-div input {
+      padding: 6px 12px;
+      font-size: 0.85rem;
+  }
+}

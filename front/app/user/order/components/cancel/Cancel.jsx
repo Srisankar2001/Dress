@@ -1,10 +1,17 @@
 "use client"
 import axiosInstance from '@/config/axiosConfig'
-import React  from 'react'
+import React, { useEffect } from 'react'
 import "./Cancel.css"
 
-export const Cancel = ({ id, setCancel}) => {
-    
+export const Cancel = ({ id, setCancel }) => {
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
     const handleReset = () => {
         setCancel(false)
     }

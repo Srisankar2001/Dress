@@ -11,7 +11,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const Navbar = () => {
-    const { isUser } = useAuth()
+    const { isUser, logoutFunction } = useAuth()
     return (
         <nav>
             <ul className='nav-left'>
@@ -40,7 +40,7 @@ export const Navbar = () => {
             </ul>
             <div className='nav-right'>
                 {isUser &&
-                    <li>
+                    <li onClick={logoutFunction}>
                         <Link href="#">
                             <Image src={logout} alt="Logout" />
                             <p>Logout</p>
@@ -49,7 +49,7 @@ export const Navbar = () => {
                 }
                 {!isUser &&
                     <li>
-                        <Link href="#">
+                        <Link href="/auth/login">
                             <Image src={login} alt="Login" />
                             <p>Login</p>
                         </Link>

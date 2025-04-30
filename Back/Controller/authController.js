@@ -52,7 +52,7 @@ const login = async (req, res) => {
             const data = { id: user.id, role: user.role }
             const token = jwt.sign(data, SECRET_KEY, { expiresIn: '1d' })
             res.cookie('token', token, { maxAge: 60 * 60 * 24 * 1000, httpOnly: true })
-            return res.status(200).json({ status: true, message: "Login Successfull" })
+            return res.status(200).json({ status: true, message: "Login Successfull", data: data })
         }
     } catch (error) {
         return res.status(500).json({ status: false, message: "Internal Server Error" })

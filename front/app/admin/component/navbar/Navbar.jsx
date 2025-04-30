@@ -9,10 +9,14 @@ import employee from "../assets/employee.png"
 import order from "../assets/order.png"
 import order_item from "../assets/order_item.png"
 import size from "../assets/size.png"
+import admin from "../assets/admin.png"
+import logout from "../assets/logout.png"
 import Image from 'next/image'
 import Link from 'next/link'
+import { useAuth } from '@/context/authContext'
 
 export const Navbar = () => {
+    const {logoutFunction} = useAuth()
     return (
         <nav>
             <ul>
@@ -23,9 +27,15 @@ export const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/dress_type" className='nav-item'>
-                        <Image src={dress_type} alt='Dress Type' />
-                        <p>Dress Type</p>
+                    <Link href="/admin/admin" className='nav-item'>
+                        <Image src={admin} alt='Admin' />
+                        <p>Admin</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/admin/employee" className='nav-item'>
+                        <Image src={employee} alt='Employee' />
+                        <p>Employee</p>
                     </Link>
                 </li>
                 <li>
@@ -35,15 +45,15 @@ export const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/dress" className='nav-item'>
-                        <Image src={dress} alt='Dress' />
-                        <p>Dress</p>
+                    <Link href="/admin/dress_type" className='nav-item'>
+                        <Image src={dress_type} alt='Dress Type' />
+                        <p>Dress Type</p>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/employee" className='nav-item'>
-                        <Image src={employee} alt='Employee' />
-                        <p>Employee</p>
+                    <Link href="/admin/dress" className='nav-item'>
+                        <Image src={dress} alt='Dress' />
+                        <p>Dress</p>
                     </Link>
                 </li>
                 <li>
@@ -56,6 +66,12 @@ export const Navbar = () => {
                     <Link href="/admin/order_item" className='nav-item'>
                         <Image src={order_item} alt='Order Item' />
                         <p>Order Items</p>
+                    </Link>
+                </li>
+                <li onClick={logoutFunction}>
+                    <Link href="#" className='nav-item'>
+                        <Image src={logout} alt='Logout' />
+                        <p>Logout</p>
                     </Link>
                 </li>
             </ul>

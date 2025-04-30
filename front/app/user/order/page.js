@@ -8,27 +8,43 @@ import { Confirm } from "./components/confirm/Confirm"
 import { Cancel } from "./components/cancel/Cancel"
 import OrderStatus from "@/enums/OrderStatus"
 import { OrderForm } from "./components/orderForm/OrderForm"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/authContext"
 
 const page = () => {
+    const router = useRouter()
+    const { isUser } = useAuth()
+    const [isReady, setIsReady] = useState(false)
     const [payment, setPayment] = useState(false)
     const [confirm, setConfirm] = useState(false)
     const [cancel, setCancel] = useState(false)
     const [orderForm, setOrderForm] = useState(false)
     const [orders, setOrders] = useState([])
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await axiosInstance.get('/order/user')
-                if (response.data.status) {
-                    setOrders(response.data.data)
-                }
-            } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+    const fetchOrders = async () => {
+        try {
+            const response = await axiosInstance.get('/order/user')
+            if (response.data.status) {
+                setOrders(response.data.data)
             }
+        } catch (err) {
+            alert(err.response?.data?.message || "Internal Server Error")
         }
-        fetchOrders()
-    }, [payment, confirm, cancel, orderForm])
+    }
+
+    useEffect(() => {
+        if (!isUser) {
+            router.push("/user/home")
+        } else {
+            setIsReady(true)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isReady) {
+            fetchOrders()
+        }
+    }, [isReady, payment, confirm, cancel, orderForm])
 
     const handlePayment = (id, total) => {
         setPayment({ id, total })
@@ -50,7 +66,7 @@ const page = () => {
         if (orders.length === 0) {
             return (
                 <tr className="order-empty">
-                    <td>No Orders Available</td>
+                    <td colSpan="6">No Orders Available</td>
                 </tr>
             )
         } else {
@@ -70,9 +86,9 @@ const page = () => {
                             <td className="col-address">{item.address}</td>
                             <td>{item.total} LKR</td>
                             <td className="order-action">
-                                {item.status === OrderStatus.NOT_PAID && <input type="button" value="Pay" className="Payment-btn" onClick={(e) => {e.stopPropagation(); handlePayment(item.order_id, item.total)}} />}
-                                {item.status === OrderStatus.SHIPPED && <input type="button" value="Confirm" className="Confirm-btn" onClick={(e) => {e.stopPropagation(); handleConfirm(item.order_id)}} />}
-                                {(item.status === OrderStatus.NOT_PAID || item.status === OrderStatus.PENDING) && <input type="button" value="Cancel" className="Cancel-btn" onClick={(e) => {e.stopPropagation(); handleCancel(item.order_id)}} />}
+                                {item.status === OrderStatus.NOT_PAID && <input type="button" value="Pay" className="Payment-btn" onClick={(e) => { e.stopPropagation(); handlePayment(item.order_id, item.total) }} />}
+                                {item.status === OrderStatus.SHIPPED && <input type="button" value="Confirm" className="Confirm-btn" onClick={(e) => { e.stopPropagation(); handleConfirm(item.order_id) }} />}
+                                {(item.status === OrderStatus.NOT_PAID || item.status === OrderStatus.PENDING) && <input type="button" value="Cancel" className="Cancel-btn" onClick={(e) => { e.stopPropagation(); handleCancel(item.order_id) }} />}
                             </td>
                         </tr>
                     ))}

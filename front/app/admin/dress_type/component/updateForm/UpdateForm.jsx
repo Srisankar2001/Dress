@@ -25,7 +25,14 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
         measure: null
     })
 
-    useEffect (() => {
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchDressType = async () => {
             try {
                 const response = await axiosInstance.get(`/dress_type/get/${id}`)
@@ -46,7 +53,7 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                         outseam: response.data.data.outseam
                     })
                 }
-            }catch(err){
+            } catch (err) {
                 alert(err.response?.data?.message || "Internal Server Error")
                 setUpdateForm(false)
             }
@@ -69,9 +76,8 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
         setError(errors)
         if (Object.values(errors).every(val => val === null)) {
             try {
-                const finalName = input.name.trim()
                 const data = {
-                    name: finalName.charAt(0).toUpperCase() + finalName.slice(1).toLowerCase(),
+                    name: input.name.trim(),
                     shoulder: input.shoulder,
                     chest: input.chest,
                     bust: input.bust,

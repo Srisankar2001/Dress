@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./CreateForm.css"
 import validate from '../../validation'
 import axiosInstance from '@/config/axiosConfig'
@@ -26,6 +26,13 @@ export const CreateForm = ({ setCreateForm }) => {
         name: null,
         measure: null
     })
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target;

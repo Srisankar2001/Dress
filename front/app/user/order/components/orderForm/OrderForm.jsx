@@ -9,6 +9,13 @@ export const OrderForm = ({ id, setOrderForm }) => {
   const [items, setItems] = useState([])
 
   useEffect(() => {
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
+
+  useEffect(() => {
     const fetchOrderItems = async () => {
       try {
         const response = await axiosInstance.get(`/order_item/user/order/${id}`)
@@ -22,14 +29,6 @@ export const OrderForm = ({ id, setOrderForm }) => {
     }
 
     fetchOrderItems()
-  }, [])
-
-  // Prevent page scrolling when modal is open
-  useEffect(() => {
-    document.body.style.overflow = "hidden"
-    return () => {
-      document.body.style.overflow = "auto"
-    }
   }, [])
 
   const handleClose = () => {

@@ -27,6 +27,13 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
     })
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchSize = async () => {
             try {
                 const response = await axiosInstance.get(`/size/get/${id}`)

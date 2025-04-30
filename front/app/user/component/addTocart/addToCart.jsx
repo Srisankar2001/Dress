@@ -11,6 +11,13 @@ export const AddToCart = ({ id, type_id, setAddToCart }) => {
     const [error, setError] = useState(null)
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchDress = async () => {
             try {
                 const response = await axiosInstance.get(`/dress/get/${id}`)

@@ -9,6 +9,13 @@ export const AssignForm = ({ id, setAssignForm }) => {
     const [employees, setEmployees] = useState([])
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchOrderItem = async () => {
             try {
                 const response = await axiosInstance.get(`/order_item/admin/${id}`)
@@ -60,7 +67,7 @@ export const AssignForm = ({ id, setAssignForm }) => {
             } catch (err) {
                 alert(err.response?.data?.message || "Internal Server Error")
             }
-        }else{
+        } else {
             setError("Please Select An Employee")
         }
     }

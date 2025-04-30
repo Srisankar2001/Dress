@@ -1,0 +1,185 @@
+.admin-update {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Enable scrolling within modal */
+.admin-update form {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh; /* Constrain height to viewport */
+  overflow-y: auto; /* Enable vertical scrolling when needed */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.admin-update h1 {
+  text-align: center;
+  font-size: 1.75rem;
+  color: #000000;
+  margin: 0;
+}
+
+.admin-update-input-div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.admin-update-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-update-input label {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #000000;
+}
+
+.admin-update-input input {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.admin-update-input input::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+/* Remove number input spinners for phone input (if type="number" is kept) */
+.admin-update-input input[type="number"]::-webkit-inner-spin-button,
+.admin-update-input input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.admin-update-input input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.admin-update-input p {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.admin-update-button-div {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.admin-update-button-div input {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #000000;
+  background-color: #000000;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-update-button-div input[type="reset"] {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.admin-update-button-div input:hover {
+  opacity: 0.85;
+}
+
+/* Focus styles for accessibility */
+.admin-update-input input:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-update form {
+      padding: 15px 20px;
+      max-width: 400px;
+      max-height: 85vh; /* Slightly smaller for medium screens */
+  }
+
+  .admin-update h1 {
+      font-size: 1.5rem;
+  }
+
+  .admin-update-input-div {
+      gap: 12px;
+  }
+
+  .admin-update-input label {
+      font-size: 0.9rem;
+  }
+
+  .admin-update-input input {
+      font-size: 0.9rem;
+      padding: 6px;
+  }
+
+  .admin-update-button-div {
+      gap: 10px;
+  }
+
+  .admin-update-button-div input {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-update form {
+      padding: 10px 15px;
+      max-width: 100%;
+      max-height: 80vh; /* Further reduced for small screens */
+  }
+
+  .admin-update h1 {
+      font-size: 1.25rem;
+  }
+
+  .admin-update-input-div {
+      gap: 10px;
+  }
+
+  .admin-update-input label {
+      font-size: 0.85rem;
+  }
+
+  .admin-update-input input {
+      font-size: 0.85rem;
+      padding: 5px;
+  }
+
+  .admin-update-button-div {
+      gap: 8px;
+  }
+
+  .admin-update-button-div input {
+      padding: 6px 12px;
+      font-size: 0.85rem;
+  }
+}

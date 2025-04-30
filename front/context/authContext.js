@@ -2,10 +2,13 @@
 
 import axiosInstance from '@/config/axiosConfig';
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
+  const router = useRouter()
   const [details, setDetails] = useState([])
   const [isUser, setIsUser] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
@@ -29,16 +32,23 @@ export const AuthProvider = ({ children }) => {
         setIsEmployee(false)
         setIsUser(false)
       } finally {
-        setLoading(false) 
+        setLoading(false)
       }
     }
-  
     fetchContext()
   }, [])
-  
-  // Context
+
+  const logoutFunction = async () => {
+    Cookies.remove("token")
+    setDetails([])
+    setIsAdmin(false)
+    setIsEmployee(false)
+    setIsUser(false)
+    router.push("/auth/login")
+  }
+
   return (
-    <AuthContext.Provider value={{ details, isUser, isAdmin, isEmployee, loading }}>
+    <AuthContext.Provider value={{ details, isUser, isAdmin, isEmployee, loading, logoutFunction }}>
       {!loading && children}
     </AuthContext.Provider>
   );

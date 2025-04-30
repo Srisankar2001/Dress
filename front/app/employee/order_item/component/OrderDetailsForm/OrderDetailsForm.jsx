@@ -7,6 +7,13 @@ export const OrderDetailsForm = ({ id, setOrderDetailsForm }) => {
   const [detail, setDetail] = useState({})
 
   useEffect(() => {
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
+
+  useEffect(() => {
     const fetchDetail = async () => {
       try {
         const response = await axiosInstance.get(`/order_item/employee/${id}`)

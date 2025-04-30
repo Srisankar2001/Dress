@@ -43,7 +43,7 @@ const page = () => {
         if (dresses.length === 0) {
             return (
                 <tr className="dress-empty">
-                    <td colSpan="6">No Dresses Available</td>
+                    <td colSpan="7">No Dresses Available</td>
                 </tr>
             )
         } else {
@@ -51,6 +51,7 @@ const page = () => {
                 <>
                     {dresses.map((item, index) => (
                         <tr key={index}>
+                            <td className="small-col">{item.id}</td>
                             <td className="image-col">
                                 <img
                                     src={`http://localhost:3001/${item.image}`}
@@ -112,6 +113,7 @@ const page = () => {
                 <table>
                     <thead>
                         <tr>
+                            <th className="small-col">ID</th>
                             <th className="image-col">Image</th>
                             <th className="small-col">Name</th>
                             <th className="small-col">Type</th>

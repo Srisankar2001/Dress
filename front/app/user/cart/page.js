@@ -5,15 +5,19 @@ import "./page.css"
 import { useAuth } from '@/context/authContext'
 import { EditCart } from '../component/editCart/editCart'
 import { RemoveCart } from '../component/removeCart/removeCart'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
-    const { details } = useAuth()
+    const router = useRouter()
+    const { isUser, details } = useAuth()
+    const [isReady, setIsReady] = useState(false)
     const [editCart, setEditCart] = useState(null)
     const [removeCart, setRemoveCart] = useState(null)
     const [items, setItems] = useState([])
     const [total, setTotal] = useState(0)
     const [address, setAddress] = useState("")
     const [error, setError] = useState(null)
+
     const fetchItems = async () => {
         try {
             const response = await axiosInstance.get('/cart/getAll')
@@ -27,17 +31,26 @@ const page = () => {
     }
 
     useEffect(() => {
-        fetchItems()
-        setAddress(details.address)
-    }, [editCart,removeCart])
+        if (!isUser) {
+            router.push("/user/home")
+        } else {
+            setIsReady(true)
+        }
+    }, [])
 
+    useEffect(() => {
+        if (isReady) {
+            fetchItems()
+            setAddress(details.address)
+        }
+    }, [isReady, editCart, removeCart])
 
-    const handleEdit = (id,dress_id) => {
-        setEditCart({id,dress_id})
+    const handleEdit = (id, dress_id) => {
+        setEditCart({ id, dress_id })
     }
 
-    const handleRemove = (id,dress_id) => {
-        setRemoveCart({id,dress_id})
+    const handleRemove = (id, dress_id) => {
+        setRemoveCart({ id, dress_id })
     }
 
     const handleCheckout = async () => {
@@ -89,8 +102,8 @@ const page = () => {
                                 <h2>{item.name}</h2>
                                 <h1>{item.price} LKR</h1>
                                 <div className="btn-div">
-                                    <input  type="button" value="Edit" onClick={() => handleEdit(item.cart_id,item.id)}/>
-                                    <input  type="button" value="Remove" onClick={() => handleRemove(item.cart_id,item.id)}/>
+                                    <input type="button" value="Edit" onClick={() => handleEdit(item.cart_id, item.id)} />
+                                    <input type="button" value="Remove" onClick={() => handleRemove(item.cart_id, item.id)} />
                                 </div>
                             </div>
                         </div>

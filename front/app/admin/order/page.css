@@ -49,7 +49,7 @@
     color: #333333;
 }
 
-.order-empty td {
+.order-table-container .order-empty td {
     text-align: center;
     padding: 30px;
     font-size: 1.1rem;
@@ -59,37 +59,37 @@
 }
 
 /* Status Styles */
-.order-notCompleted {
+.order-table-container .order-notCompleted {
     color: #7f8c8d; /* Gray for NOT_COMPLETED */
     font-weight: bold;
 }
 
-.order-notPaid {
+.order-table-container .order-notPaid {
     color: #f39c12; /* Orange for NOT_PAID */
     font-weight: bold;
 }
 
-.order-pending {
+.order-table-container .order-pending {
     color: #e74c3c; /* Red for PENDING */
     font-weight: bold;
 }
 
-.order-processing {
+.order-table-container .order-processing {
     color: #3498db; /* Blue for PROCESSING */
     font-weight: bold;
 }
 
-.order-shipped {
+.order-table-container .order-shipped {
     color: #9b59b6; /* Purple for SHIPPED */
     font-weight: bold;
 }
 
-.order-completed {
+.order-table-container .order-completed {
     color: #2ecc71; /* Green for COMPLETED */
     font-weight: bold;
 }
 
-.order-cancelled {
+.order-table-container .order-cancelled {
     color: #7f8c8d; /* Gray for CANCELLED */
     font-weight: bold;
 }

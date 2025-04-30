@@ -9,6 +9,13 @@ export const OrderForm = ({ id, setOrderForm }) => {
   const [items, setItems] = useState([])
 
   useEffect(() => {
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
+
+  useEffect(() => {
     const fetchOrderItems = async () => {
       try {
         const response = await axiosInstance.get(`/order_item/admin/order/${id}`)
@@ -20,17 +27,8 @@ export const OrderForm = ({ id, setOrderForm }) => {
         setOrderForm(false)
       }
     }
-
     fetchOrderItems()
   }, [id, setOrderForm])
-
-  // Prevent page scrolling when modal is open
-  useEffect(() => {
-    document.body.style.overflow = "hidden"
-    return () => {
-      document.body.style.overflow = "auto"
-    }
-  }, [])
 
   const handleClose = () => {
     setOrderForm(false)
@@ -48,6 +46,7 @@ export const OrderForm = ({ id, setOrderForm }) => {
         <>
           {items.map((item, index) => (
             <tr key={index}>
+              <td>{item.order_item_id}</td>
               <td className="image-col">
                 <img
                   src={`http://localhost:3001/${item.dress_image}`}
@@ -91,6 +90,7 @@ export const OrderForm = ({ id, setOrderForm }) => {
           <table aria-label="Order Items List">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Image</th>
                 <th>Name</th>
                 <th>Price</th>

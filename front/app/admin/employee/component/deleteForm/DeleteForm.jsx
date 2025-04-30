@@ -7,6 +7,13 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
     const [name, setName] = useState({ firstname: "", lastname: "" })
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchEmployee = async () => {
             try {
                 const response = await axiosInstance.get(`/admin/employee/${id}`)

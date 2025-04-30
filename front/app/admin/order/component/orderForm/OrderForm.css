@@ -114,27 +114,27 @@
 }
 
 /* Status Styles */
-.orderForm-notPaid {
+.orderForm-table-container .orderForm-notPaid {
     color: #f39c12;
     font-weight: bold;
 }
 
-.orderForm-notAccepted {
+.orderForm-table-container .orderForm-notAccepted {
     color: #e74c3c;
     font-weight: bold;
 }
 
-.orderForm-accepted {
+.orderForm-table-container .orderForm-accepted {
     color: #2ecc71;
     font-weight: bold;
 }
 
-.orderForm-completed {
+.orderForm-table-container .orderForm-completed {
     color: #3498db;
     font-weight: bold;
 }
 
-.orderForm-cancelled {
+.orderForm-table-container .orderForm-cancelled {
     color: #7f8c8d;
     font-weight: bold;
 }

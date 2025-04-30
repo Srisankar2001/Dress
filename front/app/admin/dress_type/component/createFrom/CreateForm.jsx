@@ -1,10 +1,10 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./CreateForm.css"
 import validate from '../../validation'
 import axiosInstance from '@/config/axiosConfig'
 
-export const CreateForm = ({setCreateForm}) => {
+export const CreateForm = ({ setCreateForm }) => {
     const [input, setInput] = useState({
         name: "",
         shoulder: false,
@@ -24,6 +24,14 @@ export const CreateForm = ({setCreateForm}) => {
         name: null,
         measure: null
     })
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
     const handleChange = (e) => {
         const { name, type, checked, value } = e.target;
         setInput(prev => ({
@@ -40,9 +48,8 @@ export const CreateForm = ({setCreateForm}) => {
         setError(errors)
         if (Object.values(errors).every(val => val === null)) {
             try {
-                const finalName = input.name.trim()
                 const data = {
-                    name: finalName.charAt(0).toUpperCase() + finalName.slice(1).toLowerCase(),
+                    name: input.name.trim(),
                     shoulder: input.shoulder,
                     chest: input.chest,
                     bust: input.bust,

@@ -7,6 +7,13 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
     const [name, setName] = useState("")
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchDressType = async () => {
             try {
                 const response = await axiosInstance.get(`/dress_type/get/${id}`)

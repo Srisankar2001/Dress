@@ -4,7 +4,7 @@ import "./DeleteForm.css"
 import axiosInstance from '@/config/axiosConfig'
 
 export const DeleteForm = ({ id, setDeleteForm }) => {
-    const [name, setName] = useState("")
+    const [name, setName] = useState({ firstname: "", lastname: "" })
 
     useEffect(() => {
         document.body.style.overflow = "hidden"
@@ -12,20 +12,23 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
             document.body.style.overflow = "auto"
         }
     }, [])
-
+    
     useEffect(() => {
-        const fetchDress = async () => {
+        const fetchAdmin = async () => {
             try {
-                const response = await axiosInstance.get(`/dress/get/${id}`)
+                const response = await axiosInstance.get(`/admin/admin/${id}`)
                 if (response.data.status) {
-                    setName(response.data.data.name)
+                    setName({
+                        firstname: response.data.data.firstname,
+                        lastname: response.data.data.lastname
+                    })
                 }
             } catch (err) {
                 alert(err.response?.data?.message || "Internal Server Error")
                 setDeleteForm(false)
             }
         }
-        fetchDress()
+        fetchAdmin()
     }, [id])
 
 
@@ -36,7 +39,7 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axiosInstance.delete(`/dress/delete/${id}`)
+            const response = await axiosInstance.delete(`/admin/admin/${id}`)
             if (response.data.status) {
                 alert(response.data.message)
                 setDeleteForm(false)
@@ -47,13 +50,13 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
         }
     }
     return (
-        <div className="dress-delete">
+        <div className="admin-delete">
             <form onSubmit={handleSubmit} onReset={handleReset}>
-                <h1>Dress Delete Page</h1>
-                <div className="dress-delete-text">
-                    <p>Do You Want To Delete " {name} "</p>
+                <h1>Admin Delete Page</h1>
+                <div className="admin-delete-text">
+                    <p>Do You Want To Delete " {name.firstname} {name.lastname} "</p>
                 </div>
-                <div className="dress-delete-button-div">
+                <div className="admin-delete-button-div">
                     <input type="submit" value="Delete" />
                     <input type="reset" value="Cancel" />
                 </div>

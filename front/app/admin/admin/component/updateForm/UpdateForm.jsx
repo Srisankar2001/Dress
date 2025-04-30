@@ -1,18 +1,16 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import "./CreateForm.css"
-import validate from './validation'
+import "./UpdateForm.css"
 import axiosInstance from '@/config/axiosConfig'
+import validate from './validation'
 
-export const CreateForm = ({ setCreateForm }) => {
+export const UpdateForm = ({ id, setUpdateForm }) => {
     const [input, setInput] = useState({
         firstname: "",
         lastname: "",
         phone: "",
         address: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
+        email: ""
     })
     const [error, setError] = useState({
         firstname: null,
@@ -31,6 +29,27 @@ export const CreateForm = ({ setCreateForm }) => {
         }
     }, [])
 
+    useEffect(() => {
+        const fetchAdmin = async () => {
+            try {
+                const response = await axiosInstance.get(`/admin/admin/${id}`)
+                if (response.data.status) {
+                    setInput({
+                        firstname: response.data.data.firstname,
+                        lastname: response.data.data.lastname,
+                        phone: response.data.data.phone,
+                        address: response.data.data.address,
+                        email: response.data.data.email
+                    })
+                }
+            } catch (err) {
+                alert(err.response?.data?.message || "Internal Server Error")
+                setUpdateForm(false)
+            }
+        }
+        fetchAdmin()
+    }, [id])
+
     const handleChange = (e) => {
         setInput(prev => ({
             ...prev,
@@ -39,7 +58,7 @@ export const CreateForm = ({ setCreateForm }) => {
     }
 
     const handleReset = () => {
-        setCreateForm(false)
+        setUpdateForm(false)
     }
 
     const handleSubmit = async (e) => {
@@ -55,13 +74,12 @@ export const CreateForm = ({ setCreateForm }) => {
                     lastname: finalLastname.charAt(0).toUpperCase() + finalLastname.slice(1).toLowerCase(),
                     phone: input.phone.trim(),
                     address: input.address.trim(),
-                    email: input.email.trim().toLowerCase(),
-                    password: input.password.trim()
+                    email: input.email.trim().toLowerCase()
                 }
-                const response = await axiosInstance.post("/admin/employee", data)
+                const response = await axiosInstance.put(`/admin/admin/${id}`, data)
                 if (response.data.status) {
                     alert(response.data.message)
-                    setCreateForm(false)
+                    setUpdateForm(false)
                 } else {
                     alert(response.data.message)
                 }
@@ -71,49 +89,40 @@ export const CreateForm = ({ setCreateForm }) => {
         }
     }
 
+
     return (
-        <div className="employee-create">
+        <div className="admin-update">
             <form onSubmit={handleSubmit} onReset={handleReset}>
-                <h1>Employee Create Form</h1>
-                <div className="employee-create-input-div">
-                    <div className="employee-create-input">
+                <h1>Admin Update From</h1>
+                <div className="admin-update-input-div">
+                    <div className="admin-update-input">
                         <label htmlFor="firstname">First Name</label>
                         <input type="text" name="firstname" value={input.firstname} placeholder="Enter Your Firstname" onChange={handleChange} />
                         {error.firstname && <p>{error.firstname}</p>}
                     </div>
-                    <div className="employee-create-input">
+                    <div className="admin-update-input">
                         <label htmlFor="lastname">Last Name</label>
                         <input type="text" name="lastname" value={input.lastname} placeholder="Enter Your Lastname" onChange={handleChange} />
                         {error.lastname && <p>{error.lastname}</p>}
                     </div>
-                    <div className="employee-create-input">
-                        <label htmlFor="phone">Phone Number</label>
-                        <input type="number" name="phone" value={input.phone} placeholder="Enter Your Phone Number" onChange={handleChange} />
-                        {error.phone && <p>{error.phone}</p>}
-                    </div>
-                    <div className="employee-create-input">
-                        <label htmlFor="address">Address</label>
-                        <input type="text" name="address" value={input.address} placeholder="Enter Your Address" onChange={handleChange} />
-                        {error.address && <p>{error.address}</p>}
-                    </div>
-                    <div className="employee-create-input">
+                    <div className="admin-update-input">
                         <label htmlFor="email">Email</label>
                         <input type="text" name="email" value={input.email} placeholder="Enter Your Email" onChange={handleChange} />
                         {error.email && <p>{error.email}</p>}
                     </div>
-                    <div className="employee-create-input">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" value={input.password} placeholder="Enter Your Password" onChange={handleChange} />
-                        {error.password && <p>{error.password}</p>}
+                    <div className="admin-update-input">
+                        <label htmlFor="phone">Phone Number</label>
+                        <input type="number" name="phone" value={input.phone} placeholder="Enter Your Phone Number" onChange={handleChange} />
+                        {error.phone && <p>{error.phone}</p>}
                     </div>
-                    <div className="employee-create-input">
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input type="password" name="confirmPassword" value={input.confirmPassword} placeholder="Re-Enter Your Password" onChange={handleChange} />
-                        {error.confirmPassword && <p>{error.confirmPassword}</p>}
+                    <div className="admin-update-input">
+                        <label htmlFor="address">Address</label>
+                        <input type="text" name="address" value={input.address} placeholder="Enter Your Address" onChange={handleChange} />
+                        {error.address && <p>{error.address}</p>}
                     </div>
                 </div>
-                <div className="employee-create-button-div">
-                    <input type="submit" value="Create" />
+                <div className="admin-update-button-div">
+                    <input type="submit" value="Update" />
                     <input type="reset" value="Cancel" />
                 </div>
             </form>

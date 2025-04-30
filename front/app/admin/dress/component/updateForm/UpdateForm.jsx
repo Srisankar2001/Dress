@@ -25,6 +25,13 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
     const imageInputRef = useRef(null)
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchTypes = async () => {
             try {
                 const response = await axiosInstance.get("/dress_type/getAll")
@@ -98,9 +105,8 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                         'Content-Type': 'multipart/form-data'
                     }
                 }
-                const finalName = input.name.trim()
                 const data = {
-                    name: finalName.charAt(0).toUpperCase() + finalName.slice(1).toLowerCase(),
+                    name: input.name.trim(),
                     description: input.description,
                     price: input.price,
                     type_id: input.type_id,

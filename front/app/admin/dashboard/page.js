@@ -47,9 +47,6 @@ const page = () => {
             order: item.total_orders,
             cancel: item.cancelled_orders
           }))
-
-          console.log(arr)
-
           setGraphData(arr)
         }
       } catch (err) {

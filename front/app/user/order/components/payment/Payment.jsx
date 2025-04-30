@@ -1,9 +1,17 @@
 "use client"
 import axiosInstance from '@/config/axiosConfig'
-import React  from 'react'
+import React, { useEffect } from 'react'
 import "./Payment.css"
 
 export const Payment = ({ id, total, setPayment }) => {
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
     const generateRefNumber = () => {
         const prefix = "Ref "
         const randomDigits = Math.floor(100000 + Math.random() * 900000)
@@ -22,7 +30,7 @@ export const Payment = ({ id, total, setPayment }) => {
                 amount: total,
                 reference: generateRefNumber()
             }
-            const response = await axiosInstance.post(`/payment/create`,data)
+            const response = await axiosInstance.post(`/payment/create`, data)
             if (response.data.status) {
                 alert(response.data.message)
                 setPayment(null)

@@ -58,7 +58,7 @@ export const CreateForm = ({ setCreateForm }) => {
                     email: input.email.trim().toLowerCase(),
                     password: input.password.trim()
                 }
-                const response = await axiosInstance.post("/admin/employee", data)
+                const response = await axiosInstance.post("/admin/admin", data)
                 if (response.data.status) {
                     alert(response.data.message)
                     setCreateForm(false)
@@ -72,47 +72,47 @@ export const CreateForm = ({ setCreateForm }) => {
     }
 
     return (
-        <div className="employee-create">
+        <div className="admin-create">
             <form onSubmit={handleSubmit} onReset={handleReset}>
-                <h1>Employee Create Form</h1>
-                <div className="employee-create-input-div">
-                    <div className="employee-create-input">
+                <h1>Admin Create Form</h1>
+                <div className="admin-create-input-div">
+                    <div className="admin-create-input">
                         <label htmlFor="firstname">First Name</label>
                         <input type="text" name="firstname" value={input.firstname} placeholder="Enter Your Firstname" onChange={handleChange} />
                         {error.firstname && <p>{error.firstname}</p>}
                     </div>
-                    <div className="employee-create-input">
+                    <div className="admin-create-input">
                         <label htmlFor="lastname">Last Name</label>
                         <input type="text" name="lastname" value={input.lastname} placeholder="Enter Your Lastname" onChange={handleChange} />
                         {error.lastname && <p>{error.lastname}</p>}
                     </div>
-                    <div className="employee-create-input">
+                    <div className="admin-create-input">
                         <label htmlFor="phone">Phone Number</label>
                         <input type="number" name="phone" value={input.phone} placeholder="Enter Your Phone Number" onChange={handleChange} />
                         {error.phone && <p>{error.phone}</p>}
                     </div>
-                    <div className="employee-create-input">
+                    <div className="admin-create-input">
                         <label htmlFor="address">Address</label>
                         <input type="text" name="address" value={input.address} placeholder="Enter Your Address" onChange={handleChange} />
                         {error.address && <p>{error.address}</p>}
                     </div>
-                    <div className="employee-create-input">
+                    <div className="admin-create-input">
                         <label htmlFor="email">Email</label>
                         <input type="text" name="email" value={input.email} placeholder="Enter Your Email" onChange={handleChange} />
                         {error.email && <p>{error.email}</p>}
                     </div>
-                    <div className="employee-create-input">
+                    <div className="admin-create-input">
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" value={input.password} placeholder="Enter Your Password" onChange={handleChange} />
                         {error.password && <p>{error.password}</p>}
                     </div>
-                    <div className="employee-create-input">
+                    <div className="admin-create-input">
                         <label htmlFor="confirmPassword">Confirm Password</label>
                         <input type="password" name="confirmPassword" value={input.confirmPassword} placeholder="Re-Enter Your Password" onChange={handleChange} />
                         {error.confirmPassword && <p>{error.confirmPassword}</p>}
                     </div>
                 </div>
-                <div className="employee-create-button-div">
+                <div className="admin-create-button-div">
                     <input type="submit" value="Create" />
                     <input type="reset" value="Cancel" />
                 </div>

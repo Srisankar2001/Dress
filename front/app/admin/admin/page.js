@@ -11,20 +11,21 @@ const page = () => {
     const [createForm, setCreateForm] = useState(false)
     const [updateForm, setUpdateForm] = useState(false)
     const [deleteForm, setDeleteForm] = useState(false)
-    const [employees, setEmployees] = useState([])
+    const [admins, setAdmins] = useState([])
 
     useEffect(() => {
-        const fetchAllEmployees = async () => {
+        const fetchAllAdmins = async () => {
             try {
-                const response = await axiosInstance.get('/admin/employee_all')
+                const response = await axiosInstance.get('/admin/admin_all')
                 if (response.data.status) {
-                    setEmployees(response.data.data)
+                    setAdmins(response.data.data)
                 }
             } catch (err) {
+                console.error(err)
                 alert(err.response?.data?.message || "Internal Server Error")
             }
         }
-        fetchAllEmployees()
+        fetchAllAdmins()
     }, [createForm, updateForm, deleteForm])
 
     const handleCreateForm = () => {
@@ -39,17 +40,17 @@ const page = () => {
         setDeleteForm(id)
     }
 
-    const renderEmployees = () => {
-        if (employees.length === 0) {
+    const renderAdmins = () => {
+        if (admins.length === 0) {
             return (
-                <tr className="employee-empty">
-                    <td colSpan="7">No Employees Available</td>
+                <tr className="admin-empty">
+                    <td colSpan="7">No Admins Available</td>
                 </tr>
             )
         } else {
             return (
                 <>
-                    {employees.map((item, index) => (
+                    {admins.map((item, index) => (
                         <tr key={index}>
                             <td>{item.id}</td>
                             <td>{item.firstname}</td>
@@ -57,7 +58,7 @@ const page = () => {
                             <td>{item.email}</td>
                             <td>{item.address}</td>
                             <td>{item.phone}</td>
-                            <td className="employee-action">
+                            <td className="admin-action">
                                 <input type="button" value="Update" onClick={() => handleUpdateForm(item.id)} />
                                 <input type="button" value="Delete" onClick={() => handleDeleteForm(item.id)} />
                             </td>
@@ -69,37 +70,37 @@ const page = () => {
     }
 
     return (
-        <div className="employee-container">
-            <div className="employee-nav">
-                <h1>Employee Page</h1>
+        <div className="admin-container">
+            <div className="admin-nav">
+                <h1>Admin Page</h1>
                 <input type="button" value="Create" onClick={handleCreateForm} />
             </div>
 
             {createForm && (
-                <div className="employee-modal-overlay">
-                    <div className="employee-modal-content">
+                <div className="admin-modal-overlay">
+                    <div className="admin-modal-content">
                         <CreateForm setCreateForm={setCreateForm} />
                     </div>
                 </div>
             )}
 
             {updateForm && (
-                <div className="employee-modal-overlay">
-                    <div className="employee-modal-content">
+                <div className="admin-modal-overlay">
+                    <div className="admin-modal-content">
                         <UpdateForm id={updateForm} setUpdateForm={setUpdateForm} />
                     </div>
                 </div>
             )}
 
             {deleteForm && (
-                <div className="employee-modal-overlay">
-                    <div className="employee-modal-content">
+                <div className="admin-modal-overlay">
+                    <div className="admin-modal-content">
                         <DeleteForm id={deleteForm} setDeleteForm={setDeleteForm} />
                     </div>
                 </div>
             )}
 
-            <div className="employee-table-container">
+            <div className="admin-table-container">
                 <table>
                     <thead>
                         <tr>
@@ -109,11 +110,11 @@ const page = () => {
                             <th>Email</th>
                             <th>Address</th>
                             <th>Phone</th>
-                            <th className="employee-action">Action</th>
+                            <th className="admin-action">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {renderEmployees()}
+                        {renderAdmins()}
                     </tbody>
                 </table>
             </div>

@@ -7,6 +7,13 @@ export const RemoveCart = ({ id, dress_id, setRemoveCart }) => {
     const [name, setName] = useState("")
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchName = async () => {
             try {
                 const response = await axiosInstance.get(`/dress/get/${dress_id}`)

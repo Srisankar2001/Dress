@@ -10,6 +10,13 @@ export const MoreInfo = ({ id, type_id, setMoreInfo }) => {
     const [error, setError] = useState(null)
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchDress = async () => {
             try {
                 const response = await axiosInstance.get(`/dress/get/${id}`)

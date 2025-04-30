@@ -9,11 +9,15 @@ import "./layout.css"
 const layout = ({ children }) => {
     const router = useRouter()
     const { isAdmin, loading } = useAuth()
-    // useEffect(() => {
-    //     if(!isAdmin){
-    //         router.push("/auth/login")
-    //     }
-    // },[])
+
+    useEffect(() => {
+        if (!loading) {
+          if (!isAdmin) {
+            router.push("/auth/login")
+          }
+        }
+      }, [isAdmin, loading, router])
+
     return (
         <div className="layout-container">
             <Navbar />

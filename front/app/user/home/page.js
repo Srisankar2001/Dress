@@ -5,8 +5,10 @@ import React, { useEffect, useState } from 'react'
 import "./page.css"
 import { AddToCart } from '../component/addTocart/addToCart'
 import { MoreInfo } from '../component/moreInfo/MoreInfo'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
+    const router = useRouter()
     const { isUser } = useAuth()
     const [addToCart, setAddToCart] = useState(null)
     const [moreInfo, setMoreInfo] = useState(null)
@@ -27,11 +29,19 @@ const page = () => {
     }, [])
 
     const handleAddToCart = (id, type_id) => {
-        setAddToCart({ id, type_id })
+        if (isUser) {
+            setAddToCart({ id, type_id })
+        } else {
+            router.push("/auth/login")
+        }
     }
 
     const handleMoreInfo = (id, type_id) => {
-        setMoreInfo({ id, type_id })
+        if (isUser) {
+            setMoreInfo({ id, type_id })
+        } else {
+            router.push("/auth/login")
+        }
     }
 
     const renderDresses = () => {

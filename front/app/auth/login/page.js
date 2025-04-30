@@ -4,8 +4,11 @@ import { useState } from "react"
 import validate from "./validation"
 import "./page.css"
 import axiosInstance from "@/config/axiosConfig"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/authContext"
 
 const page = () => {
+    const router = useRouter()
     const [input, setInput] = useState({
         email: "",
         password: ""
@@ -30,22 +33,30 @@ const page = () => {
             password: null
         })
     }
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const errors = validate(input)
         setError(errors)
-        if(Object.values(errors).every(val => val === null)){
-            try{
+        if (Object.values(errors).every(val => val === null)) {
+            try {
                 const data = {
-                    email : input.email.toLowerCase().trim(),
-                    password : input.password.trim()
+                    email: input.email.toLowerCase().trim(),
+                    password: input.password.trim()
                 }
-                const response = await axiosInstance.post("/auth/login",data)
-                if(response.data.status){
+                const response = await axiosInstance.post("/auth/login", data)
+                if (response.data.status) {
                     alert(response.data.message)
+                    const role = response.data.data.role
+                    if (role === "ADMIN") {
+                        router.push("/admin/dashboard")
+                    } else if (role === "EMPLOYEE") {
+                        router.push("/employee/dashboard")
+                    } else {
+                        router.push("/user/home")
+                    }
                 }
-            }catch(err){
-                    alert(err.response?.data?.message || "Internal Server Error")
+            } catch (err) {
+                alert(err.response?.data?.message || "Internal Server Error")
             }
         }
     }

@@ -23,6 +23,13 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
     })
 
     useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+    
+    useEffect(() => {
         const fetchEmployee = async () => {
             try {
                 const response = await axiosInstance.get(`/admin/employee/${id}`)
@@ -69,7 +76,7 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                     address: input.address.trim(),
                     email: input.email.trim().toLowerCase()
                 }
-                const response = await axiosInstance.put("/admin/employee", data)
+                const response = await axiosInstance.put(`/admin/employee/${id}`, data)
                 if (response.data.status) {
                     alert(response.data.message)
                     setUpdateForm(false)
