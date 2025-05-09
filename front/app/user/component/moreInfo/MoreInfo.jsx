@@ -2,8 +2,12 @@ import axiosInstance from '@/config/axiosConfig'
 import React, { useEffect, useState } from 'react'
 import "./MoreInfo.css"
 import validate from './validation'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/context/authContext'
 
 export const MoreInfo = ({ id, type_id, setMoreInfo }) => {
+    const router = useRouter()
+    const { isUser } = useAuth()
     const [dress, setDress] = useState({})
     const [sizes, setSizes] = useState([])
     const [input, setInput] = useState({})
@@ -99,36 +103,40 @@ export const MoreInfo = ({ id, type_id, setMoreInfo }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const errors = validate(input)
-        setError(errors)
-        if (errors === null) {
-            const data = {
-                dress_id: id,
-                shoulder: input.shoulder || null,
-                chest: input.chest || null,
-                bust: input.bust || null,
-                under_bust: input.under_bust || null,
-                waist: input.waist || null,
-                hip: input.hip || null,
-                thigh: input.thigh || null,
-                total_rise: input.total_rise || null,
-                calf: input.calf || null,
-                upper_arm: input.upper_arm || null,
-                inseam: input.inseam || null,
-                outseam: input.outseam || null,
-                height: input.height || null
-            }
-            try {
-                const response = await axiosInstance.post("/cart/create", data)
-                if (response.data.status) {
-                    alert(response.data.message)
-                    setMoreInfo(null)
-                } else {
-                    alert(response.data.message)
+        if (isUser) {
+            const errors = validate(input)
+            setError(errors)
+            if (errors === null) {
+                const data = {
+                    dress_id: id,
+                    shoulder: input.shoulder || null,
+                    chest: input.chest || null,
+                    bust: input.bust || null,
+                    under_bust: input.under_bust || null,
+                    waist: input.waist || null,
+                    hip: input.hip || null,
+                    thigh: input.thigh || null,
+                    total_rise: input.total_rise || null,
+                    calf: input.calf || null,
+                    upper_arm: input.upper_arm || null,
+                    inseam: input.inseam || null,
+                    outseam: input.outseam || null,
+                    height: input.height || null
                 }
-            } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                try {
+                    const response = await axiosInstance.post("/cart/create", data)
+                    if (response.data.status) {
+                        alert(response.data.message)
+                        setMoreInfo(null)
+                    } else {
+                        alert(response.data.message)
+                    }
+                } catch (err) {
+                    alert(err.response?.data?.message || "Internal Server Error")
+                }
             }
+        } else {
+            router.push("/auth/login")
         }
     }
 

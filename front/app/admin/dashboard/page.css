@@ -9,12 +9,62 @@
     background-color: #ffffff;
 }
 
+.admin-dashboard-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .admin-dashboard-title h1 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #000000;
-    margin-bottom: 20px;
-    text-align: center;
+    margin: 0;
+    flex: 1;
+    color: #000;
+}
+
+.admin-dashboard-title input[type="button"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.admin-dashboard-title input[type="button"]:hover {
+    background-color: #555;
+}
+
+.admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.admin-modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    min-width: 400px;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .admin-dashboard-total {

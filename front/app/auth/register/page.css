@@ -11,12 +11,35 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1 {
+.register header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.register header a {
+    text-decoration: none;
+}
+
+.register header img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    position: absolute;
+    top:0;
+    left: 0;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.register header h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 1.5rem;
     color: #000000;
 }
+
 
 .register-input-div {
     display: flex;

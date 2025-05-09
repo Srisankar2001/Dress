@@ -6,6 +6,7 @@ import order from "../assets/order.png"
 import cart from "../assets/cart.png"
 import login from "../assets/login.png"
 import logout from "../assets/logout.png"
+import logo from "../assets/logo.png"
 import "./Navbar.css"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,6 +16,9 @@ export const Navbar = () => {
     return (
         <nav>
             <ul className='nav-left'>
+                <li>
+                    <Image src={logo} alt="Logo" />
+                </li>
                 <li>
                     <Link href="/user/home">
                         <Image src={home} alt="Home" />

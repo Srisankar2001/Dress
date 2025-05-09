@@ -194,13 +194,23 @@ const getAllDress = async (req, res) => {
     }
 }
 
+const getAllDressHome = async (req, res) => {
+    try {
+        const [row] = await db.promise().execute("SELECT d.*, dt.name as type_name FROM dress d JOIN dress_type dt ON d.type_id = dt.id LIMIT 8")
+        return res.status(200).json({ status: true, message: "All Dresses Fetched Successfully", data: row })
+    } catch (error) {
+        return res.status(500).json({ status: false, message: "Internal Server Error" })
+    }
+}
+
 const dressController = {
     createDress,
     updateDressWithImage,
     updateDressWithoutImage,
     deleteDress,
     getDress,
-    getAllDress
+    getAllDress,
+    getAllDressHome
 }
 
 module.exports = dressController

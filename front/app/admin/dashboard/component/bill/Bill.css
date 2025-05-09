@@ -1,0 +1,266 @@
+.bill_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.bill_heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bill_heading_name {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.bill_heading_address {
+    display: block;
+    font-size: 1rem;
+    color: #000000;
+}
+
+.bill_heading_phone {
+    display: block;
+    font-size: 1rem;
+    color: #000000;
+}
+
+.bill_detail {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.bill_detail_date,
+.bill_detail_time {
+    font-size: 1rem;
+    color: #000000;
+}
+
+.bill_table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 0 auto 20px;
+}
+
+.bill_table_head_row {
+    background-color: #000000;
+}
+
+.bill_table_head {
+    padding: 15px;
+    font-weight: bold;
+    border: 1px solid #000000;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+.bill_table_data_row {
+    background-color: #ffffff;
+}
+
+.bill_table_data {
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #000000;
+    text-align: center;
+    color: #000000;
+}
+
+.bill_data_main_div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    margin: 0 auto 20px;
+}
+
+.bill_data_div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bill_data_label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.bill_data_value {
+    font-size: 1rem;
+    color: #000000;
+}
+
+.bill_footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.bill_footer_line {
+    font-size: 0.9rem;
+    color: #000000;
+}
+
+.bill_button_div {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 20px;
+}
+
+.bill_btn {
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.bill_btn_cancel {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.bill_btn:hover,
+.bill_btn_cancel:hover {
+    opacity: 0.85;
+}
+
+.bill_btn:focus,
+.bill_btn_cancel:focus {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    .bill_container {
+        padding: 15px;
+    }
+
+    .bill_heading_name {
+        font-size: 1.25rem;
+    }
+
+    .bill_heading_address,
+    .bill_heading_phone {
+        font-size: 0.9rem;
+    }
+
+    .bill_detail {
+        width: 100%;
+    }
+
+    .bill_detail_date,
+    .bill_detail_time {
+        font-size: 0.9rem;
+    }
+
+    .bill_table {
+        width: 100%;
+    }
+
+    .bill_table_head,
+    .bill_table_data {
+        font-size: 0.85rem;
+        padding: 8pxWi
+    }
+
+    .bill_data_main_div {
+        width: 100%;
+    }
+
+    .bill_data_label,
+    .bill_data_value {
+        font-size: 0.9rem;
+    }
+
+    .bill_footer_line {
+        font-size: 0.85rem;
+    }
+
+    .bill_button_div {
+        gap: 0.75rem;
+    }
+
+    .bill_btn,
+    .bill_btn_cancel {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .bill_container {
+        padding: 10px;
+    }
+
+    .bill_heading_name {
+        font-size: 1rem;
+    }
+
+    .bill_heading_address,
+    .bill_heading_phone {
+        font-size: 0.85rem;
+    }
+
+    .bill_detail_date,
+    .bill_detail_time {
+        font-size: 0.85rem;
+    }
+
+    .bill_table_head,
+    .bill_table_data {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .bill_data_label,
+    .bill_data_value {
+        font-size: 0.85rem;
+    }
+
+    .bill_footer_line {
+        font-size: 0.8rem;
+    }
+
+    .bill_btn,
+    .bill_btn_cancel {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+@media print {
+    .bill_container {
+        padding: 0;
+        background-color: #ffffff;
+    }
+
+    .bill_table {
+        width: 100%;
+    }
+
+    .bill_data_main_div {
+        width: 100%;
+    }
+
+    .bill_button_div {
+        display: none;
+    }
+
+    .bill_detail {
+        width: 100%;
+    }
+}

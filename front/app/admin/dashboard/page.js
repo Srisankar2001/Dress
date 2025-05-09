@@ -3,6 +3,8 @@ import axiosInstance from "@/config/axiosConfig"
 import { useEffect, useState } from "react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import "./page.css"
+import { Report } from "./component/report/Report"
+import Bill from "./component/bill/Bill"
 
 const page = () => {
   const [totalDetail, setTotalDetail] = useState({
@@ -18,6 +20,8 @@ const page = () => {
   const [employee, setEmployee] = useState(0)
   const [admin, setAdmin] = useState(0)
   const [graphData, setGraphData] = useState([])
+  const [report, setReport] = useState(false)
+  const [bill,setBill] = useState(null)
 
   useEffect(() => {
     const fetchDashboard = async () => {
@@ -56,6 +60,10 @@ const page = () => {
     fetchDashboard()
   }, [])
 
+  const handleReport = () => {
+    setReport(true)
+  }
+
   const renderEmployee = () => {
     if (employeeData.length === 0) {
       return (
@@ -78,8 +86,23 @@ const page = () => {
   return (
     <div className="admin-dashboard-container">
       <div className="admin-dashboard-title">
-        <h1>Admin Dashboard</h1>
+        <h1>Dashboard Page</h1>
+        <input type="button" value="Report" onClick={handleReport} />
       </div>
+      {report && (
+        <div className="admin-modal-overlay">
+          <div className="admin-modal-content">
+            <Report setBill={setBill} setReport={setReport} />
+          </div>
+        </div>
+      )}
+      {bill && (
+        <div className="admin-modal-overlay">
+          <div className="admin-modal-content">
+            <Bill startDate={bill.startDate} endDate={bill.endDate} data={bill.data} setBill={setBill} />
+          </div>
+        </div>
+      )}
       <div className="admin-dashboard-total">
         <div>
           <h2>Orders</h2>

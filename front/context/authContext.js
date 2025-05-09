@@ -39,12 +39,19 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const logoutFunction = async () => {
-    Cookies.remove("token")
-    setDetails([])
-    setIsAdmin(false)
-    setIsEmployee(false)
-    setIsUser(false)
-    router.push("/auth/login")
+    try {
+      const response = await axiosInstance.post("/auth/logout")
+      if (response.data.status) {
+        alert(response.data.message)
+        setDetails([])
+        setIsAdmin(false)
+        setIsEmployee(false)
+        setIsUser(false)
+        router.push("/auth/login")
+      }
+    }catch(error){
+      alert(error.response?.data?.message || "Internal Server Error")
+    }
   }
 
   return (

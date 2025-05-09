@@ -104,9 +104,43 @@ const getEmployeeDashboard = async (req, res) => {
     }
 }
 
+const getReport = async (req, res) => {
+    const { startDate, endDate } = req.body
+    const user_id = req.user_id
+
+    if (!startDate || !endDate) {
+        return res.status(400).json({ status: false, message: "Input All Necessary Data" })
+    }
+
+    if (!user_id) {
+        return res.status(400).json({ status: false, message: "ID is required" })
+    }
+
+    try {
+        const [rowIsUserExist] = await db.promise().execute("SELECT * FROM user WHERE id = ? AND role = 'ADMIN' AND is_deleted = 0", [user_id])
+        if (rowIsUserExist.length === 0) {
+            return res.status(400).json({ status: false, message: "Admin Not Found" })
+        }
+
+        const query = ` SELECT 
+        d.id AS dress_id, d.name, d.price, COUNT(oi.dress_id) AS total_sold
+        FROM dress d JOIN order_item oi ON d.id = oi.dress_id JOIN \`order\` o ON oi.order_id = o.id JOIN payment p ON p.order_id = o.id
+        WHERE p.created_at BETWEEN ? AND ? AND p.refund = 0
+        GROUP BY d.id, d.name, d.image, d.description, d.price
+        ORDER BY total_sold DESC; `
+        const [row] = await db.promise().execute(query,[startDate,endDate])
+        return res.status(200).json({ status: true, message: "All Data Fetched Successfully", data: row })
+
+    } catch (error) {
+        return res.status(500).json({ status: false, message: "Internal Server Error" })
+    }
+}
+
+
 const dashboardController = {
     getAdminDashboard,
-    getEmployeeDashboard
+    getEmployeeDashboard,
+    getReport
 }
 
 module.exports = dashboardController

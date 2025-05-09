@@ -37,11 +37,7 @@ const page = () => {
     }
 
     const handleMoreInfo = (id, type_id) => {
-        if (isUser) {
-            setMoreInfo({ id, type_id })
-        } else {
-            router.push("/auth/login")
-        }
+        setMoreInfo({ id, type_id })
     }
 
     const renderDresses = () => {

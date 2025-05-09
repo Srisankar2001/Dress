@@ -5,6 +5,9 @@ import validate from "./validation"
 import "./page.css"
 import axiosInstance from "@/config/axiosConfig"
 import { useRouter } from "next/navigation"
+import arrow from "../assets/arrow.png"
+import Image from 'next/image'
+import Link from 'next/link'
 
 const page = () => {
     const router = useRouter()
@@ -68,7 +71,7 @@ const page = () => {
                     email: input.email.trim().toLowerCase(),
                     password: input.password.trim()
                 }
-                const response = await axiosInstance.post("/auth/register",data)
+                const response = await axiosInstance.post("/auth/register", data)
                 if (response.data.status) {
                     alert(response.data.message)
                     router.push("/auth/login")
@@ -82,7 +85,12 @@ const page = () => {
     }
     return (
         <div className="register">
-            <h1>Register Page</h1>
+            <header>
+                <Link href="/user/home">
+                    <Image src={arrow} alt="Back" />
+                </Link>
+                <h1>Register Page</h1>
+            </header>
             <form onSubmit={handleSubmit} onReset={handleReset}>
                 <div className="register-input-div">
                     <div className="register-input">

@@ -75,27 +75,15 @@ nav {
   object-fit: contain;
 }
 
+.nav-left img{
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  nav {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 1rem;
-  }
-
-  .nav-left,
-  .nav-right {
-      flex-wrap: wrap;
-      gap: 1rem 1.5rem;
-      justify-content: flex-start;
-      width: 100%;
-      margin-top: 0.5rem;
-  }
-
-  .nav-right {
-      justify-content: flex-end;
-  }
-
   .nav-left li a,
   .nav-right li a {
       padding: 0.4rem 0.8rem;
@@ -111,6 +99,7 @@ nav {
       width: 24px;
       height: 24px;
   }
+
 }
 
 @media (max-width: 480px) {
@@ -138,4 +127,5 @@ nav {
       width: 20px;
       height: 20px;
   }
+
 }

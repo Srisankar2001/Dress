@@ -5,15 +5,19 @@ import "./Navbar.css"
 import dashboard from "../assets/dashboard.png"
 import order_item from "../assets/order_item.png"
 import logout from "../assets/logout.png"
+import logo from "../assets/logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/context/authContext'
 
 export const Navbar = () => {
-    const {logoutFunction} = useAuth()
+    const { logoutFunction } = useAuth()
     return (
         <nav>
             <ul>
+                <li>
+                    <Image src={logo} alt='Logo' className='nav-logo'/>
+                </li>
                 <li>
                     <Link href="/employee/dashboard" className='nav-item'>
                         <Image src={dashboard} alt='Dashboard' />

@@ -54,3 +54,10 @@ nav ul li {
     height: 24px;
     object-fit: contain;
 }
+
+.nav-logo{
+    margin-left: 20px;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}

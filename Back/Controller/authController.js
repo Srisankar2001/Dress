@@ -59,6 +59,20 @@ const login = async (req, res) => {
     }
 }
 
+const logout = async (req, res) => {
+    const token = req.cookies.token
+    if (!token) {
+        return res.status(400).json({ status: false, message: "Token is missing" })
+    }
+
+    try {
+        res.clearCookie('token', { httpOnly: true })
+        return res.status(200).json({ status: true, message: "Logout successful" });
+    } catch (error) {
+        return res.status(500).json({ status: false, message: "Internal Server Error" });
+    }
+}
+
 const getData = async (req, res) => {
     const token = req.cookies.token
     if (!token) {
@@ -87,5 +101,5 @@ const getData = async (req, res) => {
     }
 }
 
-const authController = {register, login, getData}
+const authController = { register, login, getData, logout }
 module.exports = authController

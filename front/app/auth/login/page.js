@@ -5,7 +5,9 @@ import validate from "./validation"
 import "./page.css"
 import axiosInstance from "@/config/axiosConfig"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/context/authContext"
+import arrow from "../assets/arrow.png"
+import Image from 'next/image'
+import Link from 'next/link'
 
 const page = () => {
     const router = useRouter()
@@ -62,7 +64,12 @@ const page = () => {
     }
     return (
         <div className="login">
-            <h1>Login Page</h1>
+            <header>
+                <Link href="/user/home">
+                    <Image src={arrow} alt="Back" />
+                </Link>
+                <h1>Login Page</h1>
+            </header>
             <form onSubmit={handleSubmit} onReset={handleReset}>
                 <div className="login-input-div">
                     <div className="login-input">
