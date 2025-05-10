@@ -48,9 +48,9 @@ const Bill = ({ startDate, endDate, data, setBill }) => {
         <div className="bill_container">
             <div className="bill_content">
                 <div className="bill_heading">
-                    <span className="bill_heading_name">Link Ayurvedic Shop</span>
-                    <span className="bill_heading_address">No.290, Galle Road, Aluthgama</span>
-                    <span className="bill_heading_phone">Tel No : 034-2270123</span>
+                    <span className="bill_heading_name">ERMINE</span>
+                    <span className="bill_heading_address">No 87, Main street, Kinniya, Trincomalee</span>
+                    <span className="bill_heading_phone">Tel No : +94 77 307 4612</span>
                 </div>
                 <div className="bill_detail">
                     <span className="bill_detail_date">Date: {new Date().toISOString().split('T')[0]}</span>
@@ -85,7 +85,7 @@ const Bill = ({ startDate, endDate, data, setBill }) => {
                     </div>
                 </div>
                 <div className="bill_footer">
-                    <span className="bill_footer_line">C All rights reserved to ZARA Texttiles</span>
+                    <span className="bill_footer_line">&#169; All Rights Reserved To ERMINE</span>
                 </div>
             </div>
             <div className="bill_button_div">

@@ -2,6 +2,7 @@
 import { useAuth } from '@/context/authContext'
 import React from 'react'
 import home from "../assets/home.png"
+import store from "../assets/store.png"
 import order from "../assets/order.png"
 import cart from "../assets/cart.png"
 import login from "../assets/login.png"
@@ -23,6 +24,12 @@ export const Navbar = () => {
                     <Link href="/user/home">
                         <Image src={home} alt="Home" />
                         <p>Home</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/user/store">
+                        <Image src={store} alt="Store" />
+                        <p>Store</p>
                     </Link>
                 </li>
                 {isUser &&

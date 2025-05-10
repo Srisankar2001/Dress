@@ -1,9 +1,10 @@
+/* Main login container */
 .login {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     color: #000000;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -11,6 +12,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Header */
 .login header {
     display: flex;
     align-items: center;
@@ -18,7 +20,7 @@
     position: relative;
 }
 
-.login header a{
+.login header a {
     text-decoration: none;
 }
 
@@ -27,7 +29,7 @@
     height: 28px;
     object-fit: contain;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     margin-top: 10px;
     cursor: pointer;
@@ -40,12 +42,14 @@
     color: #000000;
 }
 
+/* Input container */
 .login .login-input-div {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* Input fields */
 .login .login-input label {
     font-size: 1rem;
     margin-bottom: 5px;
@@ -58,16 +62,25 @@
     border: 1px solid #000000;
     border-radius: 6px;
     font-size: 1rem;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     color: #000000;
     transition: border-color 0.3s ease;
 }
 
 .login .login-input input:focus {
     outline: none;
-    border-color: #555;
+    border-color: #555555;
 }
 
+/* Error messages */
+.login p {
+    color: #D32F2F; /* Red for errors, matching inline style */
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Button container */
 .login .login-button-div {
     display: flex;
     justify-content: space-between;
@@ -81,14 +94,14 @@
     border: 1px solid #000000;
     border-radius: 6px;
     background-color: #000000;
-    color: #ffffff;
+    color: #FFFFFF;
     cursor: pointer;
     width: 48%;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .login .login-button-div input[type="reset"] {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     color: #000000;
     border: 1px solid #000000;
 }
@@ -97,13 +110,7 @@
     opacity: 0.85;
 }
 
-.login p {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 5px;
-    text-align: center;
-}
-
+/* Register link */
 .login .login-link {
     margin-top: 25px;
     text-align: center;
@@ -120,6 +127,40 @@
     color: #555555;
 }
 
+/* Loading indicator */
+.login-loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.login-loading p {
+    font-size: 1.5rem;
+    color: #000000; /* Black text to match login aesthetic */
+    margin-top: 10px;
+}
+
+/* Simple CSS spinner */
+.login-loading::before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 4px solid #000000;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
     .login {
         padding: 20px;
@@ -137,6 +178,15 @@
 
     .login .login-button-div input {
         width: 100%;
+    }
+
+    .login-loading p {
+        font-size: 1.25rem;
+    }
+
+    .login-loading::before {
+        width: 32px;
+        height: 32px;
     }
 }
 
@@ -159,5 +209,14 @@
 
     .login .login-link a {
         font-size: 0.9rem;
+    }
+
+    .login-loading p {
+        font-size: 1.1rem;
+    }
+
+    .login-loading::before {
+        width: 28px;
+        height: 28px;
     }
 }

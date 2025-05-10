@@ -15,28 +15,34 @@ export const AuthProvider = ({ children }) => {
   const [isEmployee, setIsEmployee] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const fetchContext = async () => {
-      try {
-        const response = await axiosInstance.get("/auth/get")
-        if (response.data.status) {
-          setDetails(response.data.data)
-          const role = response.data.data.role
-          setIsAdmin(role === "ADMIN")
-          setIsEmployee(role === "EMPLOYEE")
-          setIsUser(role === "USER")
-        }
-      } catch (err) {
-        setDetails([])
-        setIsAdmin(false)
-        setIsEmployee(false)
-        setIsUser(false)
-      } finally {
-        setLoading(false)
+  const fetchContext = async () => {
+    try {
+      const response = await axiosInstance.get("/auth/get")
+      if (response.data.status) {
+        setDetails(response.data.data)
+        const role = response.data.data.role
+        setIsAdmin(role === "ADMIN")
+        setIsEmployee(role === "EMPLOYEE")
+        setIsUser(role === "USER")
       }
+    } catch (err) {
+      setDetails([])
+      setIsAdmin(false)
+      setIsEmployee(false)
+      setIsUser(false)
+    } finally {
+      setLoading(false)
     }
+  }
+
+  useEffect(() => {
     fetchContext()
   }, [])
+
+  const refreshAuth = async () => {
+    setLoading(true)
+    await fetchContext()
+  }
 
   const logoutFunction = async () => {
     try {
@@ -49,13 +55,13 @@ export const AuthProvider = ({ children }) => {
         setIsUser(false)
         router.push("/auth/login")
       }
-    }catch(error){
+    } catch (error) {
       alert(error.response?.data?.message || "Internal Server Error")
     }
   }
 
   return (
-    <AuthContext.Provider value={{ details, isUser, isAdmin, isEmployee, loading, logoutFunction }}>
+    <AuthContext.Provider value={{ details, isUser, isAdmin, isEmployee, loading, logoutFunction, refreshAuth }}>
       {!loading && children}
     </AuthContext.Provider>
   );

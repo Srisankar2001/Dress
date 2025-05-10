@@ -1,26 +1,43 @@
+/* Root container for the homepage */
 .home-container {
   padding: 20px;
-  background-color: #ffffff;
-  /* Match OrderDetailsForm background */
+  background-color: #FFFFFF; /* White background to match store-container */
   min-height: 100vh;
   box-sizing: border-box;
 }
 
+/* Poster section */
+.home-poster {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.home-poster img {
+  width: 600px;
+  max-width: 800px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #000000; /* Match store-dress border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Match store-dress shadow */
+}
+
+/* Dress grid layout */
 .home-dress-div {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  /* Cart-page-like grid */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Match store-dress-div */
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Individual dress card */
 .home-dress {
-  background-color: #ffffff;
-  border: 1px solid #000000;
-  /* Match OrderDetailsForm borders */
+  background-color: #FFFFFF; /* White background */
+  border: 1px solid #000000; /* Black border */
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Match store-dress shadow */
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -28,19 +45,21 @@
   box-sizing: border-box;
 }
 
+/* Dress image container */
 .image-div {
   display: flex;
   justify-content: center;
 }
 
+/* Dress image */
 .dress-image {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border-radius: 8px;
-  /* Match OrderDetailsForm image */
+  border-radius: 8px; /* Match store-dress image */
 }
 
+/* Dress content */
 .home-dress-content {
   display: flex;
   flex-direction: column;
@@ -50,19 +69,19 @@
 
 .home-dress-content h2 {
   font-size: 1.25rem;
-  color: #000000;
+  color: #000000; /* Black text */
   margin: 0;
-  font-weight: 600;
-  /* Match OrderDetailsForm h2 */
+  font-weight: 600; /* Match store-dress-content */
 }
 
 .home-dress-content h1 {
   font-size: 1.5rem;
-  color: #000000;
+  color: #000000; /* Black text */
   margin: 0;
   font-weight: 600;
 }
 
+/* Button container */
 .btn-div {
   display: flex;
   justify-content: center;
@@ -74,65 +93,66 @@
   font-size: 0.9rem;
 }
 
-.btn-div .btn-addToCart {
+/* Add to Cart button */
+.btn-addToCart {
   padding: 0.8rem 2rem;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 6px;
-  background-color: #000;
-  color: #fff;
+  background-color: #000000; /* Black background */
+  color: #FFFFFF; /* White text */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.btn-div .btn-addToCart:hover {
-  background-color: #333;
+.btn-addToCart:hover {
+  background-color: #333333; /* Dark gray on hover */
 }
 
-.btn-div .btn-moreInfo {
+/* More Info button */
+.btn-moreInfo {
   border-radius: 6px;
-  border: 1px solid #000000;
-  background-color: #fff;
-  color: #000;
+  border: 1px solid #000000; /* Black border */
+  background-color: #FFFFFF; /* White background */
+  color: #000000; /* Black text */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.btn-div .btn-moreInfo:hover {
-  background-color: #f5f5f5;
+.btn-moreInfo:hover {
+  background-color: #F5F5F5; /* Light gray on hover */
 }
 
+/* Modal overlay for AddToCart and MoreInfo */
 .size-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Match OrderDetailsForm overlay */
+  background-color: rgba(0, 0, 0, 0.5); /* Match store modal overlay */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
+/* Modal content */
 .size-modal-content {
-  background-color: #ffffff !important;
-  /* Ensure white background */
+  background-color: #FFFFFF !important; /* White background */
   padding: 20px 30px;
-  border-radius: 12px;
-  /* Match OrderDetailsForm modal */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid #000000;
+  border-radius: 12px; /* Match store modal */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Match store modal shadow */
+  border: 1px solid #000000; /* Black border */
   width: 100%;
-  max-width: 800px;
-  /* Match OrderDetailsForm modal */
+  max-width: 800px; /* Match store modal */
   min-width: 500px;
   max-height: 90vh;
   overflow-y: auto;
   box-sizing: border-box;
 }
 
+/* Empty dresses message */
 .dress-empty {
   text-align: center;
   padding: 50px 20px;
@@ -140,8 +160,59 @@
 
 .dress-empty p {
   font-size: 1.25rem;
-  color: #000000;
+  color: #000000; /* Black text */
   margin: 0;
+}
+
+/* See More button */
+.home-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.home-btn button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: #000000; /* Black background to match btn-addToCart */
+  color: #FFFFFF; /* White text */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.home-btn button:hover {
+  background-color: #333333; /* Dark gray on hover */
+}
+
+/* Print-specific styles for PrintBill component */
+@media print {
+  .home-container,
+  .home-poster,
+  .home-dress-div,
+  .home-btn,
+  .size-modal-overlay,
+  .btn-addToCart,
+  .btn-moreInfo {
+    display: none !important;
+  }
+
+  /* Ensure only bill content is printed */
+  .print-bill .bill-content {
+    display: block !important;
+    visibility: visible !important;
+    position: static;
+    width: 100%;
+    color: #000000; /* Black text for print */
+    font-family: Arial, sans-serif;
+  }
+
+  /* Hide print button during printing */
+  .print-button {
+    display: none !important;
+  }
 }
 
 /* Responsive Design */
@@ -151,8 +222,7 @@
   }
 
   .home-dress-div {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    /* 2 columns */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 2 columns */
     gap: 15px;
   }
 
@@ -193,6 +263,15 @@
   .dress-empty p {
     font-size: 1.1rem;
   }
+
+  .home-poster img {
+    max-height: 300px;
+  }
+
+  .home-btn button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -201,8 +280,7 @@
   }
 
   .home-dress-div {
-    grid-template-columns: 1fr;
-    /* 1 column */
+    grid-template-columns: 1fr; /* 1 column */
     gap: 10px;
   }
 
@@ -233,5 +311,14 @@
 
   .dress-empty p {
     font-size: 1rem;
+  }
+
+  .home-poster img {
+    max-height: 200px;
+  }
+
+  .home-btn button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
   }
 }

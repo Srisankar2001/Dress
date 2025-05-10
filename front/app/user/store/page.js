@@ -6,9 +6,6 @@ import "./page.css"
 import { AddToCart } from '../component/addTocart/addToCart'
 import { MoreInfo } from '../component/moreInfo/MoreInfo'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import home_poster from "../component/assets/home_poster.jpg"
-import Link from 'next/link'
 
 const page = () => {
     const router = useRouter()
@@ -20,7 +17,7 @@ const page = () => {
     useEffect(() => {
         const fetchDresses = async () => {
             try {
-                const response = await axiosInstance.get('/dress/getAllHome')
+                const response = await axiosInstance.get('/dress/getAll')
                 if (response.data.status) {
                     setDresses(response.data.data)
                 }
@@ -52,9 +49,9 @@ const page = () => {
             )
         } else {
             return (
-                <div className='home-dress-div'>
+                <div className='store-dress-div'>
                     {dresses.map((item, index) => (
-                        <div key={index} className='home-dress'>
+                        <div key={index} className='store-dress'>
                             <div className="image-div">
                                 <img
                                     src={`http://localhost:3001/${item.image}`}
@@ -66,7 +63,7 @@ const page = () => {
                                     alt="Dress"
                                 />
                             </div>
-                            <div className="home-dress-content">
+                            <div className="store-dress-content">
                                 <h2>{item.name}</h2>
                                 <h1>{item.price} LKR</h1>
                                 <div className="btn-div">
@@ -81,7 +78,7 @@ const page = () => {
         }
     }
     return (
-        <div className='home-container'>
+        <div className='store-container'>
             {addToCart && (
                 <div className="size-modal-overlay">
                     <div className="size-modal-content">
@@ -96,15 +93,7 @@ const page = () => {
                     </div>
                 </div>
             )}
-            <div className='home-poster'>
-                <Image src={home_poster} alt='Home Poster' />
-            </div>
             {renderDresses()}
-            <div className='home-btn'>
-                <Link href="/user/store">
-                    <button>See More</button>
-                </Link>
-            </div>
         </div>
     )
 }
