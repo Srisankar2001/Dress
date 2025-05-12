@@ -33,7 +33,7 @@ const page = () => {
         if (orderItems.length === 0) {
             return (
                 <tr className="orderItem-empty">
-                    <td colSpan="6">No Items Available</td>
+                    <td colSpan="7">No Items Available</td>
                 </tr>
             )
         } else {
@@ -60,6 +60,7 @@ const page = () => {
                             {item.status === OrderItemStatus.ACCEPTED && <td className="orderItem-accepted">{item.status}</td>}
                             {item.status === OrderItemStatus.COMPLETED && <td className="orderItem-completed">{item.status}</td>}
                             {item.status === OrderItemStatus.CANCELLED && <td className="orderItem-cancelled">{item.status}</td>}
+                            <td>{item.employee_id}</td>
                             <td className="orderItem-action">
                                 {item.status === "NOT ACCEPTED" && <input type="button" value="Assign" className="assign-btn" onClick={() => handleAssign(item.order_item_id)} />}
                             </td>
@@ -89,6 +90,7 @@ const page = () => {
                             <th>Date</th>
                             <th>Name</th>
                             <th>Status</th>
+                            <th>Employee ID</th>
                             <th className="orderItem-action">Action</th>
                         </tr>
                     </thead>

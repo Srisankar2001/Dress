@@ -191,7 +191,7 @@ const getAllOrderItemsAdmin = async (req, res) => {
             return res.status(400).json({ status: false, message: "ADMIN Not Found" })
         }
 
-        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id")
+        const [row] = await db.promise().execute("SELECT ot.id AS order_item_id, ot.status AS status, ot.employee_id AS employee_id, ot.created_at AS date, d.id AS dress_id, d.name AS dress_name, d.image AS dress_image FROM order_item ot JOIN dress d ON ot.dress_id = d.id")
 
         return res.status(200).json({ status: true, message: "All Items Fetched Successfully", data: row })
     } catch (error) {
