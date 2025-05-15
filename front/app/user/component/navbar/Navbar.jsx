@@ -8,6 +8,7 @@ import cart from "../assets/cart.png"
 import login from "../assets/login.png"
 import logout from "../assets/logout.png"
 import logo from "../assets/logo.png"
+import feedback from "../assets/feedback.png"
 import "./Navbar.css"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -45,6 +46,14 @@ export const Navbar = () => {
                         <Link href="/user/cart">
                             <Image src={cart} alt="Cart" />
                             <p>Cart</p>
+                        </Link>
+                    </li>
+                }
+                {isUser &&
+                    <li>
+                        <Link href="/user/feedback">
+                            <Image src={feedback} alt="Feedback" />
+                            <p>Feedback</p>
                         </Link>
                     </li>
                 }

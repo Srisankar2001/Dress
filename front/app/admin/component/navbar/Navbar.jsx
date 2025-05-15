@@ -12,6 +12,7 @@ import size from "../assets/size.png"
 import admin from "../assets/admin.png"
 import logout from "../assets/logout.png"
 import logo from "../assets/logo.png"
+import feedback from "../assets/feedback.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/context/authContext'
@@ -70,6 +71,12 @@ export const Navbar = () => {
                     <Link href="/admin/order_item" className='nav-item'>
                         <Image src={order_item} alt='Order Item' />
                         <p>Order Items</p>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/admin/feedback" className='nav-item'>
+                        <Image src={feedback} alt='Feedback' />
+                        <p>Feedbacks</p>
                     </Link>
                 </li>
                 <li onClick={logoutFunction}>

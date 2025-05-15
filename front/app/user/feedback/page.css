@@ -1,0 +1,271 @@
+/* Root container for the feedback page */
+.feedback-container {
+    padding: 20px;
+    background-color: #FFFFFF; /* White background to match home-container */
+    min-height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navigation bar with heading and Create button */
+.feedback-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.feedback-nav h1 {
+    font-size: 1.5rem;
+    color: #000000; /* Black text to match login h1 */
+    margin: 0;
+    font-weight: 600;
+}
+
+.feedback-nav input[type="button"] {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: #000000; /* Black background to match btn-addToCart */
+    color: #FFFFFF; /* White text */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.feedback-nav input[type="button"]:hover {
+    background-color: #333333; /* Dark gray on hover */
+}
+
+/* Feedback items container */
+.feedback-div {
+    display: flex;
+    flex-direction: column; /* Align items in a single column */
+    gap: 20px;
+    max-width: 800px; /* Match CreateForm/UpdateForm/DeleteForm width */
+    margin: 0 auto; /* Center the column */
+}
+
+/* Individual feedback item */
+.feedback-div-item {
+    background-color: #FFFFFF; /* White background */
+    border: 1px solid #000000; /* Black border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Match home-dress shadow */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    width: 100%; /* Full width within max-width of parent */
+}
+
+/* Feedback item title */
+.feedback-div-item h1 {
+    font-size: 1.25rem;
+    color: #000000; /* Black text */
+    margin: 0;
+    font-weight: 600; /* Match home-dress-content */
+}
+
+/* Feedback item answer */
+.feedback-div-item h2 {
+    font-size: 1rem;
+    color: #000000; /* Black text */
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Action buttons container */
+.feedback-action {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Update button */
+.Update-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Update-btn:hover {
+    background-color: #333333; /* Dark gray on hover */
+}
+
+/* Delete button */
+.Delete-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Delete-btn:hover {
+     background-color: #f5f5f5;
+}
+
+/* Empty feedback message */
+.feedback-empty {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.feedback-empty p {
+    font-size: 1.25rem;
+    color: #000000; /* Black text */
+    margin: 0;
+}
+
+/* Modal overlay for forms */
+.size-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Match homepage modal overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal content */
+.size-modal-content {
+    background-color: #FFFFFF; /* White background */
+    padding: 20px 30px;
+    border-radius: 12px; /* Match homepage modal */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Match homepage modal shadow */
+    border: 1px solid #000000; /* Black border */
+    width: 100%;
+    max-width: 600px; /* Slightly smaller than homepage modal for forms */
+    min-width: 300px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feedback-container {
+        padding: 15px;
+    }
+
+    .feedback-nav {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .feedback-nav h1 {
+        font-size: 1.25rem;
+    }
+
+    .feedback-nav input[type="button"] {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .feedback-div {
+        gap: 15px;
+        max-width: 400px; /* Slightly smaller for medium screens */
+    }
+
+    .feedback-div-item {
+        padding: 10px;
+    }
+
+    .feedback-div-item h1 {
+        font-size: 1.1rem;
+    }
+
+    .feedback-div-item h2 {
+        font-size: 0.9rem;
+    }
+
+    .feedback-action {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .Update-btn,
+    .Delete-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    .size-modal-content {
+        padding: 15px 20px;
+        max-width: 500px;
+        min-width: 280px;
+        max-height: 85vh;
+    }
+
+    .feedback-empty p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .feedback-container {
+        padding: 10px;
+    }
+
+    .feedback-nav h1 {
+        font-size: 1.2rem;
+    }
+
+    .feedback-nav input[type="button"] {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .feedback-div {
+        gap: 10px;
+        max-width: 300px; /* Smaller for small screens */
+    }
+
+    .feedback-div-item {
+        padding: 8px;
+    }
+
+    .feedback-div-item h1 {
+        font-size: 1rem;
+    }
+
+    .feedback-div-item h2 {
+        font-size: 0.85rem;
+    }
+
+    .Update-btn,
+    .Delete-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .size-modal-content {
+        padding: 10px 15px;
+        max-width: 100%;
+        min-width: 260px;
+        max-height: 80vh;
+    }
+
+    .feedback-empty p {
+        font-size: 1rem;
+    }
+}

@@ -206,7 +206,8 @@ const getOrderAdmin = async (req, res) => {
         if (rowIsUserExist.length === 0) {
             return res.status(400).json({ status: false, message: "Admin Not Found" })
         }
-        const [rowOrder] = await db.promise().execute("SELECT o.id AS order_id, o.user_id, o.total, o.address, o.status, o.created_at AS date, COUNT(oi.id) AS count FROM `order` o JOIN order_item oi ON o.id = oi.order_id GROUP BY o.id, o.user_id, o.total, o.address, o.status, o.created_at")
+        const [rowOrder] = await db.promise().execute("SELECT o.id AS order_id, o.user_id, u.firstname, u.lastname, u.phone, o.total, o.address, o.status, o.created_at AS date, COUNT(oi.id) AS count FROM  `order` o  JOIN order_item oi ON o.id = oi.order_id  JOIN  `user` u ON o.user_id = u.id GROUP BY o.id, o.user_id, u.firstname, u.lastname, u.phone, o.total, o.address, o.status, o.created_at")
+
         return res.status(200).json({ status: true, message: "All Orders Fetched Successfully", data: rowOrder })
     } catch (error) {
         console.log(error)

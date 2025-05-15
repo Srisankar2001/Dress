@@ -1,0 +1,167 @@
+/* Root container for the update form */
+.feedback-update {
+    width: 100%;
+    max-width: 500px; /* Match CreateForm for consistency */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* White background to match size-modal-content */
+    color: #000000; /* Black text */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form title */
+.feedback-update h1 {
+    font-size: 1.5rem;
+    color: #000000; /* Black text */
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600; /* Match feedback-nav h1 and CreateForm */
+}
+
+/* Input container */
+.feedback-update-input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Match login-input-div and CreateForm */
+}
+
+/* Input wrapper */
+.feedback-update-input {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label */
+.feedback-update-input label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #000000; /* Black text */
+}
+
+/* Input field */
+.feedback-update-input input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #000000; /* Black border */
+    border-radius: 6px; /* Match login input and CreateForm */
+    font-size: 1rem;
+    background-color: #FFFFFF; /* White background */
+    color: #000000; /* Black text */
+    transition: border-color 0.3s ease;
+}
+
+/* Input focus state */
+.feedback-update-input input:focus {
+    outline: none;
+    border-color: #555555; /* Dark gray on focus */
+}
+
+/* Error message */
+.feedback-update-input p {
+    color: #D32F2F; /* Red for errors, match login p and CreateForm */
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Button container */
+.feedback-update-button-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 4%; /* Match login-button-div and CreateForm */
+    margin-top: 20px;
+}
+
+/* Buttons */
+.feedback-update-button-div input {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 48%; /* Match login-button-div and CreateForm */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Submit button (Update) */
+.feedback-update-button-div input[type="submit"] {
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text */
+    border: 1px solid #000000; /* Black border */
+}
+
+/* Reset button (Cancel) */
+.feedback-update-button-div input[type="reset"] {
+    background-color: #FFFFFF; /* White background */
+    color: #000000; /* Black text */
+    border: 1px solid #000000; /* Black border */
+}
+
+/* Button hover states */
+.feedback-update-button-div input:hover {
+    opacity: 0.85; /* Match login button hover and CreateForm */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feedback-update {
+        padding: 15px;
+        max-width: 400px;
+    }
+
+    .feedback-update h1 {
+        font-size: 1.25rem;
+    }
+
+    .feedback-update-input input {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .feedback-update-input label {
+        font-size: 0.9rem;
+    }
+
+    .feedback-update-input p {
+        font-size: 0.85rem;
+    }
+
+    .feedback-update-button-div {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .feedback-update-button-div input {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .feedback-update {
+        padding: 10px;
+        max-width: 300px;
+    }
+
+    .feedback-update h1 {
+        font-size: 1.2rem;
+    }
+
+    .feedback-update-input input {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .feedback-update-input label {
+        font-size: 0.85rem;
+    }
+
+    .feedback-update-input p {
+        font-size: 0.8rem;
+    }
+
+    .feedback-update-button-div input {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+}

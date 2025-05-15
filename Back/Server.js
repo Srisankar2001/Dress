@@ -15,6 +15,7 @@ const orderItemRouter = require("./Router/orderItemRouter")
 const paymentRouter = require("./Router/paymentRouter")
 const sizeRouter = require("./Router/sizeRouter")
 const dashboardRouter = require("./Router/dashboardRouter")
+const feedbackRouter = require("./Router/feedbackRouter")
 
 app.use(cors({
     origin: "http://localhost:3000",
@@ -34,6 +35,7 @@ app.use("/api/order_item", orderItemRouter)
 app.use("/api/payment", paymentRouter)
 app.use("/api/size", sizeRouter)
 app.use("/api/dashboard", dashboardRouter)
+app.use("/api/feedback", feedbackRouter)
 
 db.connect((err) => {
     if (err) {

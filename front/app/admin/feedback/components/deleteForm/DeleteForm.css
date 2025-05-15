@@ -1,0 +1,136 @@
+/* Root container for the delete form */
+.feedback-delete {
+    width: 100%;
+    max-width: 500px; /* Match CreateForm and UpdateForm for consistency */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* White background to match size-modal-content */
+    color: #000000; /* Black text */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form title */
+.feedback-delete h1 {
+    font-size: 1.5rem;
+    color: #000000; /* Black text */
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600; /* Match feedback-nav h1, CreateForm, and UpdateForm */
+}
+
+/* Text container for confirmation message */
+.feedback-delete-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Confirmation question */
+.feedback-delete-text h1 {
+    font-size: 1.25rem;
+    color: #000000; /* Black text */
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Question text */
+.feedback-delete-text p {
+    font-size: 1rem;
+    color: #000000; /* Black text */
+    margin: 0;
+    font-style: italic; /* Italicize quoted question */
+}
+
+/* Button container */
+.feedback-delete-button-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 4%; /* Match login-button-div, CreateForm, and UpdateForm */
+    margin-top: 20px;
+}
+
+/* Buttons */
+.feedback-delete-button-div input {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 48%; /* Match login-button-div, CreateForm, and UpdateForm */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Submit button (Delete) */
+.feedback-delete-button-div input[type="submit"] {
+     background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text */
+    border: 1px solid #000000; /* Black border */
+}
+
+/* Reset button (Cancel) */
+.feedback-delete-button-div input[type="reset"] {
+    background-color: #FFFFFF; /* White background */
+    color: #000000; /* Black text */
+    border: 1px solid #000000; /* Black border */
+}
+
+/* Button hover states */
+.feedback-delete-button-div input:hover {
+   opacity: 0.85; 
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feedback-delete {
+        padding: 15px;
+        max-width: 400px;
+    }
+
+    .feedback-delete h1 {
+        font-size: 1.25rem;
+    }
+
+    .feedback-delete-text h1 {
+        font-size: 1.1rem;
+    }
+
+    .feedback-delete-text p {
+        font-size: 0.9rem;
+    }
+
+    .feedback-delete-button-div {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .feedback-delete-button-div input {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .feedback-delete {
+        padding: 10px;
+        max-width: 300px;
+    }
+
+    .feedback-delete h1 {
+        font-size: 1.2rem;
+    }
+
+    .feedback-delete-text h1 {
+        font-size: 1rem;
+    }
+
+    .feedback-delete-text p {
+        font-size: 0.85rem;
+    }
+
+    .feedback-delete-button-div input {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+}
