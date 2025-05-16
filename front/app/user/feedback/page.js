@@ -15,7 +15,7 @@ const page = () => {
     const [isReady, setIsReady] = useState(false)
     const [updateForm, setUpdateForm] = useState(false)
     const [createForm, setCreateForm] = useState(false)
-    const [deleteForm, setDeleteFrom] = useState(false)
+    const [deleteForm, setDeleteForm] = useState(false)
     const [feedbacks, setfeedbacks] = useState([])
 
     const fetchfeedbacks = async () => {
@@ -52,7 +52,7 @@ const page = () => {
     }
 
     const handleDelete = (id) => {
-        setDeleteFrom(id)
+        setDeleteForm(id)
     }
 
     const renderFeedbacks = () => {
@@ -103,7 +103,7 @@ const page = () => {
             {deleteForm && (
                 <div className="size-modal-overlay">
                     <div className="size-modal-content">
-                        <DeleteForm id={deleteForm} setDeleteForm={setDeleteFrom} />
+                        <DeleteForm id={deleteForm} setDeleteForm={setDeleteForm} />
                     </div>
                 </div>
             )}

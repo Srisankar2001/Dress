@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import home_poster from "../component/assets/home_poster.jpg"
 import Link from 'next/link'
+import showToast from '@/utils/toast'
 
 const page = () => {
     const router = useRouter()
@@ -25,7 +26,8 @@ const page = () => {
                     setDresses(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
         fetchDresses()

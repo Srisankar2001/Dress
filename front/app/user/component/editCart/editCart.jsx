@@ -37,7 +37,8 @@ export const EditCart = ({ id, dress_id, setEditCart }) => {
                     setInput(newInput)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
                 setEditCart(null)
             }
         }
@@ -77,13 +78,16 @@ export const EditCart = ({ id, dress_id, setEditCart }) => {
             try {
                 const response = await axiosInstance.put(`/cart/update/${id}`, data)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true,response.data.message)
                     setEditCart(null)
                 } else {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(false,response.data.message)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
     }

@@ -42,7 +42,7 @@
 .feedback-div {
     display: flex;
     flex-direction: column; /* Align items in a single column */
-    gap: 20px;
+    gap: 10px;
     max-width: 800px; /* Match CreateForm/UpdateForm/DeleteForm width */
     margin: 0 auto; /* Center the column */
 }
@@ -72,6 +72,13 @@
 /* Feedback item answer */
 .feedback-div-item h2 {
     font-size: 1rem;
+    color: #000000; /* Black text */
+    margin: 0;
+    font-weight: 400;
+}
+
+.feedback-div-item h3 {
+    font-size: 0.8rem;
     color: #000000; /* Black text */
     margin: 0;
     font-weight: 400;

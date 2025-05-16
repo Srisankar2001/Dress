@@ -6,6 +6,7 @@ import { useAuth } from '@/context/authContext'
 import { EditCart } from '../component/editCart/editCart'
 import { RemoveCart } from '../component/removeCart/removeCart'
 import { useRouter } from 'next/navigation'
+import showToast from '@/utils/toast'
 
 const page = () => {
     const router = useRouter()
@@ -26,7 +27,8 @@ const page = () => {
                 setTotal(response.data.data.reduce((sum, item) => sum + Number(item.price), 0));
             }
         } catch (err) {
-            alert(err.response?.data?.message || "Internal Server Error")
+            // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false, err.response?.data?.message || "Internal Server Error")
         }
     }
 
@@ -64,11 +66,13 @@ const page = () => {
                 }
                 const response = await axiosInstance.post("/order/create", data)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true, response.data.message)
                     fetchItems()
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
             }
         } else {
             setError("Address Field is Empty")

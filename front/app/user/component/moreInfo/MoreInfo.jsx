@@ -28,7 +28,8 @@ export const MoreInfo = ({ id, type_id, setMoreInfo }) => {
                     setDress(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
                 setMoreInfo(null)
             }
         }
@@ -54,7 +55,8 @@ export const MoreInfo = ({ id, type_id, setMoreInfo }) => {
                     setInput(newInput)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
                 setMoreInfo(null)
             }
         }
@@ -66,7 +68,8 @@ export const MoreInfo = ({ id, type_id, setMoreInfo }) => {
                     setSizes(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
                 setMoreInfo(null)
             }
         }
@@ -126,13 +129,16 @@ export const MoreInfo = ({ id, type_id, setMoreInfo }) => {
                 try {
                     const response = await axiosInstance.post("/cart/create", data)
                     if (response.data.status) {
-                        alert(response.data.message)
+                        // alert(response.data.message)
+                        showToast(true, response.data.message)
                         setMoreInfo(null)
                     } else {
-                        alert(response.data.message)
+                        // alert(response.data.message)
+                        showToast(false, response.data.message)
                     }
                 } catch (err) {
-                    alert(err.response?.data?.message || "Internal Server Error")
+                    // alert(err.response?.data?.message || "Internal Server Error")
+                    showToast(false, err.response?.data?.message || "Internal Server Error")
                 }
             }
         } else {

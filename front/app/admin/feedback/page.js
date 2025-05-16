@@ -8,7 +8,7 @@ import { DeleteForm } from "./components/deleteForm/DeleteForm"
 
 const page = () => {
     const [updateForm, setUpdateForm] = useState(false)
-    const [deleteForm, setDeleteFrom] = useState(false)
+    const [deleteForm, setDeleteForm] = useState(false)
     const [feedbacks, setfeedbacks] = useState([])
 
     useEffect(() => {
@@ -17,6 +17,7 @@ const page = () => {
                 const response = await axiosInstance.get('/feedback/admin')
                 if (response.data.status) {
                     setfeedbacks(response.data.data)
+                    console.log(response.data.data)
                 }
             } catch (err) {
                 alert(err.response?.data?.message || "Internal Server Error")
@@ -30,7 +31,7 @@ const page = () => {
     }
 
     const handleDelete = (id) => {
-        setDeleteFrom(id)
+        setDeleteForm(id)
     }
 
     const renderFeedbacks = () => {
@@ -45,6 +46,8 @@ const page = () => {
                 <>
                     {feedbacks.map((item, index) => (
                         <div key={index} className="feedback-div-item">
+                            <h3>User ID : {item.user_id}</h3>
+                            <h3>Name : {item.firstname} {item.lastname}</h3>
                             <h1>{item.question}</h1>
                             <h2>{item.answer ? item.answer : "Waiting For Reply..."}</h2>
                             <div className="feedback-action">
@@ -73,7 +76,7 @@ const page = () => {
             {deleteForm && (
                 <div className="size-modal-overlay">
                     <div className="size-modal-content">
-                        <DeleteForm id={deleteForm} setDeleteForm={setDeleteFrom} />
+                        <DeleteForm id={deleteForm} setDeleteForm={setDeleteForm} />
                     </div>
                 </div>
             )}

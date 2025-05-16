@@ -28,7 +28,8 @@ const page = () => {
                 setOrders(response.data.data)
             }
         } catch (err) {
-            alert(err.response?.data?.message || "Internal Server Error")
+            // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false, err.response?.data?.message || "Internal Server Error")
         }
     }
 

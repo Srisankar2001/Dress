@@ -22,7 +22,8 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
                     setQuestion(data.question)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
                 setDeleteForm(false)
             }
         }
@@ -39,11 +40,13 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
         try {
             const response = await axiosInstance.delete(`/feedback/delete/${id}`)
             if (response.data.status) {
-                alert(response.data.message)
+                // alert(response.data.message)
+                showToast(true, response.data.message)
                 setDeleteForm(false)
             }
         } catch (err) {
-            alert(err.response?.data?.message || "Internal Server Error")
+            // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false, err.response?.data?.message || "Internal Server Error")
             setDeleteForm(false)
         }
     }

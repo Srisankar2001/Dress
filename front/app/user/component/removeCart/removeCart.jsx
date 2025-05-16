@@ -21,7 +21,8 @@ export const RemoveCart = ({ id, dress_id, setRemoveCart }) => {
                     setName(response.data.data.name)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
                 setRemoveCart(null)
             }
         }
@@ -37,13 +38,16 @@ export const RemoveCart = ({ id, dress_id, setRemoveCart }) => {
         try {
             const response = await axiosInstance.delete(`/cart/delete/${id}`)
             if (response.data.status) {
-                alert(response.data.message)
+                // alert(response.data.message)
+                showToast(true, response.data.message)
                 setRemoveCart(null)
             } else {
-                alert(response.data.message)
+                // alert(response.data.message)
+                showToast(false, response.data.message)
             }
         } catch (err) {
-            alert(err.response?.data?.message || "Internal Server Error")
+            // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false, err.response?.data?.message || "Internal Server Error")
         }
     }
 

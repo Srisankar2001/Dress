@@ -24,7 +24,8 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                     setQuestion(data.question)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
                 setUpdateForm(false)
             }
         }
@@ -50,11 +51,13 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                 }
                 const response = await axiosInstance.put(`/feedback/user/${id}`, data)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true, response.data.message)
                     setUpdateForm(false)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
             }
         }
     }
@@ -64,7 +67,7 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
             <form onSubmit={handleSubmit} onReset={handleReset}>
                 <div className="feedback-update-input-div">
                     <div className="feedback-update-input">
-                         <label htmlFor="question">Question</label>
+                        <label htmlFor="question">Question</label>
                         <input type="text" name="question" value={question} placeholder="Enter The Question" onChange={handleChange} />
                         {error && <p>{error}</p>}
                     </div>

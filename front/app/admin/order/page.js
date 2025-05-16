@@ -32,7 +32,7 @@ const page = () => {
         if (orders.length === 0) {
             return (
                 <tr className="order-empty">
-                    <td colSpan="9">No Items Available</td>
+                    <td colSpan="10">No Items Available</td>
                 </tr>
             )
         } else {
@@ -42,6 +42,7 @@ const page = () => {
                         <tr key={index} onClick={()=>handleOrderForm(item.order_id)}>
                             <td>{item.order_id}</td>
                             <td>{item.date.split("T")[0]}</td>
+                            <td>{item.user_id}</td>
                             <td>{item.firstname}</td>
                             <td>{item.lastname}</td>
                             <td>{item.phone}</td>
@@ -78,6 +79,7 @@ const page = () => {
                         <tr>
                             <th>ID</th>
                             <th>Date</th>
+                            <th>User ID</th>
                             <th>Firstname</th>
                             <th>Lastname</th>
                             <th>Phone</th>

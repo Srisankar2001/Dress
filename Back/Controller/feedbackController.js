@@ -201,7 +201,7 @@ const getAllAdmin = async (req, res) => {
             return res.status(400).json({ status: false, message: "ADMIN Not Found" })
         }
 
-        const [row] = await db.promise().execute("SELECT * FROM feedback")
+        const [row] = await db.promise().execute("SELECT f.*,u.firstname,u.lastname FROM feedback f JOIN user u ON f.user_id = u.id")
 
         return res.status(200).json({ status: true, message: "All Feedbacks Fetched Successfully", data: row })
     } catch (error) {

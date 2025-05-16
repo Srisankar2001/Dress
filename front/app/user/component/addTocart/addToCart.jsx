@@ -3,6 +3,7 @@ import axiosInstance from '@/config/axiosConfig'
 import React, { useState, useEffect } from 'react'
 import "./addToCart.css"
 import validate from './validation'
+import showToast from '@/utils/toast'
 
 export const AddToCart = ({ id, type_id, setAddToCart }) => {
     const [name, setName] = useState("")
@@ -25,7 +26,8 @@ export const AddToCart = ({ id, type_id, setAddToCart }) => {
                     setName(response.data.data.name)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
                 setAddToCart(null)
             }
         }
@@ -51,7 +53,8 @@ export const AddToCart = ({ id, type_id, setAddToCart }) => {
                     setInput(newInput)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
                 setAddToCart(null)
             }
         }
@@ -63,7 +66,8 @@ export const AddToCart = ({ id, type_id, setAddToCart }) => {
                     setSizes(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
                 setAddToCart(null)
             }
         }
@@ -124,13 +128,16 @@ export const AddToCart = ({ id, type_id, setAddToCart }) => {
             try {
                 const response = await axiosInstance.post("/cart/create", data)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true,response.data.message)
                     setAddToCart(null)
                 } else {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(false,response.data.message)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
     }
