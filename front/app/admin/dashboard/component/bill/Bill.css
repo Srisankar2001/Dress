@@ -6,6 +6,17 @@
     padding: 20px;
     width: 100%;
     background-color: #ffffff;
+    overflow-y: scroll;
+}
+
+.bill_content {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    border-radius: 6px;
 }
 
 .bill_heading {

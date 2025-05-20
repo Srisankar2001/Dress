@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import "./Report.css"
 import validate from './validation'
 import axiosInstance from '@/config/axiosConfig'
-import Bill from '../bill/Bill'
+import showToast from '@/utils/toast'
 
 export const Report = ({ setBill, setReport }) => {
     const [input, setInput] = useState({
@@ -48,7 +48,8 @@ export const Report = ({ setBill, setReport }) => {
                 if (response.data.status) {
                     const responseData = response.data.data
                     if (responseData.length === 0) {
-                        alert("No Sale happen between this week")
+                        // alert("No Sale happen between this week")
+                        showToast(false,"No Sale happen between this week")
                         setReport(false)
                     } else {
                         setBill({ startDate: input.startDate, endDate: input.endDate, data: responseData })
@@ -57,7 +58,8 @@ export const Report = ({ setBill, setReport }) => {
 
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
     }

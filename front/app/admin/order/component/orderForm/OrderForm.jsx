@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import "./OrderForm.css"
 import axiosInstance from "@/config/axiosConfig"
 import OrderItemStatus from "@/enums/OrderItemStatus"
+import showToast from "@/utils/toast"
 
 export const OrderForm = ({ id, setOrderForm }) => {
   const [items, setItems] = useState([])
@@ -23,7 +24,8 @@ export const OrderForm = ({ id, setOrderForm }) => {
           setItems(response.data.data)
         }
       } catch (err) {
-        alert(err.response?.data?.message || "Internal Server Error")
+        // alert(err.response?.data?.message || "Internal Server Error")
+        showToast(false,err.response?.data?.message || "Internal Server Error")
         setOrderForm(false)
       }
     }

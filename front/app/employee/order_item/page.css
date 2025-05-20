@@ -72,6 +72,32 @@ th {
     border-radius: 6px;
 }
 
+/* Status Styles */
+.orderItem-table-container .orderItem-notPaid {
+    color: #f39c12; /* Orange for NOT_PAID */
+    font-weight: bold;
+}
+
+.orderItem-table-container .orderItem-notAccepted {
+    color: #e74c3c; /* Red for NOT_ACCEPTED */
+    font-weight: bold;
+}
+
+.orderItem-table-container .orderItem-accepted {
+    color: #2ecc71; /* Green for ACCEPTED */
+    font-weight: bold;
+}
+
+.orderItem-table-container .orderItem-completed {
+    color: #3498db; /* Blue for COMPLETED */
+    font-weight: bold;
+}
+
+.orderItem-table-container .orderItem-cancelled {
+    color: #7f8c8d; /* Gray for CANCELLED */
+    font-weight: bold;
+}
+
 .assign-btn,
 .decline-btn,
 .complete-btn {

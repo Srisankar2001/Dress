@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import "./DeclineForm.css"
 import axiosInstance from '@/config/axiosConfig'
+import showToast from '@/utils/toast'
 
 export const DeclineForm = ({ id, setDeclineForm }) => {
 
@@ -21,11 +22,13 @@ export const DeclineForm = ({ id, setDeclineForm }) => {
     try {
       const response = await axiosInstance.put(`/order_item/employee/not_accept/${id}`)
       if (response.data.status) {
-        alert(response.data.message)
+        // alert(response.data.message)
+        showToast(true,response.data.message)
         setDeclineForm(false)
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Internal Server Error")
+      // alert(err.response?.data?.message || "Internal Server Error")
+      showToast(false,err.response?.data?.message || "Internal Server Error")
       setDeclineForm(false)
     }
   }

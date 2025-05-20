@@ -57,7 +57,7 @@
 }
 
 .addToCart-input-grid p {
-  color: red;
+  color: rgb(12, 2, 2);
   grid-column: 1 / -1;
   text-align: center;
 }

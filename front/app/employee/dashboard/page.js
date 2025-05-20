@@ -2,6 +2,7 @@
 import axiosInstance from "@/config/axiosConfig"
 import { useEffect, useState } from "react"
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'; import "./page.css"
+import showToast from "@/utils/toast";
 
 const page = () => {
     const [total, setTotal] = useState({
@@ -30,7 +31,8 @@ const page = () => {
                     setGraphData(arr)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
         fetchDashboard()

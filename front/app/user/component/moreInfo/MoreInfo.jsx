@@ -4,6 +4,7 @@ import "./MoreInfo.css"
 import validate from './validation'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/authContext'
+import showToast from '@/utils/toast'
 
 export const MoreInfo = ({ id, type_id, setMoreInfo }) => {
     const router = useRouter()

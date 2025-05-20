@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import "./OrderDetailsForm.css"
 import axiosInstance from '@/config/axiosConfig'
+import showToast from '@/utils/toast'
 
 export const OrderDetailsForm = ({ id, setOrderDetailsForm }) => {
   const [detail, setDetail] = useState({})
@@ -21,7 +22,8 @@ export const OrderDetailsForm = ({ id, setOrderDetailsForm }) => {
           setDetail(response.data.data)
         }
       } catch (err) {
-        alert(err.response?.data?.message || "Internal Server Error")
+        // alert(err.response?.data?.message || "Internal Server Error")
+        showToast(false,err.response?.data?.message || "Internal Server Error")
         setOrderDetailsForm(false)
       }
     }

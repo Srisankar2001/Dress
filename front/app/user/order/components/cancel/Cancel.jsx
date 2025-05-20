@@ -2,6 +2,7 @@
 import axiosInstance from '@/config/axiosConfig'
 import React, { useEffect } from 'react'
 import "./Cancel.css"
+import showToast from '@/utils/toast'
 
 export const Cancel = ({ id, setCancel }) => {
 
@@ -21,11 +22,13 @@ export const Cancel = ({ id, setCancel }) => {
         try {
             const response = await axiosInstance.put(`/order/cancel/${id}`)
             if (response.data.status) {
-                alert(response.data.message)
+                // alert(response.data.message)
+                showToast(true,response.data.message)
                 setCancel(false)
             }
         } catch (err) {
-            alert(err.response?.data?.message || "Internal Server Error")
+            // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false,err.response?.data?.message || "Internal Server Error")
             setCancel(false)
         }
     }

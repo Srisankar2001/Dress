@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import "./DeleteForm.css"
 import axiosInstance from '@/config/axiosConfig'
+import showToast from '@/utils/toast'
 
 export const DeleteForm = ({ id, setDeleteForm }) => {
     const [question, setQuestion] = useState("")

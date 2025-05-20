@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import "./DeleteForm.css"
 import axiosInstance from '@/config/axiosConfig'
+import showToast from '@/utils/toast'
 
 export const DeleteForm = ({ id, setDeleteForm }) => {
     const [name, setName] = useState({ firstname: "", lastname: "" })
@@ -24,7 +25,8 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
                     })
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false,err.response?.data?.message || "Internal Server Error")
                 setDeleteForm(false)
             }
         }
@@ -41,11 +43,13 @@ export const DeleteForm = ({ id, setDeleteForm }) => {
         try {
             const response = await axiosInstance.delete(`/admin/employee/${id}`)
             if (response.data.status) {
-                alert(response.data.message)
+                // alert(response.data.message)
+                showToast(true,response.data.message)
                 setDeleteForm(false)
             }
         } catch (err) {
-            alert(err.response?.data?.message || "Internal Server Error")
+            // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false,err.response?.data?.message || "Internal Server Error")
             setDeleteForm(false)
         }
     }

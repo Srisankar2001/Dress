@@ -7,6 +7,8 @@ import { AcceptForm } from "./component/AcceptForm/AcceptForm"
 import { DeclineForm } from "./component/DeclineForm/DeclineForm"
 import { CompleteForm } from "./component/CompleteForm/CompleteForm"
 import { OrderDetailsForm } from "./component/OrderDetailsForm/OrderDetailsForm"
+import showToast from "@/utils/toast"
+import OrderItemStatus from "@/enums/OrderItemStatus"
 
 const page = () => {
     const [acceptForm, setAcceptForm] = useState(false)
@@ -23,7 +25,8 @@ const page = () => {
                     setOrderItems(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
             }
         }
         fetchOrderItems()
@@ -50,7 +53,7 @@ const page = () => {
         if (orderItems.length === 0) {
             return (
                 <tr className="orderItem-empty">
-                    <td colSpan="5">No Items Available</td>
+                    <td colSpan="6">No Items Available</td>
                 </tr>
             )
         } else {
@@ -72,10 +75,15 @@ const page = () => {
                             </td>
                             <td>{item.date.split("T")[0]}</td>
                             <td>{item.dress_name}</td>
+                            {item.status === OrderItemStatus.NOT_PAID && <td className="orderItem-notPaid">{item.status}</td>}
+                            {item.status === OrderItemStatus.NOT_ACCEPTED && <td className="orderItem-notAccepted">{item.status}</td>}
+                            {item.status === OrderItemStatus.ACCEPTED && <td className="orderItem-accepted">{item.status}</td>}
+                            {item.status === OrderItemStatus.COMPLETED && <td className="orderItem-completed">{item.status}</td>}
+                            {item.status === OrderItemStatus.CANCELLED && <td className="orderItem-cancelled">{item.status}</td>}
                             <td className="orderItem-action">
-                                {item.status === "NOT ACCEPTED" && <input type="button" value="Accept" className="assign-btn" onClick={(e) => {e.stopPropagation(); handleAccept(item.order_item_id)}} />}
-                                {item.status === "ACCEPTED" && <input type="button" value="Complete" className="complete-btn" onClick={(e) => {e.stopPropagation(); handleComplete(item.order_item_id)}} />}
-                                {item.status === "ACCEPTED" && <input type="button" value="Decline" className="decline-btn" onClick={(e) => {e.stopPropagation(); handleDecline(item.order_item_id)}} />}
+                                {item.status === "NOT ACCEPTED" && <input type="button" value="Accept" className="assign-btn" onClick={(e) => { e.stopPropagation(); handleAccept(item.order_item_id) }} />}
+                                {item.status === "ACCEPTED" && <input type="button" value="Complete" className="complete-btn" onClick={(e) => { e.stopPropagation(); handleComplete(item.order_item_id) }} />}
+                                {item.status === "ACCEPTED" && <input type="button" value="Decline" className="decline-btn" onClick={(e) => { e.stopPropagation(); handleDecline(item.order_item_id) }} />}
                             </td>
                         </tr>
                     ))}
@@ -123,6 +131,7 @@ const page = () => {
                             <th>Image</th>
                             <th>Date</th>
                             <th>Name</th>
+                            <th>Status</th>
                             <th className="orderItem-action">Action</th>
                         </tr>
                     </thead>

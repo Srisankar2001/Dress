@@ -5,6 +5,7 @@ import "./page.css"
 import axiosInstance from "@/config/axiosConfig"
 import { AssignForm } from "./component/assignForm/AssignForm"
 import OrderItemStatus from "@/enums/OrderItemStatus"
+import showToast from "@/utils/toast"
 
 const page = () => {
     const [assignForm, setAssignForm] = useState(false)
@@ -18,7 +19,8 @@ const page = () => {
                     setOrderItems(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
         fetchOrderItems()

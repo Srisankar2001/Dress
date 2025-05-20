@@ -7,7 +7,7 @@ const validate = (input) => {
   
     if(name === ""){
         errors.name = "Name field is Empty"
-    }else if(!(/^[a-zA-Z ]+$/).test(name)){
+    }else if(!(/^[a-zA-Z0-9' ]+$/).test(name)){
         errors.name = "Invalid name"
     }
 

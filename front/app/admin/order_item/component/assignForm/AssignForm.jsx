@@ -2,6 +2,7 @@
 import axiosInstance from '@/config/axiosConfig'
 import React, { useEffect, useState } from 'react'
 import "./AssignForm.css"
+import showToast from '@/utils/toast'
 
 export const AssignForm = ({ id, setAssignForm }) => {
     const [input, setInput] = useState("")
@@ -24,7 +25,8 @@ export const AssignForm = ({ id, setAssignForm }) => {
                     setInput(employee_id)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error") 
+                showToast(false,err.response?.data?.message || "Internal Server Error")
                 setAssignForm(false)
             }
         }
@@ -35,7 +37,8 @@ export const AssignForm = ({ id, setAssignForm }) => {
                     setEmployees(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                   showToast(false,err.response?.data?.message || "Internal Server Error")
                 setAssignForm(false)
             }
         }
@@ -61,11 +64,13 @@ export const AssignForm = ({ id, setAssignForm }) => {
                 }
                 const response = await axiosInstance.put(`/order_item/admin/${id}`, data)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true,response.data.message)
                     setAssignForm(false)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                   showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         } else {
             setError("Please Select An Employee")

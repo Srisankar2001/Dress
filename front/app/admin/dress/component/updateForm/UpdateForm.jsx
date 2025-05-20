@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import "./UpdateForm.css"
 import validate from './validation'
 import axiosInstance from '@/config/axiosConfig'
+import showToast from '@/utils/toast'
 
 export const UpdateForm = ({ id, setUpdateForm }) => {
     const [types, setTypes] = useState([])
@@ -39,7 +40,8 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                     setTypes(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
                 setUpdateForm(false)
             }
         }
@@ -57,7 +59,8 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                     setOldImageURL(`http://localhost:3001/${response.data.data.image}`)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
                 setUpdateForm(false)
             }
         }
@@ -114,11 +117,13 @@ export const UpdateForm = ({ id, setUpdateForm }) => {
                 }
                 const response = input.image ? await axiosInstance.put(`/dress/updateWithImage/${id}`, data, config) : await axiosInstance.put(`/dress/updateWithoutImage/${id}`, data)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true,response.data.message)
                     setUpdateForm(false)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
     }

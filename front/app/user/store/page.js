@@ -6,6 +6,7 @@ import "./page.css"
 import { AddToCart } from '../component/addTocart/addToCart'
 import { MoreInfo } from '../component/moreInfo/MoreInfo'
 import { useRouter } from 'next/navigation'
+import showToast from '@/utils/toast'
 
 const page = () => {
     const router = useRouter()

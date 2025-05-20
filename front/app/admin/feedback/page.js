@@ -5,6 +5,7 @@ import "./page.css"
 import axiosInstance from "@/config/axiosConfig"
 import { UpdateForm } from "./components/updateForm/UpdateForm"
 import { DeleteForm } from "./components/deleteForm/DeleteForm"
+import showToast from "@/utils/toast"
 
 const page = () => {
     const [updateForm, setUpdateForm] = useState(false)
@@ -20,7 +21,8 @@ const page = () => {
                     console.log(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
         fetchfeedbacks()

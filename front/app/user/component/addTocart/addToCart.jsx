@@ -147,6 +147,7 @@ export const AddToCart = ({ id, type_id, setAddToCart }) => {
             <form onSubmit={handleSubmit} onReset={handleReset}>
                 <h1>Add To Cart Page</h1>
                 <p>Enter  the Measures for {name} to add to Cart</p>
+                 <p>Please Enter The Measurements in cm</p>
                 <select className='addToCart-select-div' onChange={handleSelectChange}>
                     <option value="">Select a size</option>
                     {sizes.map((size, index) => (

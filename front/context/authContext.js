@@ -4,6 +4,7 @@ import axiosInstance from '@/config/axiosConfig';
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import showToast from '@/utils/toast';
 
 const AuthContext = createContext(null)
 
@@ -48,7 +49,8 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axiosInstance.post("/auth/logout")
       if (response.data.status) {
-        alert(response.data.message)
+        // alert(response.data.message)
+showToast(true,response.data.message)
         setDetails([])
         setIsAdmin(false)
         setIsEmployee(false)
@@ -56,7 +58,8 @@ export const AuthProvider = ({ children }) => {
         router.push("/auth/login")
       }
     } catch (error) {
-      alert(error.response?.data?.message || "Internal Server Error")
+      // alert(error.response?.data?.message || "Internal Server Error")
+      showToast(false,error.response?.data?.message || "Internal Server Error")
     }
   }
 

@@ -2,6 +2,7 @@
 import axiosInstance from '@/config/axiosConfig'
 import React, { useState, useEffect } from 'react'
 import "./removeCart.css"
+import showToast from '@/utils/toast'
 
 export const RemoveCart = ({ id, dress_id, setRemoveCart }) => {
     const [name, setName] = useState("")

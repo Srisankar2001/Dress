@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import "./CreateForm.css"
 import validate from './validation'
 import axiosInstance from '@/config/axiosConfig'
+import showToast from '@/utils/toast'
 
 export const CreateForm = ({ setCreateForm }) => {
     const [types, setTypes] = useState([])
@@ -38,7 +39,8 @@ export const CreateForm = ({ setCreateForm }) => {
                     setTypes(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
                 setCreateForm(false)
             }
         }
@@ -94,11 +96,13 @@ export const CreateForm = ({ setCreateForm }) => {
                 }
                 const response = await axiosInstance.post("/dress/create", data, config)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true,response.data.message)
                     setCreateForm(false)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
     }

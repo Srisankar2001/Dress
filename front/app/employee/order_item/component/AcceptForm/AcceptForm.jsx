@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import "./AcceptForm.css"
 import axiosInstance from '@/config/axiosConfig'
+import showToast from '@/utils/toast'
 
 export const AcceptForm = ({ id, setAcceptForm }) => {
 
@@ -21,11 +22,13 @@ export const AcceptForm = ({ id, setAcceptForm }) => {
         try {
             const response = await axiosInstance.put(`/order_item/employee/accept/${id}`)
             if (response.data.status) {
-                alert(response.data.message)
+                // alert(response.data.message)
+                showToast(true,response.data.message)
                 setAcceptForm(false)
             }
         } catch (err) {
-            alert(err.response?.data?.message || "Internal Server Error")
+            // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false,err.response?.data?.message || "Internal Server Error")
             setAcceptForm(false)
         }
     }

@@ -9,6 +9,7 @@ import login from "../assets/login.png"
 import logout from "../assets/logout.png"
 import logo from "../assets/logo.png"
 import feedback from "../assets/feedback.png"
+import info from "../assets/info.png"
 import "./Navbar.css"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -57,6 +58,12 @@ export const Navbar = () => {
                         </Link>
                     </li>
                 }
+                <li>
+                    <Link href="/user/aboutus">
+                        <Image src={info} alt="About Us" />
+                        <p>About Us</p>
+                    </Link>
+                </li>
             </ul>
             <div className='nav-right'>
                 {isUser &&

@@ -3,6 +3,7 @@ import axiosInstance from '@/config/axiosConfig'
 import React, { useState, useEffect } from 'react'
 import "./editCart.css"
 import validate from './validation'
+import showToast from '@/utils/toast'
 
 export const EditCart = ({ id, dress_id, setEditCart }) => {
     const [input, setInput] = useState({})

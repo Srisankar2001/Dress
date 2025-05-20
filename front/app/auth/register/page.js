@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation"
 import arrow from "../assets/arrow.png"
 import Image from 'next/image'
 import Link from 'next/link'
+import showToast from "@/utils/toast"
 
 const page = () => {
     const router = useRouter()
@@ -73,13 +74,16 @@ const page = () => {
                 }
                 const response = await axiosInstance.post("/auth/register", data)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true, response.data.message)
                     router.push("/auth/login")
                 } else {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(false, response.data.message)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
             }
         }
     }

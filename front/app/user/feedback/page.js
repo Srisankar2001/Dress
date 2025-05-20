@@ -8,6 +8,7 @@ import { useAuth } from "@/context/authContext"
 import { CreateForm } from "./components/createFrom/CreateForm"
 import { UpdateForm } from "./components/updateForm/UpdateForm"
 import { DeleteForm } from "./components/deleteForm/DeleteForm"
+import showToast from "@/utils/toast"
 
 const page = () => {
     const router = useRouter()
@@ -25,7 +26,8 @@ const page = () => {
                 setfeedbacks(response.data.data)
             }
         } catch (err) {
-            alert(err.response?.data?.message || "Internal Server Error")
+            // alert(err.response?.data?.message || "Internal Server Error")
+            showToast(false, err.response?.data?.message || "Internal Server Error")
         }
     }
 

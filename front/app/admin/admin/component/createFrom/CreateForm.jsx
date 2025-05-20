@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import "./CreateForm.css"
 import validate from './validation'
 import axiosInstance from '@/config/axiosConfig'
+import showToast from '@/utils/toast'
 
 export const CreateForm = ({ setCreateForm }) => {
     const [input, setInput] = useState({
@@ -60,13 +61,16 @@ export const CreateForm = ({ setCreateForm }) => {
                 }
                 const response = await axiosInstance.post("/admin/admin", data)
                 if (response.data.status) {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(true, response.data.message)
                     setCreateForm(false)
                 } else {
-                    alert(response.data.message)
+                    // alert(response.data.message)
+                    showToast(false, response.data.message)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false, err.response?.data?.message || "Internal Server Error")
             }
         }
     }

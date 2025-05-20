@@ -6,6 +6,7 @@ import { CreateForm } from "./component/createFrom/CreateForm"
 import { UpdateForm } from "./component/updateForm/UpdateForm"
 import { DeleteForm } from "./component/deleteForm/DeleteForm"
 import axiosInstance from "@/config/axiosConfig"
+import showToast from "@/utils/toast"
 
 const page = () => {
     const [createForm, setCreateForm] = useState(false)
@@ -21,7 +22,8 @@ const page = () => {
                     setDressTypes(response.data.data)
                 }
             } catch (err) {
-                alert(err.response?.data?.message || "Internal Server Error")
+                // alert(err.response?.data?.message || "Internal Server Error")
+                showToast(false,err.response?.data?.message || "Internal Server Error")
             }
         }
         fetchAllDressTypes()

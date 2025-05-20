@@ -23,7 +23,8 @@ export const OrderForm = ({ id, setOrderForm }) => {
           setItems(response.data.data)
         }
       } catch (err) {
-        alert(err.response?.data?.message || "Internal Server Error")
+        // alert(err.response?.data?.message || "Internal Server Error")
+         showToast(false,err.response?.data?.message || "Internal Server Error")
         setOrderForm(false)
       }
     }

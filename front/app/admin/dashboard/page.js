@@ -5,6 +5,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import "./page.css"
 import { Report } from "./component/report/Report"
 import Bill from "./component/bill/Bill"
+import showToast from "@/utils/toast"
 
 const page = () => {
   const [totalDetail, setTotalDetail] = useState({
@@ -54,7 +55,8 @@ const page = () => {
           setGraphData(arr)
         }
       } catch (err) {
-        alert(err.response?.data?.message || "Internal Server Error")
+        // alert(err.response?.data?.message || "Internal Server Error")
+        showToast(false, err.response?.data?.message || "Internal Server Error") 
       }
     }
     fetchDashboard()
